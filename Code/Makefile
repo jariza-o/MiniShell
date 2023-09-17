@@ -1,0 +1,72 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/09/17 12:59:03 by jariza-o          #+#    #+#              #
+#    Updated: 2023/09/17 20:24:15 by jariza-o         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+# Libreries
+LIBFT =		libft/libft.a
+
+#Flags
+CFLAGS =	-Wall -Werror -Wextra
+COMPILE =	-g
+
+# Minishell
+NAME =		Minishell
+SRC =		src/main.c \
+			src/built-ins/echo/echo.c \
+
+OBJT =		$(SRC:.c=.o)
+
+# Colors
+GREEN		= \033[0;32m
+YELLOW =	\033[0;93m
+FYELLOW =	\033[38;5;154m
+BLUE =		\033[0;96m
+PURPLE =	\033[0;95m
+PINK =		\033[0;91m
+RED =		\033[0;31m
+END =		\033[0m
+
+.c.o:
+			gcc ${CFLAGS} -c $< -o ${<:.c=.o}
+
+all:		$(NAME)
+
+$(NAME): ${OBJT}
+			@if [ ! -e $(LIBFT) ]; then \
+				echo "$(YELLOW)Compiling Libft.$(END)"; \
+				make -s -C libft; \
+				make clean -s -C libft; \
+				echo "$(GREEN)Libft Compiled.$(END)"; \
+			else \
+				echo "$(GREEN)Libft is already compiled.$(END)"; \
+			fi
+			@echo "$(YELLOW)Compiling Minishell.$(END)"
+			@gcc ${CFLAGS} ${OBJT} -o ${NAME}
+			@echo "$(GREEN)Minishell Compiled.$(END)"
+
+clean:
+			@rm -f ${OBJT}
+			@echo "$(RED)Compiled objects have been removed.$(END)"
+
+fclean:		clean
+			@rm -f ${NAME}
+			@make fclean -s -C libft
+			@echo "$(RED)Executables objects have been removed.$(END)"
+
+re:			fclean all
+
+norminette:
+		@echo "$(YELLOW)Norminette libft.$(END)"
+		@norminette ./libft
+		@echo "$(YELLOW)Norminette minishell.$(END)"
+		@norminette ./src
+
+.PHONY: all clean fclean re norminette
