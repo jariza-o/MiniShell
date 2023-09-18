@@ -1,28 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/17 20:26:26 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/18 18:03:27 by jariza-o         ###   ########.fr       */
+/*   Created: 2023/09/18 15:13:57 by jariza-o          #+#    #+#             */
+/*   Updated: 2023/09/18 15:29:25 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
 
-void	ft_cd(char **argv)
+int	ft_check_quotes(char **argv)
 {
-	if (!argv[1] || !ft_strcmp(argv[1], ""))
+	int	i;
+	int	n;
+
+	i = 0;
+	while (argv[i])
 	{
-		if (chdir("USER") != 0) // Cuando tenga hecho ENV poner aqui el home del user
+		n = 0;
+		while (argv[i][n])
 		{
-			ft_print_errors(CD);
-			return ;
+			if (argv[i][n] == '"')
+			{
+				while (argv[i][n] != '"' && argv[i][n])
+					n++;
+				if (argv[i][n] != '"')
+					return (0);
+			}
+			else if (argv[i][n] == '\'')
+			{
+				while (argv[i][n] != '\'' && argv[i][n])
+					n++;
+				if (argv[i][n] != '\'')
+					return (0);
+			}
+			n++;
 		}
+		i++;
 	}
-	if ((chdir(argv[1]) != 0))
-		printf("cd: %s: No such file or directory\n", argv[1]); //en bash pone antes bash: deberíamos de poner el nombre de nuestra minishell??
-	// crear funcion que mne actualice a donde está
+	return (1);
 }

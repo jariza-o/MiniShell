@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 15:13:05 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/17 20:23:40 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/09/18 16:04:01 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ void	ft_echo(char **argv)
 	int	i;
 
 	i = ft_echo_flag(argv);
+	if (!ft_check_quotes(argv))
+	{
+		ft_print_errors(BUILTINS);
+		// termianrlo para poder seguir usando minishell, no se si con un return sirve
+	}
 	if (i == 0)
 		i++;
 	while (argv[i])
