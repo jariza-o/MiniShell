@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+         #
+#    By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 12:59:03 by jariza-o          #+#    #+#              #
-#    Updated: 2023/09/17 20:24:15 by jariza-o         ###   ########.fr        #
+#    Updated: 2023/09/19 19:24:12 by jjaen-mo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,9 @@
 LIBFT =		libft/libft.a
 
 #Flags
+INC		= -I/Users/$(USER)/.brew/opt/readline/include
+
+LFLAGS	= -L/Users/$(USER)/.brew/opt/readline/lib -lreadline
 CFLAGS =	-Wall -Werror -Wextra
 COMPILE =	-g
 
@@ -21,6 +24,8 @@ COMPILE =	-g
 NAME =		Minishell
 SRC =		src/main.c \
 			src/built-ins/echo/echo.c \
+			src/errors/quotes/quotes.c \
+			src/errors/print_errors.c \
 
 OBJT =		$(SRC:.c=.o)
 
@@ -49,7 +54,7 @@ $(NAME): ${OBJT}
 				echo "$(GREEN)Libft is already compiled.$(END)"; \
 			fi
 			@echo "$(YELLOW)Compiling Minishell.$(END)"
-			@gcc ${CFLAGS} ${OBJT} -o ${NAME}
+			@gcc ${CFLAGS} ${LFLAGS} ${INC} ${COMPILE} ${LIBFT} ${OBJT} -o ${NAME} 
 			@echo "$(GREEN)Minishell Compiled.$(END)"
 
 clean:

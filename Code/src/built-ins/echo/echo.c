@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 15:13:05 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/18 16:04:01 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:43:42 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_echo(char **argv)
 		ft_putstr(argv[i]);
 		i++;
 		if (argv[i])
-			ft_putstr(' ');
+			write(1, " ", 1);
 	}
 	if (ft_echo_flag(argv) <= 1)
 		printf("\n");
