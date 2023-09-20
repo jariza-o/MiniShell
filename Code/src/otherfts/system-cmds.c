@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:41:41 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/20 16:05:17 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/20 18:31:17 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ void	ft_system_cmds(char **command)
 	if(pid < 0)
 	{
 		printf("[ERROR] Could not create a child process \n");
-		exit(1);
+		exit(1); //no sabemos si esto tiene que cerrar minishell
 	}
 	else if(pid == 0)
 	{
 		if (execve(cmdpath, command, g_data.env) < 0)
 		{
 			printf("[ERROR] Could not execute command %s \n", command[0]);
-			exit(1);
+			exit(1); //no sabemos si esto tiene que cerrar minishell
 		}
 	}
 	else
