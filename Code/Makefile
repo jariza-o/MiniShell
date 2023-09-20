@@ -6,7 +6,7 @@
 #    By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 12:59:03 by jariza-o          #+#    #+#              #
-#    Updated: 2023/09/19 19:24:12 by jjaen-mo         ###   ########.fr        #
+#    Updated: 2023/09/20 17:09:14 by jjaen-mo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@
 LIBFT =		libft/libft.a
 
 #Flags
-INC		= -I/Users/$(USER)/.brew/opt/readline/include
+INC		= -I /Users/$(USER)/.brew/opt/readline/include
 
-LFLAGS	= -L/Users/$(USER)/.brew/opt/readline/lib -lreadline
+LFLAGS	= -L /Users/$(USER)/.brew/opt/readline/lib -lreadline
 CFLAGS =	-Wall -Werror -Wextra
 COMPILE =	-g
 
@@ -24,6 +24,13 @@ COMPILE =	-g
 NAME =		Minishell
 SRC =		src/main.c \
 			src/built-ins/echo/echo.c \
+			src/built-ins/cd/cd.c \
+			src/built-ins/pwd/pwd.c \
+			src/built-ins/env/env.c \
+			src/built-ins/export/export.c \
+			src/built-ins/unset/unset.c \
+			src/built-ins/exit/exit.c \
+			src/otherfts/system-cmds.c \
 			src/errors/quotes/quotes.c \
 			src/errors/print_errors.c \
 
