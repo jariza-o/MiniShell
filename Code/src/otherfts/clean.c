@@ -1,19 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/17 20:26:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/20 19:42:59 by jjaen-mo         ###   ########.fr       */
+/*   Created: 2023/09/20 18:41:56 by jjaen-mo          #+#    #+#             */
+/*   Updated: 2023/09/20 19:42:39 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/minishell.h"
+#include "../../include/minishell.h"
 
-void	ft_exit(void)
+t_vars *ft_clean_vars(t_vars *vars)
 {
-	// Funciones para liberar todo  lo necesario, que habrá que pasarselo a la función
-	exit (0); // He puesto 0, pero cuando salga tiene, te saca con un estado de salida, habrá que implemnetarlo, 0 si está bien o otro si está mal. Este estado será segúnn el estado del comando anteriror
+	int cnt;
+
+	cnt = 0;
+	if(!vars)
+		return (NULL);
+	while(vars->names[cnt] && vars->values[cnt])
+	{
+		free(vars->names[cnt]);
+		free(vars->values[cnt]);
+		cnt++;
+	}
+	free(vars->names[cnt]);
+	free(vars->values[cnt]);
+	free(vars->names);
+	free(vars->values);
+	free(vars);
+	vars = NULL;
+	return (NULL);
 }
