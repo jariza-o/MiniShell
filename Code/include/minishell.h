@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/20 18:15:26 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/21 17:31:07 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,9 @@ void		ft_unset(char **argv);
 void		ft_exit(void);
 
 void		ft_system_cmds(char **command);
+
+t_vars		*ft_clean_vars(t_vars *vars);
+
+void		ft_parser(t_data g_data);
 
 #endif
