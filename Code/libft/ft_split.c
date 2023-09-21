@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:42:26 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/20 19:38:22 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2022/10/12 13:29:49 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static size_t	ft_wordcounter(char const *s, char c)
 
 char	**ft_split(char const *s, char c)
 {
-	char	**str; 
+	char	**str;
 	size_t	len;
 	size_t	n;
 
