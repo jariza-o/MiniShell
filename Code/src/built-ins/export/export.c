@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:26:44 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/20 18:03:51 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/20 19:59:16 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void ft_print_env(t_vars *env)
 	int cnt;
 
 	cnt = 0;
-	if(!env)
+	if(!env->values || !env->names)
 		return;
 	while(env->values[cnt] && env->names[cnt])
 	{
@@ -40,26 +40,21 @@ static t_vars *ft_realloc_vars(char *name, char *value)
 	cnt = 0;
 	while(g_data.vars->names[cnt] && g_data.vars->values[cnt])
 	{
-		new->names[cnt] = malloc(sizeof(char)*ft_strlen(g_data.vars->names[cnt]));
-		new->values[cnt] = malloc(sizeof(char)*ft_strlen(g_data.vars->values[cnt]));
 		new->names[cnt] = ft_strdup(g_data.vars->names[cnt]);
 		new->values[cnt] = ft_strdup(g_data.vars->values[cnt]);
 		cnt++;
 	}
-	new->names[cnt] = malloc(sizeof(char)*ft_strlen(name) + 1);
-	new->values[cnt] = malloc(sizeof(char)*ft_strlen(value) + 1);
 	new->names[cnt] = ft_strdup(name);
 	new->values[cnt] = ft_strdup(value);
+	g_data.vars = ft_clean_vars(g_data.vars);
 	return (new);
 }
 
 static void ft_init_vars(char *name, char *value)
 {
 	g_data.vars = malloc(sizeof(t_vars *));
-	g_data.vars->names = malloc(sizeof(char *) * 2);
-	g_data.vars->values = malloc(sizeof(char *) * 2);
-	g_data.vars->names[0] = malloc(sizeof(char)*ft_strlen(name) + 1);
-	g_data.vars->values[0] = malloc(sizeof(char)*ft_strlen(value) + 1);
+	g_data.vars->names = malloc(sizeof(char *) * 1);
+	g_data.vars->values = malloc(sizeof(char *) * 1);
 	g_data.vars->names[0] = ft_strdup(name);
 	g_data.vars->values[0] = ft_strdup(value);
 }
@@ -77,5 +72,8 @@ void ft_export(char **argv)
 			ft_init_vars(vars[0], vars[1]);
 		else
 			g_data.vars = ft_realloc_vars(vars[0], vars[1]);
+		free(vars[0]);
+		free(vars[1]);
+		free(vars);
 	}
 }

@@ -31,6 +31,7 @@ SRC =		src/main.c \
 			src/built-ins/unset/unset.c \
 			src/built-ins/exit/exit.c \
 			src/otherfts/system-cmds.c \
+			src/otherfts/clean.c \
 			src/errors/quotes/quotes.c \
 			src/errors/print_errors.c \
 
