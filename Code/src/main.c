@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/21 17:35:55 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/09/24 15:46:32 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	main(int argc, char **argv, char **env)
 	{
 		add_history(str);
 		g_data.recieved = ft_split(str, ' ');
-		ft_parser(g_data);
+		ft_parser();
 		ft_cmds();
 	}
 	return (0);
