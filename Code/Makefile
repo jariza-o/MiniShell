@@ -6,7 +6,7 @@
 #    By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 12:59:03 by jariza-o          #+#    #+#              #
-#    Updated: 2023/09/21 17:32:24 by jariza-o         ###   ########.fr        #
+#    Updated: 2023/09/25 18:32:52 by jariza-o         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRC =		src/main.c \
 			src/parser/parser.c \
 			src/otherfts/system-cmds.c src/otherfts/clean.c \
 			src/errors/quotes/quotes.c src/errors/print_errors.c \
+			src/signals/signals.c \
 
 OBJT =		$(SRC:.c=.o)
 

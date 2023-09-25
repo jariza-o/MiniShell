@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 15:50:09 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/24 16:53:53 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/09/25 17:36:39 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,11 @@ void	ft_parser(void)
 
 	i = 1;
 	argv = malloc(100000); //cambiar
-	ft_check_quotes(g_data.recieved);
+	if (!ft_check_quotes(g_data.recieved))
+	{
+		ft_print_errors(BUILTINS);
+		// termianrlo para poder seguir usando minishell, no se si con un return sirve
+	}
 	while (g_data.recieved[i])
 	{
 		n = 0;
