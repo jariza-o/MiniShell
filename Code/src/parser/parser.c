@@ -6,67 +6,15 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 15:50:09 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/25 17:36:39 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/09/26 15:31:37 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
 static void	ft_find_env(int i);
-
-void	ft_simple_quote(void)
-{
-	int		i;
-	int		n;
-	int		j;
-	char	*argv;
-
-	i = 1;
-	argv = malloc(100000); //cambiar
-	while (g_data.recieved[i])
-	{
-		n = 0;
-		j = 0;
-		while (g_data.recieved[i][n])
-		{
-			if (g_data.recieved[i][n] == '\'')
-				n++;
-			argv[j] = g_data.recieved[i][n];
-			j++;
-			n++;
-		}
-		g_data.recieved[i] = argv;
-		free(argv);
-		i++;
-	}
-}
-
-void	ft_double_quote(void)
-{
-	int		i;
-	int		n;
-	int		j;
-	char	*argv;
-
-	i = 1;
-	argv = malloc(100000); //cambiar
-	while (g_data.recieved[i])
-	{
-		n = 0;
-		j = 0;
-		while (g_data.recieved[i][n])
-		{
-			if (g_data.recieved[i][n] == '"')
-				n++;
-			argv[j] = g_data.recieved[i][n];
-			j++;
-			n++;
-		}
-		g_data.recieved[i] = argv;
-		free(argv);
-		i++;
-	}
-}
+static void	ft_simple_quote(void);
+static void	ft_double_quote(void);
 
 void	ft_parser(void)
 {
@@ -93,7 +41,7 @@ void	ft_parser(void)
 			}
 			else if (g_data.recieved[i][n] == '$')
 			{
-				printf("%s\n", g_data.recieved[i]);
+				// printf("%s\n", g_data.recieved[i]);
 				ft_find_env(i);
 				n = 0;
 			}
@@ -107,7 +55,7 @@ void	ft_parser(void)
 
 static void	ft_find_env(int i)
 {
-	char	env[256];
+	char	*env;
 	char	*cosa;
 	char	*argv;
 	int		n;
@@ -115,7 +63,6 @@ static void	ft_find_env(int i)
 	int		k;
 
 	n = 0;
-	printf("FJ");
 	argv = malloc(100000); //cambiar
 	while (g_data.recieved[i][n] != '$')
 	{
@@ -125,6 +72,7 @@ static void	ft_find_env(int i)
 	j = n;
 	n++;
 	k = 0;
+	env = malloc(100000); //cambiar
 	while (g_data.recieved[i][n] != 32 && g_data.recieved[i][n] != '\t' && \
 	g_data.recieved[i][n] != '\0' && g_data.recieved[i][n] != '$')
 	{
@@ -133,7 +81,11 @@ static void	ft_find_env(int i)
 		n++;
 	}
 	k = 0;
+	cosa = malloc(100000); //cambiar
 	cosa = getenv(env);
+	// PONER QUE SI COSA == NULL PONER EL ESPACIO DE CUANDO NO EXISTE
+	printf("%s %s\n", cosa, env);
+	printf("TEST\n");
 	while (cosa[k])
 	{
 		argv[j] = cosa[k];
@@ -146,6 +98,63 @@ static void	ft_find_env(int i)
 		j++;
 		n++;
 	}
+	printf("krorkffk\n");
 	g_data.recieved[i] = argv;
 	free(argv);
+	// free(env); //
+	// free(cosa); //
+}
+
+static void	ft_simple_quote(void)
+{
+	int		i;
+	int		n;
+	int		j;
+	char	*argv;
+
+	i = 1;
+	argv = malloc(100000); //cambiar
+	while (g_data.recieved[i])
+	{
+		n = 0;
+		j = 0;
+		while (g_data.recieved[i][n])
+		{
+			if (g_data.recieved[i][n] == '\'')
+				n++;
+			argv[j] = g_data.recieved[i][n];
+			j++;
+			n++;
+		}
+		g_data.recieved[i] = argv;
+		free(argv);
+		i++;
+	}
+}
+
+static void	ft_double_quote(void)
+{
+	int		i;
+	int		n;
+	int		j;
+	char	*argv;
+
+	i = 1;
+	argv = malloc(100000); //cambiar
+	while (g_data.recieved[i])
+	{
+		n = 0;
+		j = 0;
+		while (g_data.recieved[i][n])
+		{
+			if (g_data.recieved[i][n] == '"')
+				n++;
+			argv[j] = g_data.recieved[i][n];
+			j++;
+			n++;
+		}
+		g_data.recieved[i] = argv;
+		free(argv);
+		i++;
+	}
 }
