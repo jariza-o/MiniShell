@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:13:57 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/18 15:29:25 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/09/28 13:57:48 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,15 @@ int	ft_check_quotes(char **argv)
 	int	i;
 	int	n;
 
-	i = 0;
-	while (argv[i])
+	i = -1;
+	while (argv[++i])
 	{
-		n = 0;
-		while (argv[i][n])
+		n = -1;
+		while (argv[i][++n])
 		{
 			if (argv[i][n] == '"')
 			{
+				n++;
 				while (argv[i][n] != '"' && argv[i][n])
 					n++;
 				if (argv[i][n] != '"')
@@ -32,14 +33,13 @@ int	ft_check_quotes(char **argv)
 			}
 			else if (argv[i][n] == '\'')
 			{
+				n++;
 				while (argv[i][n] != '\'' && argv[i][n])
 					n++;
 				if (argv[i][n] != '\'')
 					return (0);
 			}
-			n++;
 		}
-		i++;
 	}
 	return (1);
 }
