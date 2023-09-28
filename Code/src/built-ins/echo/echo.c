@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 15:13:05 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/19 18:43:42 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/25 17:36:59 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ void	ft_echo(char **argv)
 	int	i;
 
 	i = ft_echo_flag(argv);
-	if (!ft_check_quotes(argv))
+	if (!argv[1])
 	{
-		ft_print_errors(BUILTINS);
-		// termianrlo para poder seguir usando minishell, no se si con un return sirve
+		write(1, "\n", 1);
+		return ;
 	}
 	if (i == 0)
 		i++;

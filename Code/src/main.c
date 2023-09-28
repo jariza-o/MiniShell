@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/20 17:14:37 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/28 14:13:34 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,14 @@ int	main(int argc, char **argv, char **env)
 	str = 0;
 	g_data.env = env;
 	g_data.user = getenv("USER");
+	ft_signals();
 	init_shell();
 	while ((str = readline("MiniSheh$> ")) != NULL)
 	{
 		add_history(str);
+		ft_errors();
 		g_data.recieved = ft_split(str, ' ');
+		ft_parser();
 		ft_cmds();
 	}
 	return (0);

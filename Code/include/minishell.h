@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/20 18:42:52 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/28 14:12:45 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,16 @@
 # include <unistd.h> // chdir, getcwd
 # include <unistd.h>
 
-/* ERROR DEFINES */
-# define BUILTINS 1
-# define CD 2
-# define PWD 3
+/* ERRORS */
+enum	errors
+{
+	QUOTES,
+	SLASH,
+	SEMICOLON,
+	BUILTINS,
+	CD,
+	PWD,
+};
 
 typedef struct s_vars
 {
@@ -48,10 +54,15 @@ typedef struct s_data
 t_data		g_data;
 
 /* ERRORS */
+void		ft_errors(void);
 /* Print error message */
 void		ft_print_errors(int error);
 /* Quotes (" and ') */
 int			ft_check_quotes(char **argv);
+/* Semicolon */
+int			ft_check_semicolon(char **argv);
+/* Slashs */
+int			ft_check_slash(char **argv);
 
 /* Built-ins */
 /* Echo */
@@ -72,5 +83,9 @@ void		ft_exit(void);
 void		ft_system_cmds(char **command);
 
 t_vars		*ft_clean_vars(t_vars *vars);
+
+void		ft_parser(void);
+
+void		ft_signals(void);
 
 #endif
