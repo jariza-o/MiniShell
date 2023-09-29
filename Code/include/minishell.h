@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/28 14:49:31 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/29 13:57:59 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_data
 	char	**recieved;
 	char	**env;
 	char	*user;
+	int 	exit_status;
 	t_vars	*vars;
 }			t_data;
 

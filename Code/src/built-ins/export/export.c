@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:26:44 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/20 19:59:16 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/29 14:46:45 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ static t_vars *ft_realloc_vars(char *name, char *value)
 		cnt++;
 	}
 	new->names[cnt] = ft_strdup(name);
+	new->names[cnt + 1] = NULL;
 	new->values[cnt] = ft_strdup(value);
+	new->values[cnt + 1] = NULL;
 	g_data.vars = ft_clean_vars(g_data.vars);
 	return (new);
 }
@@ -53,27 +55,40 @@ static t_vars *ft_realloc_vars(char *name, char *value)
 static void ft_init_vars(char *name, char *value)
 {
 	g_data.vars = malloc(sizeof(t_vars *));
-	g_data.vars->names = malloc(sizeof(char *) * 1);
-	g_data.vars->values = malloc(sizeof(char *) * 1);
+	g_data.vars->names = malloc(sizeof(char *) * 2);
+	g_data.vars->values = malloc(sizeof(char *) * 2);
 	g_data.vars->names[0] = ft_strdup(name);
+	g_data.vars->names[1] = NULL;
 	g_data.vars->values[0] = ft_strdup(value);
+	g_data.vars->values[1] = NULL;
 }
+
+//ADD VARS TO ENV
 
 void ft_export(char **argv)
 {
 	char **vars;
+	pid_t pid;
 
-	if(!argv[1])
-		ft_print_env(g_data.vars);
-	else
+	pid = fork();
+	if(pid < 0)
+		printf("[ERROR] Could not create a child process \n");
+	else if(pid == 0)
 	{
-		vars = ft_split(argv[1], '=');
-		if(!g_data.vars)
-			ft_init_vars(vars[0], vars[1]);
+		if(!argv[1])
+			ft_print_env(g_data.vars);
 		else
-			g_data.vars = ft_realloc_vars(vars[0], vars[1]);
-		free(vars[0]);
-		free(vars[1]);
-		free(vars);
+		{
+			vars = ft_split(argv[1], '=');
+			if(!g_data.vars)
+				ft_init_vars(vars[0], vars[1]);
+			else
+				g_data.vars = ft_realloc_vars(vars[0], vars[1]);
+			free(vars[0]);
+			free(vars[1]);
+			free(vars);
+		}
 	}
+	else
+		wait(&pid);
 }
