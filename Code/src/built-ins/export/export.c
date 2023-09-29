@@ -6,39 +6,75 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:26:44 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/29 14:46:45 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/29 19:45:47 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
 
-static void ft_print_env(t_vars *env)
+void ft_new_env(char *name, char *value)
 {
 	int cnt;
+	int cnt2;
+	char **env;
 
 	cnt = 0;
-	if(!env->values || !env->names)
-		return;
-	while(env->values[cnt] && env->names[cnt])
-	{
-		printf("%s = %s\n", env->names[cnt], env->values[cnt]);
+	cnt2 = 0;
+	while(g_data.env[cnt])
 		cnt++;
+	env = malloc(sizeof(char *) * (cnt + 2));
+	while(g_data.env[cnt2])
+	{
+		env[cnt2] = ft_strdup(g_data.env[cnt2]);
+		cnt2++;
 	}
+	env[cnt2] = ft_strjoin(ft_strjoin(name, "="), value);
+	env[cnt2 + 1] = NULL;
+	g_data.env = env;
 }
 
-static t_vars *ft_realloc_vars(char *name, char *value)
+void	ft_add_env(char **names, char **values)
 {
-	t_vars *new;
-	int cnt;
+	int		cnt;
+	int		cnt2;
+	int cnt3;
+	int size;
+	char	**env;
+
+	cnt = 0;
+	cnt2 = 0;
+	while (g_data.env[cnt])
+		cnt++;
+	while (names[cnt2] && values[cnt2])
+		cnt2++;
+	size = cnt + cnt2;
+	cnt3 = cnt;
+	env = malloc(sizeof(char *) * size);
+	while (cnt--)
+		env[cnt] = ft_strdup(g_data.env[cnt]);
+	cnt2 = -1;
+	while (cnt3 < size && names[++cnt2])
+	{
+		env[cnt3] = ft_strjoin(ft_strjoin(names[cnt2], "="), values[cnt2]);
+		cnt3++;
+	}
+	env[cnt3] = NULL;
+	g_data.env = env;
+}
+
+static t_vars	*ft_realloc_vars(char *name, char *value)
+{
+	t_vars	*new;
+	int		cnt;
 
 	new = malloc(sizeof(t_vars *));
 	cnt = 0;
-	while(g_data.vars->names[cnt] && g_data.vars->values[cnt])
+	while (g_data.vars->names[cnt] && g_data.vars->values[cnt])
 		cnt++;
 	new->names = malloc(sizeof(char *) * (cnt + 2));
 	new->values = malloc(sizeof(char *) * (cnt + 2));
 	cnt = 0;
-	while(g_data.vars->names[cnt] && g_data.vars->values[cnt])
+	while (g_data.vars->names[cnt] && g_data.vars->values[cnt])
 	{
 		new->names[cnt] = ft_strdup(g_data.vars->names[cnt]);
 		new->values[cnt] = ft_strdup(g_data.vars->values[cnt]);
@@ -49,10 +85,11 @@ static t_vars *ft_realloc_vars(char *name, char *value)
 	new->values[cnt] = ft_strdup(value);
 	new->values[cnt + 1] = NULL;
 	g_data.vars = ft_clean_vars(g_data.vars);
+	ft_new_env(new->names[cnt], new->values[cnt]);
 	return (new);
 }
 
-static void ft_init_vars(char *name, char *value)
+static void	ft_init_vars(char *name, char *value)
 {
 	g_data.vars = malloc(sizeof(t_vars *));
 	g_data.vars->names = malloc(sizeof(char *) * 2);
@@ -61,26 +98,26 @@ static void ft_init_vars(char *name, char *value)
 	g_data.vars->names[1] = NULL;
 	g_data.vars->values[0] = ft_strdup(value);
 	g_data.vars->values[1] = NULL;
+	ft_add_env(g_data.vars->names, g_data.vars->values);
 }
 
 //ADD VARS TO ENV
 
-void ft_export(char **argv)
+void	ft_export(char **argv)
 {
-	char **vars;
-	pid_t pid;
+	char	**vars;
 
-	pid = fork();
-	if(pid < 0)
+	g_data.r_pid = fork();
+	if (g_data.r_pid < 0)
 		printf("[ERROR] Could not create a child process \n");
-	else if(pid == 0)
+	else if (g_data.r_pid == 0)
 	{
-		if(!argv[1])
-			ft_print_env(g_data.vars);
+		if (!argv[1])
+			ft_print_matrix(g_data.env);
 		else
 		{
 			vars = ft_split(argv[1], '=');
-			if(!g_data.vars)
+			if (!g_data.vars)
 				ft_init_vars(vars[0], vars[1]);
 			else
 				g_data.vars = ft_realloc_vars(vars[0], vars[1]);
@@ -89,6 +126,4 @@ void ft_export(char **argv)
 			free(vars);
 		}
 	}
-	else
-		wait(&pid);
 }

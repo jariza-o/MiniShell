@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:41:41 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/29 14:25:23 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/29 16:46:06 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,15 @@ static char	*ft_get_cmdpath(char *cmd, char **args)
 
 void	ft_system_cmds(char **command)
 {
-	pid_t	pid;
 	char	*cmdpath;
 
 	if(ft_check_file(command[0]) == 1)
 		return ;
-	pid = fork();
+	g_data.r_pid = fork();
 	cmdpath = NULL;
-	if (pid < 0)
+	if (g_data.r_pid < 0)
 		printf("[ERROR] Could not create a child process \n");
-	else if (pid == 0)
+	else if (g_data.r_pid == 0)
 	{
 		cmdpath = ft_get_cmdpath(command[0], command);
 		if (!cmdpath)
@@ -84,9 +83,5 @@ void	ft_system_cmds(char **command)
 			g_data.exit_status = 1;
 		}
 	}
-	else
-	{
-		wait(&pid);
-		free(cmdpath);
-	}
+	free(cmdpath);
 }

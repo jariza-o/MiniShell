@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/29 14:21:27 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/29 19:09:13 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	ft_cmds(void)
 		printf("\e[1;1H\e[2J");
 	else
 		ft_system_cmds(g_data.recieved);
+	wait(&g_data.r_pid);
 }
 
 int	main(int argc, char **argv, char **env)

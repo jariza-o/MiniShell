@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 15:13:05 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/29 14:25:09 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/29 16:47:08 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,11 @@ static int	ft_echo_flag(char **argv);
 void	ft_echo(char **argv)
 {
 	int	i;
-	pid_t pid;
 
-	pid = fork();
-	if(pid < 0)
+	g_data.r_pid = fork();
+	if(g_data.r_pid < 0)
 		printf("[ERROR] Could not create a child process \n");
-	else if (pid == 0)
+	else if (g_data.r_pid == 0)
 	{
 		i = ft_echo_flag(argv);
 		if (!argv[1])
@@ -48,8 +47,6 @@ void	ft_echo(char **argv)
 		if (ft_echo_flag(argv) <= 1)
 			printf("\n");
 	}
-	else
-		wait(&pid);
 }
 
 static int	ft_echo_flag(char **argv)
