@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/28 15:34:16 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/09/29 12:51:49 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,14 @@ int	main(int argc, char **argv, char **env)
 	while ((str = readline("MiniSheh$> ")) != NULL)
 	{
 		add_history(str);
-		g_data.recieved = ft_split(str, ' ');
+		g_data.recieved = ft_mini_split(str);
+		// int i = 0;
+		// while (g_data.recieved[i])
+		// {
+		// 	printf("%s\n", g_data.recieved[i]);
+		// 	i++;
+		// }
+		// printf("\n\n");
 		ft_errors();
 		ft_parser();
 		ft_cmds();

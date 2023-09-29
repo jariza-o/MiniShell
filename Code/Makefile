@@ -6,7 +6,7 @@
 #    By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 12:59:03 by jariza-o          #+#    #+#              #
-#    Updated: 2023/09/28 14:10:41 by jariza-o         ###   ########.fr        #
+#    Updated: 2023/09/29 11:48:33 by jariza-o         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ NAME =		Minishell
 SRC =		src/main.c \
 			src/built-ins/echo/echo.c src/built-ins/cd/cd.c src/built-ins/pwd/pwd.c src/built-ins/env/env.c src/built-ins/export/export.c \
 			src/built-ins/unset/unset.c src/built-ins/exit/exit.c \
-			src/parser/parser.c \
+			src/parser/parser.c src/parser/ft_mini_split.c\
 			src/otherfts/system-cmds.c src/otherfts/clean.c \
 			src/errors/special_caracters/quotes.c src/errors/special_caracters/slash_semicolon.c src/errors/errors.c \
 			src/signals/signals.c \
