@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/29 11:51:31 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/09/30 13:43:37 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include <unistd.h>
 
 /* ERRORS */
-enum	errors
+enum e_errors
 {
 	QUOTES,
 	SLASH,
@@ -36,6 +36,29 @@ enum	errors
 	CD,
 	PWD,
 };
+
+/* Token List */
+enum e_datatype
+{
+	NO_QUOTE,
+	SINGLE_QUOTE,
+	DOUBLE_QUOTE,
+	PIPE,
+	BUILTINS,
+	ENVI_VAR,
+	// IN_RED,
+	// OUT_RED,
+	// APPEND_RED,
+	// HERE_DOC_RED
+};
+
+typedef struct s_token
+{
+	char			*str;
+	enum e_datatype	type;
+	struct s_token	*next;
+	struct s_token	*prev;
+}					t_token;
 
 typedef struct s_vars
 {
@@ -46,6 +69,7 @@ typedef struct s_vars
 typedef struct s_data
 {
 	char	**recieved;
+	t_token	tokens;
 	char	**env;
 	char	*user;
 	t_vars	*vars;

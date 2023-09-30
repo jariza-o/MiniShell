@@ -6,7 +6,7 @@
 #    By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 12:59:03 by jariza-o          #+#    #+#              #
-#    Updated: 2023/09/29 11:48:33 by jariza-o         ###   ########.fr        #
+#    Updated: 2023/09/30 17:16:53 by jariza-o         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ $(NAME): ${OBJT}
 				echo "$(GREEN)Libft is already compiled.$(END)"; \
 			fi
 			@echo "$(YELLOW)Compiling Minishell.$(END)"
-			@gcc ${CFLAGS} ${LFLAGS} ${INC} ${COMPILE} ${LIBFT} ${OBJT} -o ${NAME} 
+			@gcc ${CFLAGS} ${INC} ${COMPILE} ${LIBFT} ${OBJT} -o ${NAME} ${LFLAGS}
 			@echo "$(GREEN)Minishell Compiled.$(END)"
 
 clean:
