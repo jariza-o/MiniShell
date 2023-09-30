@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 13:39:48 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/30 17:01:51 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/09/30 20:46:56 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	ft_tokenizer(void)
 	int	i;
 
 	i = 0;
-	while (g_data.recieved[i])
+	while (g_data.tokens->str)
 	{
-		if (ft_is_no_quote(g_data.recieved[i]))
+		if (ft_is_no_quote(g_data.tokens->str))
 		{
-			if (ft_is_builtin(g_data.recieved[i], i))
-				// NOSE
+			if (ft_is_builtin(g_data.tokens))
+				g_data.tokens->type = BUILTINS;
 			else if ()
 		}
 	}
@@ -43,10 +43,27 @@ static int	ft_is_no_quote(char *argv)
 	}
 	return (1);
 }
-static int	ft_is_builtin(char *argv, int i)
+static int	ft_is_builtin(t_token *token)
 {
-	if (i == 0)
+	if (!token->prev)
 	{
-		
+		if (ft_check_builtin(token))
+			return (1);
 	}
+	else if (token->prev->type == PIPE)
+	{
+		if (ft_check_builtin(token))
+			return (1);
+	}
+	return (0);
+}
+
+static int	ft_check_builtin(t_token *token)
+{
+	if (!ft_strcmp(token->str, "echo") || !ft_strcmp(token->str, "cd") || \
+	!ft_strcmp(token->str, "pwd") || !ft_strcmp(token->str, "export") || \
+	!ft_strcmp(token->str, "unset") || !ft_strcmp(token->str, "env") || \
+	!ft_strcmp(token->str, "exit"))
+		return (1);
+	return (0);
 }
