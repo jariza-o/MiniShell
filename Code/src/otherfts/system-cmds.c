@@ -6,22 +6,22 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:41:41 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/29 16:46:06 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/01 17:30:07 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-static int ft_check_file(char *cmd)
+static int	ft_check_file(char *cmd)
 {
-	int cnt;
+	int	cnt;
 
 	cnt = 0;
-	while(cmd[cnt])
+	while (cmd[cnt])
 	{
-		if(cmd[cnt] == '/')
+		if (cmd[cnt] == '/')
 		{
-			if(access(cmd, F_OK) < 0)
+			if (access(cmd, F_OK) < 0)
 			{
 				printf("[ERROR] Not such file or directory \n");
 				g_data.exit_status = 127;
@@ -66,7 +66,7 @@ void	ft_system_cmds(char **command)
 {
 	char	*cmdpath;
 
-	if(ft_check_file(command[0]) == 1)
+	if (ft_check_file(command[0]) == 1)
 		return ;
 	g_data.r_pid = fork();
 	cmdpath = NULL;

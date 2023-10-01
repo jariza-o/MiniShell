@@ -6,16 +6,18 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 15:13:05 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/29 16:47:08 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/01 17:27:47 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
 
 /*
-- tener en cuenta en el split que si es entre comillas el argv puede tener espacios y \t
+- tener en cuenta en el split que si es entre comillas el argv 
+puede tener espacios y \t
 - entre argumentos si hay varios espacio no hay que tenerlos en cuenta
-- como se hace para que cuando empiece por " o por ' haga lo del salto y que se pueda escribir
+- como se hace para que cuando empiece por " o por ' haga lo del salto 
+y que se pueda escribir
 */
 
 static int	ft_echo_flag(char **argv);
@@ -25,7 +27,7 @@ void	ft_echo(char **argv)
 	int	i;
 
 	g_data.r_pid = fork();
-	if(g_data.r_pid < 0)
+	if (g_data.r_pid < 0)
 		printf("[ERROR] Could not create a child process \n");
 	else if (g_data.r_pid == 0)
 	{

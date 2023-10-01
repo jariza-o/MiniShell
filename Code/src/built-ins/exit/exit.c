@@ -3,17 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:26:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/18 18:18:16 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/01 17:27:07 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
 
+/* He puesto 0, pero cuando salga tiene, te saca con un estado de salida,
+	habrá que implemnetarlo,
+	0 si está bien o otro si está mal. Este estado será segúnn el estado 
+	del comando anteriror
+*/
+
 void	ft_exit(void)
 {
-	// Funciones para liberar todo  lo necesario, que habrá que pasarselo a la función
-	exit (0); // He puesto 0, pero cuando salga tiene, te saca con un estado de salida, habrá que implemnetarlo, 0 si está bien o otro si está mal. Este estado será segúnn el estado del comando anteriror
+	g_data.recieved = ft_clean_matrix(g_data.recieved);
+	if (g_data.vars_mod)
+		g_data.env = ft_clean_matrix(g_data.env);
+	exit(0);
 }

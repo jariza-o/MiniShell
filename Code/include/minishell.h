@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/29 19:13:28 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/01 16:41:42 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,14 @@ enum		errors
 	PWD,
 };
 
-typedef struct s_vars
-{
-	char	**names;
-	char	**values;
-}			t_vars;
-
 typedef struct s_data
 {
 	char	**recieved;
 	char	**env;
 	char	*user;
-	int 	exit_status;
+	int		exit_status;
 	pid_t	r_pid;
-	t_vars	*vars;
+	int		vars_mod;
 }			t_data;
 
 t_data		g_data;
@@ -85,12 +79,10 @@ void		ft_exit(void);
 
 void		ft_system_cmds(char **command);
 
-t_vars		*ft_clean_vars(t_vars *vars);
-
 void		ft_parser(void);
 
 // void		ft_signals(void);
 
-void ft_add_env(char **names, char **values);
+char		**ft_clean_matrix(char **matrix);
 
 #endif
