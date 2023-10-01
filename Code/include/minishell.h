@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/30 20:48:55 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/01 15:13:27 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,6 @@ void		ft_exit(void);
 void		ft_system_cmds(char **command);
 
 t_vars		*ft_clean_vars(t_vars *vars);
-
-void		ft_parser(void);
 
 void		ft_signals(void);
 
