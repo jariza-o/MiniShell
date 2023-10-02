@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
 /*   Updated: 2023/10/01 16:41:42 by jjaen-mo         ###   ########.fr       */
@@ -84,5 +84,9 @@ void		ft_parser(void);
 // void		ft_signals(void);
 
 char		**ft_clean_matrix(char **matrix);
+
+void		ft_parser(void);
+
+void		ft_signals(void);
 
 #endif
