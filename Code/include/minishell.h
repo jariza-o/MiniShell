@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/01 15:13:27 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/02 17:28:37 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ enum e_errors
 	QUOTES,
 	SLASH,
 	SEMICOLON,
-	BUILTINS,
 	CD,
 	PWD,
+	// BUILTINS,
 };
 
 /* Token List */
@@ -48,10 +48,10 @@ enum e_datatype
 	BUILTINS,
 	COMMAND,
 	ENVI_VAR,
-	// IN_RED,
-	// OUT_RED,
-	// APPEND_RED,
-	// HERE_DOC_RED
+	IN_RED,
+	OUT_RED,
+	HERE_DOC_RED,
+	APPEND_RED,
 };
 
 typedef struct s_token
@@ -113,8 +113,10 @@ t_vars		*ft_clean_vars(t_vars *vars);
 void		ft_signals(void);
 
 char		**ft_mini_split(char *s);
+char		**ft_split_redirections(void);
+void		ft_tokenizer(void);
 
 /* Tokens */
-void		fit_init_token(void);
+void		ft_init_token(void);
 
 #endif
