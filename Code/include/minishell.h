@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/28 14:12:45 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/01 16:41:42 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@
 # include <stdio.h> // printf
 # include <stdlib.h>
 # include <string.h>
+# include <sys/stat.h>
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <unistd.h> // chdir, getcwd
 # include <unistd.h>
 
 /* ERRORS */
-enum	errors
+enum		errors
 {
 	QUOTES,
 	SLASH,
@@ -37,18 +38,14 @@ enum	errors
 	PWD,
 };
 
-typedef struct s_vars
-{
-	char	**names;
-	char	**values;
-}			t_vars;
-
 typedef struct s_data
 {
 	char	**recieved;
 	char	**env;
 	char	*user;
-	t_vars	*vars;
+	int		exit_status;
+	pid_t	r_pid;
+	int		vars_mod;
 }			t_data;
 
 t_data		g_data;
@@ -82,7 +79,11 @@ void		ft_exit(void);
 
 void		ft_system_cmds(char **command);
 
-t_vars		*ft_clean_vars(t_vars *vars);
+void		ft_parser(void);
+
+// void		ft_signals(void);
+
+char		**ft_clean_matrix(char **matrix);
 
 void		ft_parser(void);
 

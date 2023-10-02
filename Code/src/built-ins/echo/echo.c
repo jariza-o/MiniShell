@@ -13,9 +13,11 @@
 #include "../../../include/minishell.h"
 
 /*
-- tener en cuenta en el split que si es entre comillas el argv puede tener espacios y \t
+- tener en cuenta en el split que si es entre comillas el argv 
+puede tener espacios y \t
 - entre argumentos si hay varios espacio no hay que tenerlos en cuenta
-- como se hace para que cuando empiece por " o por ' haga lo del salto y que se pueda escribir
+- como se hace para que cuando empiece por " o por ' haga lo del salto 
+y que se pueda escribir
 */
 
 static int	ft_echo_flag(char **argv);
@@ -24,23 +26,29 @@ void	ft_echo(char **argv)
 {
 	int	i;
 
-	i = ft_echo_flag(argv);
-	if (!argv[1])
+	g_data.r_pid = fork();
+	if (g_data.r_pid < 0)
+		printf("[ERROR] Could not create a child process \n");
+	else if (g_data.r_pid == 0)
 	{
-		write(1, "\n", 1);
-		return ;
+		i = ft_echo_flag(argv);
+		if (!argv[1])
+		{
+			write(1, "\n", 1);
+			return ;
+		}
+		if (i == 0)
+			i++;
+		while (argv[i])
+		{
+			ft_putstr(argv[i]);
+			i++;
+			if (argv[i])
+				write(1, " ", 1);
+		}
+		if (ft_echo_flag(argv) <= 1)
+			printf("\n");
 	}
-	if (i == 0)
-		i++;
-	while (argv[i])
-	{
-		ft_putstr(argv[i]);
-		i++;
-		if (argv[i])
-			write(1, " ", 1);
-	}
-	if (ft_echo_flag(argv) <= 1)
-		printf("\n");
 }
 
 static int	ft_echo_flag(char **argv)

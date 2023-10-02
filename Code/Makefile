@@ -6,7 +6,7 @@
 #    By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 12:59:03 by jariza-o          #+#    #+#              #
-#    Updated: 2023/09/28 14:10:41 by jariza-o         ###   ########.fr        #
+#    Updated: 2023/09/28 14:43:29 by jjaen-mo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ LIBFT =		libft/libft.a
 #Flags
 INC		= -I /Users/$(USER)/.brew/opt/readline/include
 
-LFLAGS	= -L /Users/$(USER)/.brew/opt/readline/lib -lreadline
+LFLAGS	= -lreadline -L /Users/$(USER)/.brew/opt/readline/lib
 CFLAGS =	-Wall -Werror -Wextra
 COMPILE =	-g
 
