@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 13:39:48 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/02 17:42:06 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/03 17:36:21 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ static int	ft_is_double_quote(t_token *token);
 
 void	ft_tokenizer(void)
 {
+	t_token	*aux;
+
+	aux = g_data.tokens;
 	while (g_data.tokens)
 	{
 		if (ft_is_no_quote(g_data.tokens->str))
@@ -53,6 +56,7 @@ void	ft_tokenizer(void)
 		}
 		g_data.tokens = g_data.tokens->next;
 	}
+	g_data.tokens = aux;
 }
 
 static int	ft_is_no_quote(char *argv)

@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/02 18:54:38 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/03 18:12:38 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,19 +62,19 @@ int	main(int argc, char **argv, char **env)
 	{
 		add_history(str);
 		g_data.recieved = ft_mini_split(str);
-		g_data.recieved = ft_split_redirections();
+		// g_data.recieved = ft_split_redirections();
 		// int i = 0;
 		// while (g_data.recieved[i])
 		// {
 		// 	printf("%s\n", g_data.recieved[i]);
 		// 	i++;
 		// }
-		ft_printf("HH\n");
+		// ft_printf("HH\n");
 		ft_errors();
-		ft_printf("HOLA\n");
-		ft_init_token();
+		g_data.tokens = NULL;
+		g_data.tokens = ft_init_token();
 		ft_tokenizer();
-		// ft_parser(); // leaks con mas de un argv
+		// FUNCION QUE EXPANDE las variables
 		ft_cmds();
 	}
 	return (0);

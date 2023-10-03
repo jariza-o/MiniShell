@@ -6,23 +6,88 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 20:07:14 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/02 17:25:50 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/03 17:20:31 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	ft_init_token(void)
+static t_token	*ft_lstnew_mini(char *argv);
+static t_token	*ft_lstlast_mini(t_token *lst);
+static void		ft_lstadd_back_mini(t_token **lst, t_token *new);
+
+
+t_token	*ft_init_token(void)
 {
-	// RSERVAR MEMORIA PARA LA LISTA??
-	int	i;
+	t_token	*list;
+	t_token	*aux;
+	int		i;
 
 	i = 0;
+	list = ft_lstnew_mini(g_data.recieved[i]);
+	i++;
 	while (g_data.recieved[i])
 	{
-		g_data.tokens->str = g_data.recieved[i];
-		g_data.tokens->type = VOID;
-		g_data.tokens = g_data.tokens->next;
+		// ft_printf("LST ES: %s", list->str);
+		ft_lstadd_back_mini(&list, ft_lstnew_mini(g_data.recieved[i]));
 		i++;
 	}
+	aux = list;
+	while (list)
+	{
+		ft_printf("LISTA: %s\n", list->str);
+		ft_printf("LISTA: %d\n", list->type);
+		list = list->next;
+	}
+	list = aux;
+	// ft_printf("%s\n", list->str);
+	return (list);
+}
+
+static t_token	*ft_lstnew_mini(char *argv)
+{
+	t_token	*node;
+
+	node = (t_token *)malloc(sizeof(t_token));
+	if (node == NULL)
+		return (NULL);
+	node->str = argv;
+	node->type = VOID;
+	node->prev = NULL;
+	node->next = NULL;
+	return (node);
+}
+
+static t_token	*ft_lstlast_mini(t_token *lst)
+{
+	if (!lst)
+		return (NULL);
+	// ft_printf("test\n");
+	while (lst)
+	{
+		if (lst->next == NULL)
+		{
+			return (lst);
+		}
+		lst = lst->next;
+	}
+	return (lst);
+}
+
+static void	ft_lstadd_back_mini(t_token **lst, t_token *new)
+{
+	if (*lst)
+	{
+		// ft_printf("PIRULETA\n");
+		new->prev = ft_lstlast_mini(*lst);
+		ft_lstlast_mini(*lst)->next = new;
+		// ft_printf("%s", ft_lstlast_mini(*lst)->str);
+	}
+	// else
+	// {
+	// 	ft_printf("PIRULETA2\n");
+	// 	*lst = new;
+	// ft_printf("test2\n");
+	// }
+	//ft_printf("%s", new->str);
 }
