@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/01 16:41:42 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/03 17:48:33 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ enum		errors
 typedef struct s_data
 {
 	char	**recieved;
+	char	*line;
 	char	**env;
 	char	*user;
 	int		exit_status;
@@ -84,5 +85,11 @@ void		ft_parser(void);
 // void		ft_signals(void);
 
 char		**ft_clean_matrix(char **matrix);
+
+int			ft_check_pipe(char **command);
+
+char		*ft_get_cmdpath(char *cmd, char **args);
+
+void		ft_pipe(char *line);
 
 #endif

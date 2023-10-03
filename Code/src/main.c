@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/01 17:30:58 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/03 17:45:45 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	init_shell(void)
 	printf("^~~~~~~~~Y##&&&&&&&&&&&#PPGGGGGGGB#&&&&&&&P5Y??JY#&&##5~~~~~~~~\n");
 	printf("~~~~~~~~~?##&&&&&&&&&&&&PGGGGGGGBB##&&&&&&#G5YYY5B#####Y~~~~~~~\n");
 	printf("~~~~~~~~~!B&&&&&&&&&&&&&PGGGGGGGGBBB#&&&&&@@&##B#&######J~~~~~~\n");
-	printf("\nUSER is: @%s", g_data.user);
-	printf("\n");
+	printf("\n\t\t<--USER is: @%s-->", g_data.user);
+	printf("\n\n");
 }
 
 void	ft_cmds(void)
@@ -78,6 +78,7 @@ int	main(int argc, char **argv, char **env)
 	while ((str = readline("MiniSheh$> ")) != NULL)
 	{
 		add_history(str);
+		g_data.line = ft_strdup(str);
 		// ft_errors();
 		g_data.recieved = ft_split(str, ' ');
 		// ft_parser();
