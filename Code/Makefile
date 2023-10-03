@@ -7,6 +7,7 @@
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 12:59:03 by jariza-o          #+#    #+#              #
 #    Updated: 2023/10/02 17:26:47 by jariza-o         ###   ########.fr        #
+
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +17,7 @@ LIBFT =		libft/libft.a
 #Flags
 INC		= -I /Users/$(USER)/.brew/opt/readline/include
 
-LFLAGS	= -L /Users/$(USER)/.brew/opt/readline/lib -lreadline
+LFLAGS	= -lreadline -L /Users/$(USER)/.brew/opt/readline/lib
 CFLAGS =	-Wall -Werror -Wextra
 COMPILE =	-g
 

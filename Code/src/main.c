@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
 /*   Updated: 2023/10/03 18:12:38 by jariza-o         ###   ########.fr       */
@@ -14,13 +14,29 @@
 
 void	init_shell(void)
 {
-	printf("\e[1;1H\e[2J");
-	printf("\n******************"
-			"************************");
-	printf("\n\n\n\t****WELCOME TO****");
-	printf("\n\n\t-MINIHSHEH-");
-	printf("\n\n\n\n*******************"
-			"***********************");
+	printf("^^^~~~~~~!!!!!!!!!!!!!!!!!?PPGGGGGGP5J!~~~~~~~~!!!!!!!!!!!~~~~~\n");
+	printf("::^^~~^^^^^^~^^~~~~!!!!7JY55P5PPPPPPGGPJ~~~~~~~!!~~~~!!!!!!!~~~\n");
+	printf("^^^^~~^^^^^^^^^^^~~!!~~5G5YYYJ???777?5GJ~~~~~~~!!~~~~~!!!~!!!!!\n");
+	printf("^^^^^^^^^^^^^^^^^^~~~~7PPY5555YJJ??77YP7~~~~~~~!!~^~~!!!~~~!!!!\n");
+	printf("^^^^^^^^^::^^:^^^~~~!!?J?Y555PPYJ55JJ5Y!~~~~~~~~!~^~~!!!!~!!!!!\n");
+	printf("^^^^^^^~^^^^^^^~~~~~!JY77YYYY55J?????J~~~~~!!~~~!~~~!!!~~!!!!!!\n");
+	printf("::^:^^^^^^^^~~~~~~~~~7JJJYY555YJ??????~~~~~~~!!!!!!!!~~^~~~~~!!\n");
+	printf(":::::^^^^~^~~~~~~^^^^^~!JYY5PP55Y???7~~~~^~~~~!!!!!!!~^^^^^^~~!\n");
+	printf(":::::^^^^~~~~~~^^^^^^^^!JYYY5YJJ???~^^~~~^^~~~~!!!~~~~^^^^^^^^~\n");
+	printf("^^^^^^^^~~~~~~~~~~~~~~~7Y5555YJJ???7~~~~~~~~~~~~!!!~~~~~~~~~~~~\n");
+	printf("^^^^^^^~~~~~~~~~~~~~~~~7JJJY5YJJ??7PGY?!!!~~~~~~~~~~~~~~~~~~~~~\n");
+	printf(":^::^^^~~~~~~^^^^~!77!7YYYYY5YYJJ?!P###GP5YJJ?77!~~~~~~~~^^^^^^\n");
+	printf("^^::^^^~~~~~~!7J5GBB5!7Y55YY5P5J7~7B##&&&#BBB##BGGPY!~!!~~~~~~^\n");
+	printf("::::^^^~~!?J5GB#&&#&G!7555YYYJ7!~7G##&&&&&###&&&&###P!~~!~~~~~~\n");
+	printf("^^^^^^~~~Y#####&&&&&BJY5YJYYJ?77JB&#&&&&&&&&&&#######?~~!!!~~~~\n");
+	printf("^^^^^^~~~P####&&&&&&#&#P?!YPPP5PG##&&&&&&&GP###&&####?~~~!!!!~~\n");
+	printf("^^^^~~~~!G#&&#&&&&&&&&#P7!YPPPPGG##&&&&&&&P55&&#GB##Y~~~~!!!!!!\n");
+	printf("^^^^^~~~~P#####&&&##&&#G?75PPPPGG##&&&&&&&#5YGPJ?YB#7~~~~~~!!!!\n");
+	printf("^^~~~~!~~J#&&&&&#&&&&&&B55PPPPPGG#&&&&&&&&#555Y?YB#G!~~~~~~~~~!\n");
+	printf("~~~~~~~!~Y#&&&&&&&&&&&&#5PGPPPPPGB&&&&&&&&#P5YJJJG##BJ~~~~~~~~~\n");
+	printf("^~~~~~~~~Y##&&&&&&&&&&&#PPGGGGGGGB#&&&&&&&P5Y??JY#&&##5~~~~~~~~\n");
+	printf("~~~~~~~~~?##&&&&&&&&&&&&PGGGGGGGBB##&&&&&&#G5YYY5B#####Y~~~~~~~\n");
+	printf("~~~~~~~~~!B&&&&&&&&&&&&&PGGGGGGGGBBB#&&&&&@@&##B#&######J~~~~~~\n");
 	printf("\nUSER is: @%s", g_data.user);
 	printf("\n");
 }
@@ -45,6 +61,7 @@ void	ft_cmds(void)
 		printf("\e[1;1H\e[2J");
 	else
 		ft_system_cmds(g_data.recieved);
+	wait(&g_data.r_pid);
 }
 
 int	main(int argc, char **argv, char **env)
@@ -56,7 +73,7 @@ int	main(int argc, char **argv, char **env)
 	str = 0;
 	g_data.env = env;
 	g_data.user = getenv("USER");
-	ft_signals();
+	//ft_signals();
 	init_shell();
 	while ((str = readline("MiniSheh$> ")) != NULL)
 	{
@@ -76,6 +93,8 @@ int	main(int argc, char **argv, char **env)
 		ft_tokenizer();
 		// FUNCION QUE EXPANDE las variables
 		ft_cmds();
+		if (g_data.recieved)
+			g_data.recieved = ft_clean_matrix(g_data.recieved);
 	}
 	return (0);
 }

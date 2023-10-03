@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:26:49 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/20 15:37:50 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/01 17:26:05 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,15 @@ void	ft_pwd(void)
 {
 	char	cwd[256];
 
-	cwd[255] = '\0';
-	if (getcwd(cwd, sizeof(cwd)) != NULL)
-		printf("%s\n", cwd);
-	else
-		ft_print_errors(PWD);
+	g_data.r_pid = fork();
+	if (g_data.r_pid < 0)
+		printf("[ERROR] Could not create a child process \n");
+	else if (g_data.r_pid == 0)
+	{
+		cwd[255] = '\0';
+		if (getcwd(cwd, sizeof(cwd)) != NULL)
+			printf("%s\n", cwd);
+		else
+			ft_print_errors(PWD);
+	}
 }

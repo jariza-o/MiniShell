@@ -21,6 +21,7 @@
 # include <stdio.h> // printf
 # include <stdlib.h>
 # include <string.h>
+# include <sys/stat.h>
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <unistd.h> // chdir, getcwd
@@ -74,7 +75,9 @@ typedef struct s_data
 	t_token	*tokens;
 	char	**env;
 	char	*user;
-	t_vars	*vars;
+	int		exit_status;
+	pid_t	r_pid;
+	int		vars_mod;
 }			t_data;
 
 t_data		g_data;
@@ -108,7 +111,11 @@ void		ft_exit(void);
 
 void		ft_system_cmds(char **command);
 
-t_vars		*ft_clean_vars(t_vars *vars);
+void		ft_parser(void);
+
+// void		ft_signals(void);
+
+char		**ft_clean_matrix(char **matrix);
 
 void		ft_signals(void);
 
