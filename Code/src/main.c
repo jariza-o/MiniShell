@@ -81,7 +81,14 @@ int	main(int argc, char **argv, char **env)
 		g_data.line = ft_strdup(str);
 		// ft_errors();
 		g_data.recieved = ft_split(str, ' ');
-		// ft_parser();
+		ft_parser();
+		g_data.recieved = ft_mini_split(str);
+		g_data.recieved = ft_split_redirections();
+		ft_errors();
+		g_data.tokens = NULL;
+		g_data.tokens = ft_init_token();
+		ft_tokenizer();
+		// FUNCION QUE EXPANDE las variables
 		ft_cmds();
 		if (g_data.recieved)
 			g_data.recieved = ft_clean_matrix(g_data.recieved);

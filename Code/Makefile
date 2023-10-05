@@ -27,6 +27,8 @@ SRC =		src/main.c \
 			src/built-ins/unset/unset.c src/built-ins/exit/exit.c \
 			src/parser/parser.c \
 			src/otherfts/system-cmds.c src/otherfts/clean.c src/otherfts/pipes.c\
+			src/parser/ft_mini_split.c src/parser/redirections.c src/parser/init_token.c src/parser/token.c\
+			src/otherfts/system-cmds.c src/otherfts/clean.c \
 			src/errors/special_caracters/quotes.c src/errors/special_caracters/slash_semicolon.c src/errors/errors.c \
 			src/signals/signals.c \
 
@@ -57,7 +59,7 @@ $(NAME): ${OBJT}
 				echo "$(GREEN)Libft is already compiled.$(END)"; \
 			fi
 			@echo "$(YELLOW)Compiling Minishell.$(END)"
-			@gcc ${CFLAGS} ${LFLAGS} ${INC} ${COMPILE} ${LIBFT} ${OBJT} -o ${NAME} 
+			@gcc ${CFLAGS} ${INC} ${COMPILE} ${LIBFT} ${OBJT} -o ${NAME} ${LFLAGS}
 			@echo "$(GREEN)Minishell Compiled.$(END)"
 
 clean:

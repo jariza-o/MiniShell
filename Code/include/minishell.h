@@ -7,6 +7,7 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
 /*   Updated: 2023/10/05 13:33:18 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/03 15:19:24 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +29,52 @@
 # include <unistd.h>
 
 /* ERRORS */
-enum		errors
+enum e_errors
 {
 	QUOTES,
 	SLASH,
 	SEMICOLON,
-	BUILTINS,
 	CD,
 	PWD,
+	// BUILTINS,
 };
+
+/* Token List */
+enum e_datatype
+{
+	VOID,
+	NO_QUOTE,
+	SINGLE_QUOTE,
+	DOUBLE_QUOTE,
+	PIPE,
+	BUILTINS,
+	COMMAND,
+	ENVI_VAR,
+	IN_RED,
+	OUT_RED,
+	HERE_DOC_RED,
+	APPEND_RED,
+};
+
+typedef struct s_token
+{
+	char			*str;
+	enum e_datatype	type;
+	struct s_token	*next;
+	struct s_token	*prev;
+}					t_token;
+
+typedef struct s_vars
+{
+	char	**names;
+	char	**values;
+}			t_vars;
 
 typedef struct s_data
 {
 	char	**recieved;
 	char	*line;
+	t_token	*tokens;
 	char	**env;
 	char	*user;
 	int		exit_status;
@@ -90,4 +123,13 @@ int			ft_check_pipe(char **command);
 char		*ft_get_cmdpath(char *cmd, char **args);
 
 void		ft_pipe(char *line);
+void		ft_signals(void);
+
+char		**ft_mini_split(char *s);
+char		**ft_split_redirections(void);
+void		ft_tokenizer(void);
+
+/* Tokens */
+t_token		*ft_init_token(void);
+
 #endif
