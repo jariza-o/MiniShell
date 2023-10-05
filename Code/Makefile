@@ -6,8 +6,7 @@
 #    By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 12:59:03 by jariza-o          #+#    #+#              #
-#    Updated: 2023/10/02 17:26:47 by jariza-o         ###   ########.fr        #
-
+#    Updated: 2023/10/05 13:27:41 by jjaen-mo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +25,8 @@ NAME =		Minishell
 SRC =		src/main.c \
 			src/built-ins/echo/echo.c src/built-ins/cd/cd.c src/built-ins/pwd/pwd.c src/built-ins/env/env.c src/built-ins/export/export.c \
 			src/built-ins/unset/unset.c src/built-ins/exit/exit.c \
+			src/parser/parser.c \
+			src/otherfts/system-cmds.c src/otherfts/clean.c src/otherfts/pipes.c\
 			src/parser/ft_mini_split.c src/parser/redirections.c src/parser/init_token.c src/parser/token.c\
 			src/otherfts/system-cmds.c src/otherfts/clean.c \
 			src/errors/special_caracters/quotes.c src/errors/special_caracters/slash_semicolon.c src/errors/errors.c \
@@ -44,7 +45,7 @@ RED =		\033[0;31m
 END =		\033[0m
 
 .c.o:
-			gcc ${CFLAGS} -c $< -o ${<:.c=.o}
+			gcc ${CFLAGS} -I ~/.brew/opt/readline/include -I /usr/local/opt/readline/include -c $< -o ${<:.c=.o}
 
 all:		$(NAME)
 
