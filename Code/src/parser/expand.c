@@ -24,7 +24,7 @@ void	ft_expand_data(void)
 		else if (g_data.tokens->type == NO_QUOTE)
 		
 		else if (g_data.tokens->type == SINGLE_QUOTE)
-
+			ft_del_single_quote(g_data.tokens);
 		else if (g_data.tokens->type == DOUBLE_QUOTE)
 
 		else if (g_data.tokens->type == ENVI_VAR)
