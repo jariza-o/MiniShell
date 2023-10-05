@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/03 15:19:24 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/05 19:19:08 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,6 @@ typedef struct s_token
 	struct s_token	*prev;
 }					t_token;
 
-typedef struct s_vars
-{
-	char	**names;
-	char	**values;
-}			t_vars;
-
 typedef struct s_data
 {
 	char	**recieved;
@@ -121,9 +115,13 @@ void		ft_signals(void);
 
 char		**ft_mini_split(char *s);
 char		**ft_split_redirections(void);
-void		ft_tokenizer(void);
 
 /* Tokens */
 t_token		*ft_init_token(void);
+void		ft_tokenizer(void);
+
+/* Expand */
+void		ft_expand_data(void);
+void		ft_expand_env(t_token *tokens);
 
 #endif
