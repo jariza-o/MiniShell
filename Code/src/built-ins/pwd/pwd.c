@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:26:49 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/01 17:26:05 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/05 19:38:52 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ void	ft_pwd(void)
 			printf("%s\n", cwd);
 		else
 			ft_print_errors(PWD);
+		exit(0);
 	}
 }

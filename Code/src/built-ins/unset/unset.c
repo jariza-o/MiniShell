@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:26:54 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/01 17:25:54 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/05 19:44:59 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_unset(char **argv)
 		if (!argv[1])
 		{
 			printf("[ERROR] Not enough arguments\n");
-			return ;
+			exit(1);
 		}
 		while (g_data.env[++cnt])
 		{
@@ -62,9 +62,10 @@ void	ft_unset(char **argv)
 			if (ft_strncmp(tmp[0], argv[1], ft_strlen(argv[1])) == 0)
 			{
 				tmp = ft_remove_env(cnt, tmp);
-				return ;
+				exit(0);
 			}
 			tmp = ft_clean_matrix(tmp);
 		}
+		exit(0);
 	}
 }

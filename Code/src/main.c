@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/05 13:12:37 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/05 19:28:36 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,16 +79,11 @@ int	main(int argc, char **argv, char **env)
 	{
 		add_history(str);
 		g_data.line = ft_strdup(str);
-		// ft_errors();
 		g_data.recieved = ft_split(str, ' ');
-		ft_parser();
 		g_data.recieved = ft_mini_split(str);
-		g_data.recieved = ft_split_redirections();
-		ft_errors();
 		g_data.tokens = NULL;
 		g_data.tokens = ft_init_token();
 		ft_tokenizer();
-		// FUNCION QUE EXPANDE las variables
 		ft_cmds();
 		if (g_data.recieved)
 			g_data.recieved = ft_clean_matrix(g_data.recieved);

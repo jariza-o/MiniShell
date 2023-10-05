@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:41:41 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/10/03 17:48:20 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/05 19:44:00 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,17 +77,16 @@ void	ft_system_cmds(char **command)
 		if (ft_check_pipe(command) == 1)
 		{
 			ft_pipe(g_data.line);
-			return ;
+			exit(0);
 		}
 		cmdpath = ft_get_cmdpath(command[0], command);
-		ft_printf("%s\n", cmdpath);
 		if (!cmdpath)
 			printf("[ERROR] Command not found: %s \n", command[0]);
 		else if (execve(cmdpath, command, g_data.env) < 0)
 		{
 			printf("[ERROR] Could not execute command %s \n", command[0]);
-			g_data.exit_status = 1;
 		}
+		exit(0);
 	}
 	free(cmdpath);
 }

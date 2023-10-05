@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:26:44 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/01 17:26:21 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/05 19:38:27 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,6 @@ void	ft_export(char **argv)
 				ft_new_env(vars[0], vars[1]);
 			vars = ft_clean_matrix(vars);
 		}
+		exit(0);
 	}
 }

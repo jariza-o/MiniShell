@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:26:31 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/01 17:27:24 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/05 19:37:20 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,14 @@ void	ft_print_matrix(char **matrix)
 	{
 		cnt = 0;
 		if (!matrix)
-			return ;
+			exit(0);
 		while (matrix[cnt])
 		{
 			printf("%s\n", matrix[cnt]);
 			cnt++;
 		}
+		exit(0);
 	}
+	else
+		wait(&g_data.r_pid);
 }

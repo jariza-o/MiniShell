@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 15:13:05 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/25 17:36:59 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/05 19:40:28 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	ft_echo_flag(char **argv);
 void	ft_echo(char **argv)
 {
 	int	i;
-
+	
 	g_data.r_pid = fork();
 	if (g_data.r_pid < 0)
 		printf("[ERROR] Could not create a child process \n");
@@ -48,6 +48,7 @@ void	ft_echo(char **argv)
 		}
 		if (ft_echo_flag(argv) <= 1)
 			printf("\n");
+		exit(0);
 	}
 }
 
