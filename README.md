@@ -1,5 +1,11 @@
 # MiniShell
 
+- Cuando la variable no existe, tengo que tenerlo en cuenta
+- Probar expand.
+
+
+
+
 COSAS VISTAS EN MI LINUX
 - TENER EN CUENTA QUE UN COMANDO PUEDE TENER VARIABLES $ENV. EJ:
         echo$USER

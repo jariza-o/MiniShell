@@ -6,11 +6,13 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:06:03 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/05 19:22:13 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/05 23:49:12 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
+
+/* HACER CUANDO NO EXISTA VARIABLE $ENV */
 
 static char	*ft_obtain_env(t_token *tokens, int i);
 static char	*ft_obtain_env_content(char *env);
