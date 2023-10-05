@@ -12,6 +12,8 @@
 
 #include "../../include/minishell.h"
 
+static void ft_del_single_quote(t_token *tokens);
+
 void	ft_expand_data(void)
 {
 	t_token *aux;
@@ -28,4 +30,37 @@ void	ft_expand_data(void)
 		else if (g_data.tokens->type == ENVI_VAR)
 		
 	}
+}
+
+static void ft_del_single_quote(t_token *tokens)
+{
+	char	*str;
+	int		i, n;
+
+	i = 0;
+	n = 0;
+	while (tokens->str[i])
+	{
+		if (tokens->str[i] == '\'')
+			n++;
+		i++;
+	}
+	str = (char *)malloc(sizeof(char) * (i - n));
+	if (!str)
+		return ;
+	i = 0;
+	n = 0;
+	while (tokens->str[i])
+	{
+		if (tokens->str[i] == '\'')
+			i++;
+		else
+		{
+			str[n] = tokens->str[i];
+			i++;
+			n++;
+		}
+	}
+	tokens->str = str;
+	free (str);
 }
