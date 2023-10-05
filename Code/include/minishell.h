@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/05 13:13:14 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/05 13:33:18 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,9 @@ void		ft_parser(void);
 void		ft_signals(void);
 
 char		**ft_clean_matrix(char **matrix);
-
 int			ft_check_pipe(char **command);
 
 char		*ft_get_cmdpath(char *cmd, char **args);
 
 void		ft_pipe(char *line);
-
 #endif
