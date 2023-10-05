@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/03 17:45:45 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/05 13:12:37 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	main(int argc, char **argv, char **env)
 	str = 0;
 	g_data.env = env;
 	g_data.user = getenv("USER");
-	//ft_signals();
+	ft_signals();
 	init_shell();
 	while ((str = readline("MiniSheh$> ")) != NULL)
 	{

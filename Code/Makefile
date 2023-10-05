@@ -6,7 +6,7 @@
 #    By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 12:59:03 by jariza-o          #+#    #+#              #
-#    Updated: 2023/10/02 17:58:04 by jjaen-mo         ###   ########.fr        #
+#    Updated: 2023/10/05 13:27:41 by jjaen-mo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ RED =		\033[0;31m
 END =		\033[0m
 
 .c.o:
-			gcc ${CFLAGS} -c $< -o ${<:.c=.o}
+			gcc ${CFLAGS} -I ~/.brew/opt/readline/include -I /usr/local/opt/readline/include -c $< -o ${<:.c=.o}
 
 all:		$(NAME)
 
