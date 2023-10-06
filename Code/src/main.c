@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/05 19:28:36 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/06 19:01:18 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,25 @@ void	init_shell(void)
 	printf("\n\n");
 }
 
+static char **ft_dup_envs(char **env)
+{
+	int		cnt;
+	char	**new_env;
+
+	cnt = 0;
+	while (env[cnt])
+		cnt++;
+	new_env = (char **)malloc(sizeof(char *) * (cnt + 1));
+	cnt = 0;
+	while (env[cnt])
+	{
+		new_env[cnt] = ft_strdup(env[cnt]);
+		cnt++;
+	}
+	new_env[cnt] = NULL;
+	return (new_env);
+}
+
 void	ft_cmds(void)
 {
 	if (ft_strcmp(g_data.recieved[0], "echo") == 0)
@@ -71,20 +90,19 @@ int	main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 	str = 0;
-	g_data.env = env;
+	g_data.env = ft_dup_envs(env);
 	g_data.user = getenv("USER");
 	ft_signals();
 	init_shell();
 	while ((str = readline("MiniSheh$> ")) != NULL)
 	{
 		add_history(str);
-		g_data.line = ft_strdup(str);
-		g_data.recieved = ft_split(str, ' ');
+		g_data.line = str;
 		g_data.recieved = ft_mini_split(str);
 		g_data.tokens = NULL;
 		g_data.tokens = ft_init_token();
 		ft_tokenizer();
-		ft_cmds();
+		ft_check_pipe(g_data.line);
 		if (g_data.recieved)
 			g_data.recieved = ft_clean_matrix(g_data.recieved);
 	}

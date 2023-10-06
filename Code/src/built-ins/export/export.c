@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:26:44 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/05 19:38:27 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/06 16:44:52 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,24 +94,17 @@ void	ft_export(char **argv)
 {
 	char	**vars;
 
-	g_data.r_pid = fork();
-	if (g_data.r_pid < 0)
-		printf("[ERROR] Could not create a child process \n");
-	else if (g_data.r_pid == 0)
+	if (!argv[1])
+		ft_print_matrix(g_data.env);
+	else
 	{
-		if (!argv[1])
-			ft_print_matrix(g_data.env);
+		vars = ft_split(argv[1], '=');
+		if (!vars[1] || !vars[0])
+			return ;
+		if (ft_exists(argv[1]))
+			ft_reasign(vars[0], vars[1]);
 		else
-		{
-			vars = ft_split(argv[1], '=');
-			if (!vars[1] || !vars[0])
-				return ;
-			if (ft_exists(argv[1]))
-				ft_reasign(vars[0], vars[1]);
-			else
-				ft_new_env(vars[0], vars[1]);
-			vars = ft_clean_matrix(vars);
-		}
-		exit(0);
+			ft_new_env(vars[0], vars[1]);
+		vars = ft_clean_matrix(vars);
 	}
 }

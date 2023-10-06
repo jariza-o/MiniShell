@@ -6,58 +6,67 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:53:54 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/10/03 18:34:09 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/06 18:09:12 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	ft_check_pipe(char **command)
+static void ft_first_pipe(char *cmd)
 {
-	int	cnt;
+	char **args;
+	char *path;
 
-	cnt = 0;
-	while (command[cnt])
-	{
-		if (ft_strcmp(command[cnt], "|") == 0)
-			return (1);
-		cnt++;
-	}
-	return (0);
+	dup2(g_data.spipe.fds[1], 1);
+	close(g_data.spipe.fds[0]);
+	args = ft_split(cmd, ' ');
+	path = ft_get_cmdpath(args[0]);
+	execve(path, args, g_data.env);
+}
+
+static void ft_second_pipe(char *cmd)
+{
+	char **args;
+	char *path;
+
+	dup2(g_data.spipe.fds[0], 0);
+	close(g_data.spipe.fds[1]);
+	args = ft_split(cmd, ' ');
+	path = ft_get_cmdpath(args[0]);
+	execve(path, args, g_data.env);
+}
+
+void	ft_check_pipe(char *command)
+{
+	if (ft_strchr(command, '|'))
+		ft_pipe(command);
+	else
+		ft_cmds();
 }
 
 void	ft_pipe(char *line)
 {
-	int	cnt;
-	char **cmdp;
-	char **args;
-	char *path;
-	int	fds[2];
+	int		cnt;
+	char	**cmdp;
 
 	cnt = 0;
-	pipe(fds);
+	pipe(g_data.spipe.fds);
 	cmdp = ft_split(line, '|');
 	while (cmdp[cnt])
 	{
-		ft_printf("a");
-		g_data.r_pid = fork();
-		if(g_data.r_pid == 0)
-		{
-			close(fds[0]);
-			dup2(fds[1], 1);
-			close(fds[1]);
-			path = ft_get_cmdpath(cmdp[0], cmdp);
-			args = ft_split(cmdp[cnt], ' ');
-			ft_printf("path: %s\n", path);
-			execve(path,args,g_data.env);
-		}
-		else
-		{
-			close(fds[1]);
-			wait(&g_data.r_pid);
-			close(fds[0]);
-		}
+		g_data.spipe.pid_c1 = fork();
+		if (g_data.spipe.pid_c1 == 0)
+			ft_first_pipe(cmdp[cnt]);
+		cnt++;
+		g_data.spipe.pid_c2 = fork();
+		if (g_data.spipe.pid_c2 == 0)
+			ft_second_pipe(cmdp[cnt]);
+		waitpid(g_data.spipe.pid_c1, NULL, 0);
+		waitpid(g_data.spipe.pid_c2, NULL, 0);
 		cnt++;
 	}
-	ft_printf("hola");
+	close(g_data.spipe.fds[0]);
+	close(g_data.spipe.fds[1]);
+	// dup2(g_data.spipe.fds[0], 0);
+	// dup2(g_data.spipe.fds[1], 1);
 }
