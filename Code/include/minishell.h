@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/06 17:16:05 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/06 20:34:23 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 
 # include "../libft/libft.h"
 # include <errno.h>
+# include <fcntl.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <signal.h>
-# include <stdio.h> // printf
+# include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-# include <unistd.h> // chdir, getcwd
 # include <unistd.h>
 
 /* ERRORS */
@@ -57,9 +57,10 @@ enum				e_datatype
 
 typedef struct s_pipe
 {
-	int				fds[2];
+	int				*fds[2];
 	pid_t			pid_c1;
 	pid_t			pid_c2;
+	int				pipe_n;
 }					t_pipe;
 
 typedef struct s_token
