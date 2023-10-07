@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/05 23:46:17 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/07 17:59:23 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ enum e_errors
 	SEMICOLON,
 	CD,
 	PWD,
+	PIPES,
 	// BUILTINS,
 };
 
@@ -77,7 +78,7 @@ typedef struct s_data
 t_data		g_data;
 
 /* ERRORS */
-void		ft_errors(void);
+int			ft_errors(void);
 /* Print error message */
 void		ft_print_errors(int error);
 /* Quotes (" and ') */
@@ -124,5 +125,7 @@ void		ft_tokenizer(void);
 void		ft_expand_data(void);
 void		ft_expand_env(t_token *tokens);
 void		ft_expand_quotes(t_token *tokens);
+
+char		*ft_get_env(char *str);
 
 #endif

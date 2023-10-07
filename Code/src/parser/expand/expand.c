@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:54:16 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/06 19:03:58 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/07 13:40:48 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,24 @@ void	ft_expand_data(void)
 	while (g_data.tokens)
 	{
 		i = 0;
-		while (g_data.tokens->str[i] != '$' && g_data.tokens->str[i])
-			i++;
-		if (g_data.tokens->str[i] == '$')
-		{
+		if (g_data.tokens->type == ENVI_VAR)
 			ft_expand_env(g_data.tokens);
-			ft_printf("TEST: %s\n", g_data.tokens->str);
-		}
+		else if (g_data.tokens->type == SINGLE_QUOTE)
+			ft_expand_quotes(g_data.tokens);
 		else
 		{
+			while (g_data.tokens->str[i])
+			{
+				if (g_data.tokens->str[i] == '$')
+				{
+					ft_expand_env(g_data.tokens);
+					i = 0;
+				}
+				i++;
+			}
 			ft_expand_quotes(g_data.tokens);
-			ft_printf("hola: %s\n", g_data.tokens->str);
-			ft_printf("I= %d\n", i);
-			g_data.tokens = g_data.tokens->next;
 		}
+		g_data.tokens = g_data.tokens->next;
 	}
 	g_data.tokens = aux;
 }

@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   system-cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:41:41 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/10/01 17:30:07 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/07 13:23:49 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+char	*ft_get_env(char *str)
+{
+	int		cnt;
+	char	*env;
+
+	cnt = 0;
+	while (g_data.env[cnt])
+	{
+		if (ft_strncmp(g_data.env[cnt], str, ft_strlen(str)) == 0)
+		{
+			env = ft_strdup(g_data.env[cnt] + (ft_strlen(str) + 1));
+			return (env);
+		}
+		cnt++;
+	}
+	return (NULL);
+}
 
 static int	ft_check_file(char *cmd)
 {

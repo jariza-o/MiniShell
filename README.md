@@ -1,6 +1,8 @@
 # COSAS QUE HACER
-- MODIFICAR EXPAND PARA CUANDO NO TENGA QUE REVISAR NADA (COMPROBAR TOKENIZACIÓN)
-- VER QUE SOLO VA EL EXPAN $ENV CON $USER Y CON UNO SOLO. VER FUNCIÖN CREADA POR XEMA
+- MINISPLIT NO FUNCIONA CON <<
+- CREAR ERRORES CUANDO SE >> <<>>> y mierdas de estas seguidas, y si hay un |  | y ne medio nada
+- MINISPLIT TENER EN CUNETA CUANDO REPITA || o cualquier otro seguido
+- 
 - Cuando la variable no existe, tengo que tenerlo en cuenta
 - Probar expand.
 

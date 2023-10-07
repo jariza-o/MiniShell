@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 15:14:33 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/02 18:52:14 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/07 15:33:40 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@ char	**ft_split_redirections(void)
 
 	i = 0;
 	i2 = 0;
-	// str = malloc(sizeof(char *) * ft_redirect_wordcounter());
-	(void)ft_redirect_wordcounter();
-	str = malloc(sizeof(char *) * 2);
+	str = malloc(sizeof(char *) * ft_redirect_wordcounter());
+	ft_printf("wordcounter: %d\n", ft_redirect_wordcounter());
+	write(1, "hola\n", 5);
+	// (void)ft_redirect_wordcounter();
+	// str = malloc(sizeof(char *) * 2);
 	while (g_data.recieved[i])
 	{
 		n = 0;
@@ -117,5 +119,6 @@ static int	ft_redirect_wordcounter(void)
 		}
 		x++;
 	}
+	ft_printf("x: %d\n", x);
 	return (x);
 }

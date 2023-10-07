@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:06:03 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/06 19:17:10 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/07 13:41:40 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /* HACER CUANDO NO EXISTA VARIABLE $ENV */
 
 static char	*ft_obtain_env(t_token *tokens, int i);
-static char	*ft_obtain_env_content(char *env);
+// static char	*ft_obtain_env_content(char *env);
 static char	*ft_change_env_str(t_token *tokens, char *content, char *env);
 
 void	ft_expand_env(t_token *tokens)
@@ -40,7 +40,8 @@ void	ft_expand_env(t_token *tokens)
 	}
 	if (!env)
 		return ;
-	content = ft_obtain_env_content(env);
+	content = ft_get_env(env);
+	ft_printf("content: %s\n", content); // Borrar
 	tokens->str = ft_change_env_str(tokens, content, env);
 	free(env);
 	free(content);
@@ -60,7 +61,7 @@ static char	*ft_obtain_env(t_token *tokens, int i)
 		len++;
 		n++;
 	}
-	env = (char *)malloc(sizeof(char) * len); //Haria falta el +1?
+	env = (char *)malloc(sizeof(char) * (len + 1));
 	if (!env)
 		return (NULL);
 	n = 0;
@@ -70,39 +71,40 @@ static char	*ft_obtain_env(t_token *tokens, int i)
 		n++;
 		i++;
 	}
+	env[n] = '\0';
 	return (env);
 }
 
-static char	*ft_obtain_env_content(char *env)
-{
-	int		i;
-	int		n;
-	int		j;
-	int		len;
-	char	*content;
+// static char	*ft_obtain_env_content(char *env)
+// {
+// 	int		i;
+// 	int		n;
+// 	int		j;
+// 	int		len;
+// 	char	*content;
 
-	i = 0;
-	while (g_data.env[i])
-	{
-		len = ft_strlen(env);
-		if ((ft_strncmp(g_data.env[i], env, len) == 0) && g_data.env[i][len] == '=')
-			break ;
-		i++;
-	}
-	if (!g_data.env[i])
-		return (NULL);
-	content = (char *)malloc(sizeof(char) * (ft_strlen(env) + 1));
-	n = 0;
-	while (g_data.env[i][n] != '=')
-		n++;
-	j = 0;
-	while (g_data.env[i][++n])
-	{
-		content[j] = g_data.env[i][n];
-		j++;
-	}
-	return (content);
-}
+// 	i = 0;
+// 	while (g_data.env[i])
+// 	{
+// 		len = ft_strlen(env);
+// 		if ((ft_strncmp(g_data.env[i], env, len) == 0) && g_data.env[i][len] == '=')
+// 			break ;
+// 		i++;
+// 	}
+// 	if (!g_data.env[i])
+// 		return (NULL);
+// 	content = (char *)malloc(sizeof(char) * (ft_strlen(env) + 1));
+// 	n = 0;
+// 	while (g_data.env[i][n] != '=')
+// 		n++;
+// 	j = 0;
+// 	while (g_data.env[i][++n])
+// 	{
+// 		content[j] = g_data.env[i][n];
+// 		j++;
+// 	}
+// 	return (content);
+// }
 
 static char	*ft_change_env_str(t_token *tokens, char *content, char *env)
 {
