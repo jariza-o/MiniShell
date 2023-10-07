@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/06 20:34:23 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/07 14:55:12 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ enum				e_datatype
 
 typedef struct s_pipe
 {
-	int				*fds[2];
+	int				**fds;
 	pid_t			pid_c1;
 	pid_t			pid_c2;
 	int				pipe_n;
@@ -115,8 +115,6 @@ void				ft_unset(char **argv);
 void				ft_exit(void);
 
 void				ft_system_cmds(char **command);
-
-void				ft_parser(void);
 
 void				ft_signals(void);
 

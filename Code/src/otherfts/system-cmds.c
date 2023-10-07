@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:41:41 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/10/06 19:04:03 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/07 14:31:51 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char *ft_get_env(char *str)
 	{
 		if(ft_strncmp(g_data.env[cnt], str, ft_strlen(str)) == 0)
 		{
-			env = ft_strdup(g_data.env[cnt] + ft_strlen(str));
+			env = ft_strdup(g_data.env[cnt] + (ft_strlen(str) + 1));
 			return (env);
 		}
 		cnt++;
