@@ -29,7 +29,7 @@ SRC =		src/main.c \
 			src/parser/ft_mini_split.c src/parser/redirections.c src/parser/init_token.c src/parser/token.c \
 			src/parser/expand/expand_env.c src/parser/expand/expand.c src/parser/expand/expand_quotes.c \
 			src/otherfts/system-cmds.c src/otherfts/clean.c \
-			src/errors/special_caracters/quotes.c src/errors/special_caracters/slash_semicolon.c src/errors/errors.c \
+			src/errors/special_caracters/quotes.c src/errors/special_caracters/slash_semicolon.c  src/errors/redirections/redirections.c src/errors/errors.c \
 			src/signals/signals.c \
 
 OBJT =		$(SRC:.c=.o)

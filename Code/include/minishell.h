@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/07 17:59:23 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/08 14:18:12 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ enum e_errors
 	CD,
 	PWD,
 	PIPES,
+	REDIRECTIONS,
 	// BUILTINS,
 };
 
@@ -85,8 +86,12 @@ void		ft_print_errors(int error);
 int			ft_check_quotes(char **argv);
 /* Semicolon */
 int			ft_check_semicolon(char **argv);
-/* Slashs */
+/* Slash */
 int			ft_check_slash(char **argv);
+/* Redirections */
+int			ft_check_redirections(char **argv);
+/* Pipes */
+int			ft_check_pipes(char **argv);
 
 /* Built-ins */
 /* Echo */

@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:33:09 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/07 18:02:20 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/08 14:18:54 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,16 @@ int	ft_errors(void)
 		ft_print_errors(SEMICOLON);
 		return (0);
 	}
+	if (!ft_check_redirections(g_data.recieved))
+	{
+		ft_print_errors(REDIRECTIONS);
+		return (0);
+	}
+	if (!ft_check_pipes(g_data.recieved))
+	{
+		ft_print_errors(PIPES);
+		return (0);
+	}
 	return (1);
 }
 
@@ -44,4 +54,6 @@ void	ft_print_errors(int error)
 		printf("Error: The pwd command failed\n");
 	else if (error == PIPES)
 		printf("Error: MiniSheh can't work with ||\n");
+	else if (error == REDIRECTIONS)
+		printf("Error: Syntax error after redirection\n");
 }

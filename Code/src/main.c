@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/07 18:06:36 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/08 17:37:10 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int	main(int argc, char **argv, char **env)
 				ft_printf("g_data.recieved[%d]: %s\n", i, g_data.recieved[i]);
 				i++;
 			}
+				ft_printf("TEST MAIN\n");
 			if (ft_errors())
 			{
 				g_data.tokens = NULL;
