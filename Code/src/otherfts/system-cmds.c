@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:41:41 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/10/07 14:31:51 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:10:36 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,7 @@ void	ft_system_cmds(char **command)
 			printf("[ERROR] Could not execute command %s \n", command[0]);
 		exit(0);
 	}
+	else
+		wait(&g_data.r_pid);
 	free(cmdpath);
 }

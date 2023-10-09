@@ -6,11 +6,24 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:53:54 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/10/07 15:07:46 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/09 17:28:03 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+void ft_close_pipes(void)
+{
+	int cnt;
+
+	cnt = 0;
+	while(cnt < g_data.spipe.pipe_n + 1)
+	{
+		close(g_data.spipe.fds[cnt][0]);
+		close(g_data.spipe.fds[cnt][1]);
+		cnt++;
+	}
+}
 
 static int	ft_count_pipes(char *line)
 {
@@ -33,9 +46,8 @@ static void	ft_first_pipe(char *cmd, int cnt)
 	char	**args;
 	char	*path;
 
-	ft_printf("from first pipe %i\n", cnt);
 	dup2(g_data.spipe.fds[cnt][1], 1);
-	close(g_data.spipe.fds[cnt][1]);
+	close(g_data.spipe.fds[cnt][0]);
 	args = ft_split(cmd, ' ');
 	path = ft_get_cmdpath(args[0]);
 	execve(path, args, g_data.env);
@@ -46,9 +58,9 @@ static void ft_middle_pipe(char *cmd, int cnt)
 	char **args;
 	char *path;
 
-	ft_printf("from middle pipe\n");
-	dup2(g_data.spipe.fds[cnt][0], 0);
+	dup2(g_data.spipe.fds[cnt][0], g_data.spipe.fds[cnt + 1][1]);
 	dup2(g_data.spipe.fds[cnt][1], 1);
+	ft_close_pipes();
 	args = ft_split(cmd, ' ');
 	path = ft_get_cmdpath(args[0]);
 	execve(path, args, g_data.env);
@@ -59,9 +71,9 @@ static void	ft_last_pipe(char *cmd, int cnt)
 	char	**args;
 	char	*path;
 
-	ft_printf("from last pipe %i\n", cnt);
-	args = ft_split(cmd, ' ');
 	dup2(g_data.spipe.fds[cnt][0], 0);
+	close(g_data.spipe.fds[cnt][1]);
+	args = ft_split(cmd, ' ');
 	path = ft_get_cmdpath(args[0]);
 	execve(path, args, g_data.env);
 }
@@ -80,7 +92,7 @@ void	ft_init_pipes(void)
 
 	cnt = 0;
 	g_data.spipe.fds = ft_calloc(sizeof(int *), g_data.spipe.pipe_n + 1);
-	while (cnt < g_data.spipe.pipe_n + 1)
+	while (cnt < g_data.spipe.pipe_n)
 	{
 		g_data.spipe.fds[cnt] = ft_calloc(sizeof(int), 2);
 		cnt++;
@@ -102,6 +114,8 @@ void ft_choose_pipe(char *cmd, int pipecnt, int cnt)
 	else
 		ft_middle_pipe(cmd, pipecnt);
 }
+
+// TODO: Try with only one pipe instead of **fds. Also see if pipe() need clean or not.
 
 void	ft_pipe(char *line)
 {
