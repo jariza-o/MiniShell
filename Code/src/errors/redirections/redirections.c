@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 12:40:43 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/08 14:35:09 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:16:03 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	ft_check_pipes(char **argv)
 		{
 			if (argv[i][n] == '|')
 			{
-				if (argv[i + 1][0] == '|')
+				if (argv[i + 1][0] == '|' || argv[i + 1][0] == '\0')
 					return (0);
 			}
 			n++;

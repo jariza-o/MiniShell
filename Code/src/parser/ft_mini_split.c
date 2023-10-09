@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 10:14:32 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/08 17:36:39 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/09 18:43:56 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static size_t	ft_mini_wordcounter(char *s);
 static int		ft_split_close_quote(char *argv, int i);
+static int		ft_len_close_quote(char *argv, int i, int len);
 
 char	**ft_mini_split(char *s)
 {
@@ -25,7 +26,7 @@ char	**ft_mini_split(char *s)
 	size_t	j;
 
 	// COMPROBAR SI ESTA VACIO
-	str = (char **)malloc(sizeof(char *) * (ft_mini_wordcounter(s) + 1));
+	str = (char **)ft_calloc((ft_mini_wordcounter(s) + 1), sizeof(char *));
 	ft_printf("Wordcounter: %d\n", ft_mini_wordcounter(s));
 	if (!str)
 		return (0);
@@ -42,29 +43,10 @@ char	**ft_mini_split(char *s)
 				len++;
 				++i;
 			}
-			if (s[i] == '\'')
+			if (s[i] == '\'' || s[i] == '\"')
 			{
-				len++;
-				i++;
-				while (s[i] != '\'' && s[i])
-				{
-					len++;
-					++i;
-				}
-				len++;
-				i++;
-			}
-			else if (s[i] == '\"')
-			{
-				len++;
-				i++;
-				while (s[i] != '\"' && s[i])
-				{
-					len++;
-					++i;
-				}
-				len++;
-				i++;
+				i = ft_split_close_quote(s, i);
+				len = ft_len_close_quote(s, i, len);
 			}
 		}
 		else
@@ -85,19 +67,18 @@ char	**ft_mini_split(char *s)
 				i++;
 			}
 		}
-		str[j] = (char *)malloc(sizeof(char) * (len + 1));
+		str[j] = (char *)ft_calloc((len + 1), sizeof(char));
 		n = 0;
+		//ft_printf("ii: %d i: %d\n", ii, i);
 		while (s[ii] != s[i])
 		{
 			str[j][n] = s[ii];
 			++n;
 			++ii;
 		}
-		str[j][n] = '\0';
 		while (s[i] == ' ' && s[i])
 			i++;
-		if (s[i])
-			j++;
+		j++;
 	}
 	return (str);
 }
@@ -139,6 +120,8 @@ static size_t	ft_mini_wordcounter(char *s)
 			// if (s[i] == ' ')
 			while (s[i] == ' ')
 				i++;
+			if (s[i])
+			x++;
 		}
 	}
 	x++;
@@ -152,7 +135,8 @@ static int	ft_split_close_quote(char *argv, int i)
 		i++;
 		while (argv[i] != '\'' && argv[i])
 			i++;
-		i++;
+		if (argv[i])
+			i++;
 		return (i);
 	}
 	else if (argv[i] == '"')
@@ -160,8 +144,38 @@ static int	ft_split_close_quote(char *argv, int i)
 		i++;
 		while (argv[i] != '"' && argv[i])
 			i++;
-		i++;
+		if (argv[i])
+			i++;
 		return (i);
 	}
 	return (i);
+}
+
+static int	ft_len_close_quote(char *argv, int i, int len)
+{
+	if (argv[i] == '\'')
+	{
+		i++;
+		len++;
+		while (argv[i] != '\'' && argv[i])
+		{
+			i++;
+			len++;
+		}
+		if (argv[i])
+			i++;
+	}
+	else if (argv[i] == '"')
+	{
+		i++;
+		len++;
+		while (argv[i] != '"' && argv[i])
+		{
+			i++;
+			len++;
+		}
+		if (argv[i])
+			i++;
+	}
+	return (len);
 }

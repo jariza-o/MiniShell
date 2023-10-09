@@ -1,6 +1,6 @@
 # COSAS QUE HACER
-- MINISPLIT NO FUNCIONA CON <<
-- CREAR ERRORES CUANDO SE >> <<>>> y mierdas de estas seguidas, y si hay un |  | y ne medio nada
+-Historial con muchos comandos no deja de ir 
+- CREAR ERRORES CUANDO SE >>>>>>>> <<<<<<<<<<< |||||||y mierdas de estas seguidas, y si hay un |  | y ne medio nada
 - MINISPLIT TENER EN CUNETA CUANDO REPITA || o cualquier otro seguido
 - 
 - Cuando la variable no existe, tengo que tenerlo en cuenta
