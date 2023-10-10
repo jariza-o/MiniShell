@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/07 14:55:12 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/10 15:42:43 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ enum				e_datatype
 
 typedef struct s_pipe
 {
-	int				**fds;
+	int				fds[2];
 	pid_t			pid_c1;
 	pid_t			pid_c2;
 	int				pipe_n;
