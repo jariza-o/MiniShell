@@ -6,11 +6,11 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 20:07:14 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/03 17:20:31 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/10 18:12:44 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
 
 static t_token	*ft_lstnew_mini(char *argv);
 static t_token	*ft_lstlast_mini(t_token *lst);
@@ -20,7 +20,6 @@ static void		ft_lstadd_back_mini(t_token **lst, t_token *new);
 t_token	*ft_init_token(void)
 {
 	t_token	*list;
-	t_token	*aux;
 	int		i;
 
 	i = 0;
@@ -28,19 +27,9 @@ t_token	*ft_init_token(void)
 	i++;
 	while (g_data.recieved[i])
 	{
-		// ft_printf("LST ES: %s", list->str);
 		ft_lstadd_back_mini(&list, ft_lstnew_mini(g_data.recieved[i]));
 		i++;
 	}
-	aux = list;
-	while (list)
-	{
-		ft_printf("LISTA: %s\n", list->str);
-		ft_printf("LISTA: %d\n", list->type);
-		list = list->next;
-	}
-	list = aux;
-	// ft_printf("%s\n", list->str);
 	return (list);
 }
 

@@ -6,11 +6,11 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 13:39:48 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/03 17:36:21 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/10 18:12:27 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
 
 static int	ft_is_no_quote(char *argv);
 static int	ft_is_builtin(t_token *token);
