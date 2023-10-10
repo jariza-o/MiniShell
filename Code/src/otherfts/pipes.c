@@ -6,12 +6,12 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:53:54 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/10/10 19:03:45 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/10 19:37:38 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
+// COMENT GIT
 static int	ft_count_pipes(char *line)
 {
 	int	cnt;
