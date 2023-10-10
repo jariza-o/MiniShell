@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 15:13:05 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/25 17:36:59 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/07 13:46:51 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,29 +26,24 @@ void	ft_echo(char **argv)
 {
 	int	i;
 
-	g_data.r_pid = fork();
-	if (g_data.r_pid < 0)
-		printf("[ERROR] Could not create a child process \n");
-	else if (g_data.r_pid == 0)
+	i = ft_echo_flag(argv);
+	if (!argv[1])
 	{
-		i = ft_echo_flag(argv);
-		if (!argv[1])
-		{
-			write(1, "\n", 1);
-			return ;
-		}
-		if (i == 0)
-			i++;
-		while (argv[i])
-		{
-			ft_putstr(argv[i]);
-			i++;
-			if (argv[i])
-				write(1, " ", 1);
-		}
-		if (ft_echo_flag(argv) <= 1)
-			printf("\n");
+		write(1, "\n", 1);
+		return ;
 	}
+	if (i == 0)
+		i++;
+	while (argv[i])
+	{
+		ft_putstr(argv[i]);
+		i++;
+		if (argv[i])
+			write(1, " ", 1);
+	}
+	if (ft_echo_flag(argv) <= 1)
+		printf("\n");
+	g_data.exit_status = 0;
 }
 
 static int	ft_echo_flag(char **argv)
