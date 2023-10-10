@@ -37,8 +37,8 @@ void	init_shell(void)
 	printf("^~~~~~~~~Y##&&&&&&&&&&&#PPGGGGGGGB#&&&&&&&P5Y??JY#&&##5~~~~~~~~\n");
 	printf("~~~~~~~~~?##&&&&&&&&&&&&PGGGGGGGBB##&&&&&&#G5YYY5B#####Y~~~~~~~\n");
 	printf("~~~~~~~~~!B&&&&&&&&&&&&&PGGGGGGGGBBB#&&&&&@@&##B#&######J~~~~~~\n");
-	printf("\nUSER is: @%s", g_data.user);
-	printf("\n");
+	printf("\n\t\t<--USER is: @%s-->", g_data.user);
+	printf("\n\n");
 }
 
 void	ft_cmds(void)
@@ -73,7 +73,7 @@ int	main(int argc, char **argv, char **env)
 	str = 0;
 	g_data.env = env;
 	g_data.user = getenv("USER");
-	//ft_signals();
+	ft_signals();
 	init_shell();
 	while ((str = readline("MiniSheh$> ")) != NULL)
 	{

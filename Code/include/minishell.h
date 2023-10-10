@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
 /*   Updated: 2023/10/10 19:01:46 by jariza-o         ###   ########.fr       */
@@ -68,6 +68,7 @@ typedef struct s_token
 typedef struct s_data
 {
 	char	**recieved;
+	char	*line;
 	t_token	*tokens;
 	char	**env;
 	char	*user;
@@ -113,10 +114,14 @@ void		ft_system_cmds(char **command);
 
 void		ft_parser(void);
 
-// void		ft_signals(void);
+void		ft_signals(void);
 
 char		**ft_clean_matrix(char **matrix);
+int			ft_check_pipe(char **command);
 
+char		*ft_get_cmdpath(char *cmd, char **args);
+
+void		ft_pipe(char *line);
 void		ft_signals(void);
 
 char		**ft_mini_split(char *s);

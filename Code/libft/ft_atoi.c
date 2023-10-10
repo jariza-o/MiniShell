@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 20:40:35 by jariza-o          #+#    #+#             */
-/*   Updated: 2022/10/03 19:37:31 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/03 19:00:15 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,10 @@ int	ft_atoi(const char *str)
 	}
 	return (signo * buffer);
 }
+
+/*
+int main(void)
+{
+	printf("A");
+}
+*/

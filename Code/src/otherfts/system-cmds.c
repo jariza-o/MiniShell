@@ -51,7 +51,7 @@ static int	ft_check_file(char *cmd)
 	return (0);
 }
 
-static char	*ft_get_cmdpath(char *cmd, char **args)
+char	*ft_get_cmdpath(char *cmd, char **args)
 {
 	int			cnt;
 	int			exists;
@@ -92,7 +92,13 @@ void	ft_system_cmds(char **command)
 		printf("[ERROR] Could not create a child process \n");
 	else if (g_data.r_pid == 0)
 	{
+		if (ft_check_pipe(command) == 1)
+		{
+			ft_pipe(g_data.line);
+			return ;
+		}
 		cmdpath = ft_get_cmdpath(command[0], command);
+		ft_printf("%s\n", cmdpath);
 		if (!cmdpath)
 			printf("[ERROR] Command not found: %s \n", command[0]);
 		else if (execve(cmdpath, command, g_data.env) < 0)
