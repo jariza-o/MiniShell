@@ -1,7 +1,8 @@
 # COSAS QUE HACER
+
+- COMPROBAR FT_ERRORS
 -Historial con muchos comandos no deja de ir 
-- CREAR ERRORES CUANDO SE >>>>>>>> <<<<<<<<<<< |||||||y mierdas de estas seguidas, y si hay un |  | y ne medio nada
-- MINISPLIT TENER EN CUNETA CUANDO REPITA || o cualquier otro seguido
+- MIniSPLIT WORDCOUNTER NO FUNCIONA BIEN
 - 
 - Cuando la variable no existe, tengo que tenerlo en cuenta
 - Probar expand.

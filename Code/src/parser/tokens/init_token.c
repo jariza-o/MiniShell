@@ -6,11 +6,11 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 20:07:14 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/06 13:02:34 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/10 18:12:44 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
 
 static t_token	*ft_lstnew_mini(char *argv);
 static t_token	*ft_lstlast_mini(t_token *lst);

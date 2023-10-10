@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/08 17:37:10 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/10 19:01:57 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,7 @@ int	main(int argc, char **argv, char **env)
 		add_history(str);
 		if ((g_data.recieved = ft_mini_split(str)) != NULL)
 		{
-			int i = 0;
-			while (g_data.recieved[i])
-			{
-				ft_printf("g_data.recieved[%d]: %s\n", i, g_data.recieved[i]);
-				i++;
-			}
-				ft_printf("TEST MAIN\n");
+			ft_tokens_to_str();
 			if (ft_errors())
 			{
 				g_data.tokens = NULL;
