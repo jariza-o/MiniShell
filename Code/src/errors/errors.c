@@ -6,20 +6,40 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:33:09 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/05 16:19:07 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/10 19:54:30 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	ft_errors(void)
+int	ft_errors(void)
 {
 	if (!ft_check_quotes(g_data.recieved))
+	{
 		ft_print_errors(QUOTES);
+		return (0);
+	}
 	if (!ft_check_slash(g_data.recieved))
+	{
 		ft_print_errors(SLASH);
+		return (0);
+	}
 	if (!ft_check_semicolon(g_data.recieved))
+	{
 		ft_print_errors(SEMICOLON);
+		return (0);
+	}
+	if (!ft_check_redirections(g_data.recieved))
+	{
+		ft_print_errors(REDIRECTIONS);
+		return (0);
+	}
+	if (!ft_check_pipes(g_data.recieved))
+	{
+		ft_print_errors(PIPES);
+		return (0);
+	}
+	return (1);
 }
 
 void	ft_print_errors(int error)
@@ -32,4 +52,8 @@ void	ft_print_errors(int error)
 		printf("Error: The cd command failed when trying to access HOME\n");
 	else if (error == PWD)
 		printf("Error: The pwd command failed\n");
+	else if (error == PIPES)
+		printf("Error: MiniSheh can't work with ||\n");
+	else if (error == REDIRECTIONS)
+		printf("Error: Syntax error after redirection\n");
 }

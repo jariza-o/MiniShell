@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/09 14:26:16 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/10 19:53:26 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,14 +96,20 @@ int	main(int argc, char **argv, char **env)
 	while ((str = readline("MiniSheh$> ")) != NULL)
 	{
 		add_history(str);
-		g_data.line = str;
-		g_data.recieved = ft_mini_split(str);
-		g_data.tokens = NULL;
-		g_data.tokens = ft_init_token();
-		ft_tokenizer();
-		ft_check_pipe(g_data.line);
-		if (g_data.recieved)
-			g_data.recieved = ft_clean_matrix(g_data.recieved);
+		if ((g_data.recieved = ft_mini_split(str)) != NULL)
+		{
+			ft_tokens_to_str();
+			if (ft_errors())
+			{
+				g_data.tokens = NULL;
+				g_data.tokens = ft_init_token();
+				ft_tokenizer();
+				ft_expand_data();
+				ft_cmds();
+				if (g_data.recieved)
+					g_data.recieved = ft_clean_matrix(g_data.recieved);
+			}
+		}
 	}
 	return (0);
 }

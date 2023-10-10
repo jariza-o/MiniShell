@@ -6,11 +6,11 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 20:07:14 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/05 16:26:57 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/10 19:57:09 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
 
 static t_token	*ft_lstnew_mini(char *argv);
 static t_token	*ft_lstlast_mini(t_token *lst);

@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/10 15:42:43 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/10 19:52:32 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ enum				e_errors
 	SEMICOLON,
 	CD,
 	PWD,
+	PIPES,
+	REDIRECTIONS,
 	// BUILTINS,
 };
 
@@ -87,15 +89,19 @@ typedef struct s_data
 t_data				g_data;
 
 /* ERRORS */
-void				ft_errors(void);
+int			ft_errors(void);
 /* Print error message */
 void				ft_print_errors(int error);
 /* Quotes (" and ') */
 int					ft_check_quotes(char **argv);
 /* Semicolon */
-int					ft_check_semicolon(char **argv);
-/* Slashs */
-int					ft_check_slash(char **argv);
+int			ft_check_semicolon(char **argv);
+/* Slash */
+int			ft_check_slash(char **argv);
+/* Redirections */
+int			ft_check_redirections(char **argv);
+/* Pipes */
+int			ft_check_pipes(char **argv);
 
 void				ft_cmds(void);
 /* Built-ins */
@@ -126,11 +132,18 @@ char				*ft_get_cmdpath(char *cmd);
 void				ft_pipe(char *line);
 void				ft_signals(void);
 
-char				**ft_mini_split(char *s);
-char				**ft_split_redirections(void);
-void				ft_tokenizer(void);
+char		**ft_mini_split(char *s);
 
 /* Tokens */
-t_token				*ft_init_token(void);
+t_token		*ft_init_token(void);
+void		ft_tokenizer(void);
+void		ft_tokens_to_str(void);
+
+/* Expand */
+void		ft_expand_data(void);
+void		ft_expand_env(t_token *tokens);
+void		ft_expand_quotes(t_token *tokens);
+
+char		*ft_get_env(char *str);
 
 #endif
