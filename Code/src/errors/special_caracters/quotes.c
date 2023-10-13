@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:13:57 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/28 15:31:27 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/13 12:17:51 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,57 @@
 
 int	ft_check_quotes(char **argv)
 {
-	int	i;
-	int	n;
+	int	quotes;
 
-	i = -1;
-	while (argv[++i])
+	while (*argv)
 	{
-		n = -1;
-		while (argv[i][++n])
+		quotes = 0;
+		while (**argv)
 		{
-			if (argv[i][n] == '"')
+			if (**argv == '"' || **argv == '\'')
 			{
-				n++;
-				while (argv[i][n] != '"' && argv[i][n])
-					n++;
-				if (argv[i][n] != '"')
-					return (0);
+				if (!quotes)
+					quotes = **argv;
+				else if (**argv == quotes)
+					quotes = 0;
 			}
-			else if (argv[i][n] == '\'')
-			{
-				n++;
-				while (argv[i][n] != '\'' && argv[i][n])
-					n++;
-				if (argv[i][n] != '\'')
-					return (0);
-			}
+			(*argv)++;
 		}
+		if (quotes)
+			return (0);
+		argv++;
 	}
 	return (1);
 }
+
+// int	ft_check_quotes(char **argv)
+// {
+// 	int	i;
+// 	int	n;
+
+// 	i = -1;
+// 	while (argv[++i])
+// 	{
+// 		n = -1;
+// 		while (argv[i][++n])
+// 		{
+// 			if (argv[i][n] == '"')
+// 			{
+// 				n++;
+// 				while (argv[i][n] != '"' && argv[i][n])
+// 					n++;
+// 				if (argv[i][n] != '"')
+// 					return (0);
+// 			}
+// 			else if (argv[i][n] == '\'')
+// 			{
+// 				n++;
+// 				while (argv[i][n] != '\'' && argv[i][n])
+// 					n++;
+// 				if (argv[i][n] != '\'')
+// 					return (0);
+// 			}
+// 		}
+// 	}
+// 	return (1);
+// }

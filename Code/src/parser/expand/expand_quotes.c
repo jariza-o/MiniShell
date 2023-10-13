@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:18:10 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/05 23:46:05 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/13 12:38:24 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /* Revisar tema de los ++ porque ppor la norminette lo he reducido mucho */
 
-static int ft_count_quotes(t_token *tokens);
+static int	ft_count_quotes(t_token *tokens);
 
 void	ft_expand_quotes(t_token *tokens)
 {
@@ -24,7 +24,8 @@ void	ft_expand_quotes(t_token *tokens)
 
 	i = -1;
 	n = 0;
-	str = (char *)malloc(sizeof(char) * (ft_strlen(tokens->str) - ft_count_quotes(tokens)));
+	str = (char *)malloc(sizeof(char) * \
+	(ft_strlen(tokens->str) - ft_count_quotes(tokens)));
 	while (tokens->str[++i])
 	{
 		if (tokens->str[i] == '\'')
@@ -44,7 +45,7 @@ void	ft_expand_quotes(t_token *tokens)
 	free (str);
 }
 
-static int ft_count_quotes(t_token *tokens)
+static int	ft_count_quotes(t_token *tokens)
 {
 	int	i;
 	int	len;

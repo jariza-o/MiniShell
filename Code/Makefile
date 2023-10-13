@@ -6,7 +6,7 @@
 #    By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 12:59:03 by jariza-o          #+#    #+#              #
-#    Updated: 2023/10/05 13:27:41 by jjaen-mo         ###   ########.fr        #
+#    Updated: 2023/10/13 12:30:59 by jariza-o         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,12 +23,14 @@ COMPILE =	-g
 # Minishell
 NAME =		Minishell
 SRC =		src/main.c \
-			src/built-ins/echo/echo.c src/built-ins/cd/cd.c src/built-ins/pwd/pwd.c src/built-ins/env/env.c src/built-ins/export/export.c \
-			src/built-ins/unset/unset.c src/built-ins/exit/exit.c \
-			src/parser/ft_mini_split.c src/parser/tokens/init_token.c src/parser/tokens/token.c src/parser/tokens/tokens_to_str.c\
+			src/built-ins/echo/echo.c src/built-ins/cd/cd.c \
+			src/built-ins/pwd/pwd.c src/built-ins/env/env.c \
+			src/built-ins/export/export.c src/built-ins/unset/unset.c \
+			src/built-ins/exit/exit.c \
+			src/parser/ft_mini_split.c src/parser/tokens/init_token.c src/parser/tokens/token.c src/parser/tokens/token2.c src/parser/tokens/tokens_to_str.c \
 			src/parser/expand/expand_env.c src/parser/expand/expand.c src/parser/expand/expand_quotes.c \
-			src/otherfts/system-cmds.c src/otherfts/clean.c src/otherfts/pipes.c\
 			src/errors/special_caracters/quotes.c src/errors/special_caracters/slash_semicolon.c  src/errors/redirections/redirections.c src/errors/errors.c \
+			src/otherfts/system-cmds.c src/otherfts/clean.c src/otherfts/pipes.c\
 			src/signals/signals.c \
 
 OBJT =		$(SRC:.c=.o)

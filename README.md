@@ -1,7 +1,9 @@
 # COSAS QUE HACER
 
-- COMPROBAR FT_ERRORS
--Historial con muchos comandos no deja de ir 
+Tareas para cuando llegue a 42:
+- Mirar si quotes funciona bien, debería
+- COMPROBAR FT_ERRORS nueva comprobación
+
 - MIniSPLIT WORDCOUNTER NO FUNCIONA BIEN
 - 
 - Cuando la variable no existe, tengo que tenerlo en cuenta
