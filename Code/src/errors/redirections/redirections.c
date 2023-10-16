@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 12:40:43 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/13 11:55:40 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/16 17:04:40 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_check_redirections(void)
 	t_token	*aux;
 
 	aux = g_data.tokens;
-	while (g_data.tokens->type)
+	while (g_data.tokens)
 	{
 		if ((g_data.tokens->type == IN_RED || g_data.tokens->type == OUT_RED || \
 		g_data.tokens->type == HERE_DOC_RED || \

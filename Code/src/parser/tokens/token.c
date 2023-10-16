@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 13:39:48 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/13 13:03:24 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/16 17:02:57 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void	ft_tokenizer_utils(void);
 static int	ft_is_no_quote(char *argv);
 static int	ft_is_builtin(t_token *token);
 static int	ft_check_builtin(t_token *token);
-static int	ft_is_command(t_token *token);
 
 void	ft_tokenizer(void)
 {
@@ -43,12 +42,12 @@ static void	ft_tokenizer_utils(void)
 {
 	if (ft_is_builtin(g_data.tokens))
 		g_data.tokens->type = BUILTINS;
-	else if (ft_is_command(g_data.tokens))
-		g_data.tokens->type = COMMAND;
 	else if (ft_is_env(g_data.tokens))
 		g_data.tokens->type = ENVI_VAR;
 	else if (!ft_strcmp(g_data.tokens->str, "|"))
 		g_data.tokens->type = PIPE;
+	else if (ft_is_command(g_data.tokens))
+		g_data.tokens->type = COMMAND;
 	else if (!ft_strcmp(g_data.tokens->str, "<"))
 		g_data.tokens->type = IN_RED;
 	else if (!ft_strcmp(g_data.tokens->str, ">"))

@@ -1,4 +1,18 @@
 # COSAS QUE HACER
+- ft_tokens_to_STR no va
+- MODIFCIAR ft_GET_ENV para tener en cuenta que solo mire numeros, _ y letras
+- FT_INITIAL_ERRORS:
+        - No va en \ y en $
+        SI UNA ENV EMPIEZA POR NUMERO DEVUELVE ERROR o Calquier simbolo FUNCION INITIAL ERRORS NO VA
+- VER EN EXPAND_ENV SI ESTA BIEN LAS SEPARACIONES para el tema de guiones y demás
+
+
+
+
+
+
+
+
 
 Tareas para cuando llegue a 42:
 - Mirar si quotes funciona bien, debería

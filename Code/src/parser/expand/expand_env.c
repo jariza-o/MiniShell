@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:06:03 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/13 12:37:18 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/16 18:48:08 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,14 @@ void	ft_expand_env(t_token *tokens)
 	}
 	if (!env)
 		return ;
-	content = ft_get_env(env);
+	content = ft_get_env(env); // ESTA FUNCION ESTa MAL, HASTA QUE XEMA NO ME LA ARREGLE NO PUEDO CONTINUAR
+	if (content == NULL)
+	{
+		content = ""; //ESTO SE PUEDE HACER SIN MALLOC?? CREO QUE NO
+	}
 	ft_printf("content: %s\n", content); // Borrar
 	tokens->str = ft_change_env_str(tokens, content, env);
+	ft_printf("VARIABLE: %s\n\n", tokens->str);
 	free(env);
 	free(content);
 }
@@ -58,20 +63,23 @@ static char	*ft_obtain_env(t_token *tokens, int i)
 	len = 0;
 	while (tokens->str[n] && (tokens->str[n] != ' ' && tokens->str[n] != '\"' && tokens->str[n] != '$'))
 	{
+		if ((tokens->str[n] < 48 || tokens->str[n] > 57) && (tokens->str[n] < 65 || tokens->str[n] > 90) && (tokens->str[n] < 97 || tokens->str[n] > 122) && tokens->str[n] != '_')
+			break; // REVISAR SI ESTO ESTA BIEN QUE NO LO SE
 		len++;
 		n++;
 	}
-	env = (char *)malloc(sizeof(char) * (len + 1));
+	env = (char *)ft_calloc((len + 1), sizeof(char));
 	if (!env)
 		return (NULL);
 	n = 0;
 	while (tokens->str[i] && (tokens->str[i] != ' ' && tokens->str[i] != '\"' && tokens->str[i] != '$'))
 	{
+		if ((tokens->str[n] < 48 || tokens->str[n] > 57) && (tokens->str[n] < 65 || tokens->str[n] > 90) && (tokens->str[n] < 97 || tokens->str[n] > 122) && tokens->str[n] != '_')
+			break; // REVISAR SI ESTO ESTA BIEN QUE NO LO SE
 		env[n] = tokens->str[i];
 		n++;
 		i++;
 	}
-	env[n] = '\0';
 	return (env);
 }
 
@@ -113,9 +121,11 @@ static char	*ft_change_env_str(t_token *tokens, char *content, char *env)
 	int		len;
 	int		len_env;
 
+	if (!ft_strcmp(env, "?"))
+		return(ft_itoa(g_data.exit_status));
 	len = ft_strlen(tokens->str);
 	len_env = ft_strlen(env);
-	str = (char *)malloc(sizeof(char) * (len - len_env + ft_strlen(content)));
+	str = (char *)ft_calloc((len - len_env + ft_strlen(content)), sizeof(char));
 	i = -1;
 	len = -1;
 	while (tokens->str[++i] != '$')

@@ -1,51 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token2.c                                           :+:      :+:    :+:   */
+/*   ft_print_tokens.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/13 12:27:39 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/16 17:02:40 by jariza-o         ###   ########.fr       */
+/*   Created: 2023/10/16 16:51:12 by jariza-o          #+#    #+#             */
+/*   Updated: 2023/10/16 16:56:33 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
 
-int	ft_is_command(t_token *token)
+void	ft_print_tokens(void)
 {
-	if (!token->prev || token->prev->type == PIPE)
-		return (1);
-	return (0);
-}
+	t_token	*aux;
 
-int	ft_is_env(t_token *token)
-{
-	int	i;
-
-	i = 0;
-	while (token->str[i])
+	aux = g_data.tokens;
+	while (g_data.tokens)
 	{
-		if (token->str[i] == '$')
-			return (1);
-		i++;
+		ft_printf("Token STR: %s\n", g_data.tokens->str);
+		ft_printf("Token TYPE: %d\n", g_data.tokens->type);
+		g_data.tokens = g_data.tokens->next;
 	}
-	return (0);
-}
-
-int	ft_is_double_quote(t_token *token)
-{
-	int	i;
-
-	i = 0;
-	while (token->str[i])
-	{
-		if (token->str[i] == '\'')
-		{
-		}
-		if (token->str[i] == '"')
-			return (1);
-		i++;
-	}
-	return (0);
+	g_data.tokens = aux;
 }

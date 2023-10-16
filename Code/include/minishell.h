@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/13 13:03:15 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/16 19:55:03 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ enum				e_errors
 	SEMICOLON,
 	CD,
 	PWD,
-	PIPES,
 	REDIRECTIONS,
+	ENVS,
+	// PIPES,
 	// BUILTINS,
 };
 
@@ -89,6 +90,7 @@ typedef struct s_data
 t_data				g_data;
 
 /* ERRORS */
+int			ft_initial_errors(void);
 int			ft_errors(void);
 /* Print error message */
 void				ft_print_errors(int error);
@@ -100,6 +102,8 @@ int			ft_check_semicolon(char **argv);
 int			ft_check_slash(char **argv);
 /* Redirections */
 int			ft_check_redirections(void);
+/* Env Name */
+int			ft_check_env_errors(char **received);
 
 void				ft_cmds(void);
 /* Built-ins */
@@ -135,10 +139,11 @@ char				**ft_mini_split(char *s);
 /* Tokens */
 t_token		*ft_init_token(void);
 void		ft_tokenizer(void);
-int			ft_is_command(t_token *token)
+int			ft_is_command(t_token *token);
 int			ft_is_env(t_token *token);
 int			ft_is_double_quote(t_token *token);
 void		ft_tokens_to_str(void);
+void		ft_print_tokens(void);
 
 /* Expand */
 void		ft_expand_data(void);
