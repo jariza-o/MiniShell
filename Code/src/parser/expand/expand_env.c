@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:06:03 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/07 13:41:40 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/12 14:48:25 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_expand_env(t_token *tokens)
 	if (!env)
 		return ;
 	content = ft_get_env(env);
-	ft_printf("content: %s\n", content); // Borrar
+	//ft_printf("content: %s\n", content); // Borrar
 	tokens->str = ft_change_env_str(tokens, content, env);
 	free(env);
 	free(content);

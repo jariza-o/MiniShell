@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens_to_str.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 18:12:04 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/10 19:05:04 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/12 15:10:16 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ void	ft_tokens_to_str(void)
 		g_data.tokens = g_data.tokens->next;
 		if (g_data.tokens)
 		{
-			str[n] = " ";
+			str[n] = ' ';
 			n++;
 		}
 	}
 	g_data.tokens = aux;
-	g_data.line = str; // TENGO QUE LIBERAR MEMORIA O VOLVER A RESERVAR
+	//g_data.line = str; // TENGO QUE LIBERAR MEMORIA O VOLVER A RESERVAR
 }
 
 static int	ft_strlen_tokens(void)

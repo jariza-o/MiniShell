@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/10 19:53:26 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/17 19:48:26 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	init_shell(void)
 	printf("\n\n");
 }
 
-static char **ft_dup_envs(char **env)
+static char	**ft_dup_envs(char **env)
 {
 	int		cnt;
 	char	**new_env;
@@ -96,6 +96,7 @@ int	main(int argc, char **argv, char **env)
 	while ((str = readline("MiniSheh$> ")) != NULL)
 	{
 		add_history(str);
+		g_data.line = str;
 		if ((g_data.recieved = ft_mini_split(str)) != NULL)
 		{
 			ft_tokens_to_str();
@@ -105,7 +106,7 @@ int	main(int argc, char **argv, char **env)
 				g_data.tokens = ft_init_token();
 				ft_tokenizer();
 				ft_expand_data();
-				ft_cmds();
+				ft_check_pipe(str);
 				if (g_data.recieved)
 					g_data.recieved = ft_clean_matrix(g_data.recieved);
 			}
