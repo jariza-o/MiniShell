@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:06:03 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/16 18:48:08 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/17 17:00:37 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_expand_env(t_token *tokens)
 		}
 		else if (tokens->str[i] == '$')
 		{
-			env = ft_obtain_env(tokens, i);
+			env = ft_obtain_env(tokens, ++i);
 			break ;
 		}
 	}
@@ -42,9 +42,7 @@ void	ft_expand_env(t_token *tokens)
 		return ;
 	content = ft_get_env(env); // ESTA FUNCION ESTa MAL, HASTA QUE XEMA NO ME LA ARREGLE NO PUEDO CONTINUAR
 	if (content == NULL)
-	{
-		content = ""; //ESTO SE PUEDE HACER SIN MALLOC?? CREO QUE NO
-	}
+		content = ft_calloc(1,1); //ESTO SE PUEDE HACER SIN MALLOC?? CREO QUE NO
 	ft_printf("content: %s\n", content); // Borrar
 	tokens->str = ft_change_env_str(tokens, content, env);
 	ft_printf("VARIABLE: %s\n\n", tokens->str);
@@ -58,13 +56,13 @@ static char	*ft_obtain_env(t_token *tokens, int i)
 	int		len;
 	char	*env;
 
-	i += 1;
+	// i += 1;
+	if (tokens->str[i] == '?')
+		return (env = (char *)ft_calloc(2, sizeof(char)), env[0] = '?', env);
 	n = i;
 	len = 0;
-	while (tokens->str[n] && (tokens->str[n] != ' ' && tokens->str[n] != '\"' && tokens->str[n] != '$'))
+	while (tokens->str[n] && (tokens->str[n] == '_' || ft_isalnum(tokens->str[n]) == 1))
 	{
-		if ((tokens->str[n] < 48 || tokens->str[n] > 57) && (tokens->str[n] < 65 || tokens->str[n] > 90) && (tokens->str[n] < 97 || tokens->str[n] > 122) && tokens->str[n] != '_')
-			break; // REVISAR SI ESTO ESTA BIEN QUE NO LO SE
 		len++;
 		n++;
 	}
@@ -72,10 +70,8 @@ static char	*ft_obtain_env(t_token *tokens, int i)
 	if (!env)
 		return (NULL);
 	n = 0;
-	while (tokens->str[i] && (tokens->str[i] != ' ' && tokens->str[i] != '\"' && tokens->str[i] != '$'))
+	while (tokens->str[i] && (tokens->str[i] == '_' || ft_isalnum(tokens->str[i]) == 1))
 	{
-		if ((tokens->str[n] < 48 || tokens->str[n] > 57) && (tokens->str[n] < 65 || tokens->str[n] > 90) && (tokens->str[n] < 97 || tokens->str[n] > 122) && tokens->str[n] != '_')
-			break; // REVISAR SI ESTO ESTA BIEN QUE NO LO SE
 		env[n] = tokens->str[i];
 		n++;
 		i++;

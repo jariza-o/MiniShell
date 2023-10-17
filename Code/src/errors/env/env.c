@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 19:31:38 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/16 19:54:49 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/17 17:37:58 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,21 @@ int	ft_check_env_errors(char **received)
 			if (received[i][n] == '\'')
 			{
 				n++;
-				while (received[i][n] != '\'')
+				while (received[i][n] != '\'' && received[i][n])
 					n++;
 				n++;
 			}
-			if (received[i][n] == '$' && received[i][n + 1] == '$')
+			// if (received[i][n] == '$' && received[i][n + 1] == '$')
+			// 	return (0);
+			if (received[i][n] == '$' && received[i][n + 1] != '?')
+				n++;
+			else if (received[i][n] == '$' && (received[i][n + 1] != '_' || received[i][n + 1] != '?'))
 				return (0);
-			if (received[i][n] == '$' && (received[i][n + 1] < 65 || received[i][n + 1] > 90) && (received[i][n + 1] < 97 || received[i][n + 1] > 122) && received[i][n + 1] != '_')
+			else if (received[i][n] == '$' && ft_isalpha(received[i][n + 1]) != 1)
 				return (0);
 			n++;
+			while ((received[i][n] != '$' || received[i][n] != '\'') && received[i][n])
+				n++;
 		}
 		i++;
 	}

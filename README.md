@@ -1,4 +1,6 @@
 # COSAS QUE HACER
+- CHECH ENV NO VA CON $?
+- COMPROBAR QUE CHECK_QUOTES NO DE PROBLEMAS AL MOVER EL PUNTERO
 - ft_tokens_to_STR no va
 - MODIFCIAR ft_GET_ENV para tener en cuenta que solo mire numeros, _ y letras
 - FT_INITIAL_ERRORS:

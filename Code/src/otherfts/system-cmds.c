@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   system-cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:41:41 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/10/10 19:55:36 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/17 16:51:37 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char *ft_get_env(char *str)
 	int cnt;
 	char *env;
 
+	if (str[0] == '?') // AÑADIDO POR JARIZA PARA DEVOLVER $?
+		return (ft_itoa(g_data.exit_status));
 	cnt = 0;
 	while(g_data.env[cnt])
 	{
