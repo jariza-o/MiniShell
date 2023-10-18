@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:53:54 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/10/17 20:48:12 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/18 20:35:07 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,16 @@ static void	ft_child(char *cmd, int flag)
 	char	*path;
 
 	close(g_data.spipe.fds[0]);
-	dup2(g_data.spipe.prev_pipe, g_data.spipe.fd_in);
+	if (g_data.spipe.fd_in != 0)
+		dup2(g_data.spipe.fd_in, 0);
+	else
+		dup2(g_data.spipe.prev_pipe, g_data.spipe.fd_in);
 	if (flag)
 		dup2(g_data.spipe.fds[1], g_data.spipe.fd_out);
-	if(g_data.spipe.fd_out != 1)
+	if (g_data.spipe.fd_out != 1)
 	{
 		dup2(g_data.spipe.fd_out, 1);
-		g_data.spipe.fd_in = g_data.spipe.fd_out;
+		g_data.spipe.fd_in = dup(g_data.spipe.fd_out);
 	}
 	else
 		g_data.spipe.fd_in = 0;
@@ -50,7 +53,26 @@ void	ft_check_pipe(char *command)
 	if (ft_strchr(command, '|'))
 		ft_pipe(command);
 	else
-		ft_cmds();
+	{
+		if(fork() == 0)
+		{
+			if (g_data.spipe.fd_in != 0)
+			{
+				dup2(g_data.spipe.fd_in, 0);
+				close(g_data.spipe.fd_in);
+			}
+			if (g_data.spipe.fd_out != 1)
+			{
+				dup2(g_data.spipe.fd_out, 1);
+				close(g_data.spipe.fd_out);
+			}
+			ft_cmds();
+			g_data.exit_status = 0;
+			exit(0);
+		}
+		else
+			wait(NULL);
+	}
 }
 
 int	ft_exists(char *cmd)

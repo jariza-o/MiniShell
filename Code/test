@@ -1,0 +1,7 @@
+Makefile
+Minishell
+Minishell.dSYM
+include
+libft
+src
+test
