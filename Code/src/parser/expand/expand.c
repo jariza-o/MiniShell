@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:54:16 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/18 18:23:14 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/18 19:14:30 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,13 @@ void	ft_expand_data(void)
 	int		i;
 
 	aux = g_data.tokens;
-	// ft_printf("EXPAND TOKEN: %s\n", g_data.tokens->str);
-	// ft_printf("EXPAND AUX: %s\n", aux->str);
 	while (g_data.tokens)
 	{
 		i = 0;
 		if (g_data.tokens->type == ENVI_VAR)
 			ft_expand_env(g_data.tokens);
 		else if (g_data.tokens->type == SINGLE_QUOTE)
-			ft_expand_quotes(g_data.tokens);
+			g_data.tokens->str = ft_expand_quotes(g_data.tokens->str);
 		else
 		{
 			while (g_data.tokens->str[i])
@@ -40,19 +38,11 @@ void	ft_expand_data(void)
 				}
 				i++;
 			}
-			ft_expand_quotes(g_data.tokens);
-			ft_printf("EXPAND QUOTES: %s\n", g_data.tokens->str);
+			g_data.tokens->str = ft_expand_quotes(g_data.tokens->str);
 		}
 		g_data.tokens = g_data.tokens->next;
 	}
 	g_data.tokens = aux;
-	//	ft_printf("EXPAND dsfsdf: %s\n", g_data.tokens->str);
-	
-	while (aux)
-	{
-		ft_printf("EXPAND AUX: %s\n", aux->str);
-		aux = aux->next;
-	}
 }
 
 // static void	ft_del_single_quote(t_token *tokens)

@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 18:12:04 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/18 16:06:17 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/18 19:12:51 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ft_tokens_to_str(void)
 	char	*str;
 	t_token	*aux;
 
-		ft_printf("str: %s\n", g_data.tokens->str); // DONDE SEA ESTA STR ADELANTADO
 	n = 0;
 	aux = g_data.tokens;
 	str = (char *)ft_calloc(ft_strlen_tokens() + 1, sizeof(char *));
@@ -34,7 +33,6 @@ void	ft_tokens_to_str(void)
 			n++;
 			i++;
 		}
-		ft_printf("mitad: %s str: %s\n", str, g_data.tokens->str);
 		g_data.tokens = g_data.tokens->next;
 		if (g_data.tokens)
 		{
@@ -42,10 +40,9 @@ void	ft_tokens_to_str(void)
 			n++;
 		}
 	}
-	ft_printf("tokenTOstr: %s\n", str);
 	g_data.tokens = aux;
-	free(g_data.line);
-	g_data.line = str; // TENGO QUE LIBERAR MEMORIA O VOLVER A RESERVAR
+	g_data.line = str;
+	free (str);
 }
 
 static int	ft_strlen_tokens(void)

@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/18 16:20:40 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/18 19:15:15 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,8 @@ int	main(int argc, char **argv, char **env)
 				{
 					ft_expand_data();
 					ft_tokens_to_str(); // ARREGLAR ESTA FUNCION VA MAL
-					// ft_printf("STRING: %s\n", g_data.line);
-					g_data.tokens = NULL;
+					ft_printf("STRING: %s\n", g_data.line);
+					g_data.tokens = NULL; // ESTO PORQUE?? LO METIO XEMA
 					ft_cmds();
 					if (g_data.recieved)
 						g_data.recieved = ft_clean_matrix(g_data.recieved);

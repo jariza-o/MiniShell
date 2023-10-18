@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:06:03 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/17 17:00:37 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/18 19:24:41 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ static char	*ft_change_env_str(t_token *tokens, char *content, char *env)
 	while (tokens->str[++i] != '$')
 		str[++len] = tokens->str[i];
 	++i;
-	while (tokens->str[i] != ' ' && tokens->str[i] != '\"' && tokens->str[i] != '$' && tokens->str[i])
+	while ((tokens->str[i] == '_' || ft_isalnum(tokens->str[i]) == 1) && tokens->str[i])
 		i++;
 	len_env = -1;
 	while (content[++len_env])

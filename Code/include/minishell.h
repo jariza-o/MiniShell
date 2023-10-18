@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/17 15:32:31 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/18 18:58:48 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ void		ft_print_tokens(void);
 /* Expand */
 void		ft_expand_data(void);
 void		ft_expand_env(t_token *tokens);
-void		ft_expand_quotes(t_token *tokens);
+char		*ft_expand_quotes(char *quote);
 
 char		*ft_get_env(char *str);
 

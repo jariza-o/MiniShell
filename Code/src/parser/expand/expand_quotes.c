@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:18:10 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/18 18:19:15 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/18 19:10:05 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 static int	ft_count_quotes(char *str);
 
-void	ft_expand_quotes(t_token *tokens)
+char	*ft_expand_quotes(char *quote)
 {
 	char	*str;
 	int		i;
@@ -24,35 +24,20 @@ void	ft_expand_quotes(t_token *tokens)
 
 	i = -1;
 	n = 0;
-	// ft_printf("EXPAND QUOTES: %s\n", tokens->str);
-	str = (char *)ft_calloc((ft_strlen(tokens->str) - \
-	ft_count_quotes(tokens->str)), sizeof(char));
-	while (tokens->str[++i])
+	str = (char *)ft_calloc((ft_strlen(quote) - \
+	ft_count_quotes(quote)), sizeof(char));
+	while (quote[++i])
 	{
-		if (tokens->str[i] == '\'')
-		{
-			i++;
-			while (tokens->str[i] != '\'')
-			{
-				str[n++] = tokens->str[i];
-				i++;
-			}
-		}
-		else if (tokens->str[i] == '\"')
-		{
-			i++;
-			while (tokens->str[i] != '\"')
-			{
-				str[n++] = tokens->str[i];
-				i++;
-			}
-		}
+		if (quote[i] == '\'')
+			while (quote[++i] != '\'')
+				str[n++] = quote[i];
+		else if (quote[i] == '\"')
+			while (quote[++i] != '\"')
+				str[n++] = quote[i];
 		else
-			str[n++] = tokens->str[i];
+			str[n++] = quote[i];
 	}
-	tokens->str = str;
-	// ft_printf("EXPAND QUOTES: %s\n", tokens->str);
-	free (str);
+	return (str);
 }
 
 static int	ft_count_quotes(char *str)
@@ -83,3 +68,41 @@ static int	ft_count_quotes(char *str)
 	}
 	return (len);
 }
+
+
+// BACKUP
+// char	*ft_expand_quotes(char *quote)
+// {
+// 	char	*str;
+// 	int		i;
+// 	int		n;
+
+// 	i = -1;
+// 	n = 0;
+// 	str = (char *)ft_calloc((ft_strlen(quote) - \
+// 	ft_count_quotes(quote)), sizeof(char));
+// 	while (quote[++i])
+// 	{
+// 		if (quote[i] == '\'')
+// 		{
+// 			i++;
+// 			while (quote[i] != '\'')
+// 			{
+// 				str[n++] = quote[i];
+// 				i++;
+// 			}
+// 		}
+// 		else if (quote[i] == '\"')
+// 		{
+// 			i++;
+// 			while (quote[i] != '\"')
+// 			{
+// 				str[n++] = quote[i];
+// 				i++;
+// 			}
+// 		}
+// 		else
+// 			str[n++] = quote[i];
+// 	}
+// 	return (str);
+// }
