@@ -6,19 +6,21 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 19:31:38 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/17 17:37:58 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/18 15:46:00 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
+
+static int	ft_mini_isalpha(int c);
 
 int	ft_check_env_errors(char **received)
 {
 	int	i;
 	int	n;
 
-	i = 0;
-	while (received[i])
+	i = -1;
+	while (received[++i])
 	{
 		n = 0;
 		while (received[i][n])
@@ -30,19 +32,19 @@ int	ft_check_env_errors(char **received)
 					n++;
 				n++;
 			}
-			// if (received[i][n] == '$' && received[i][n + 1] == '$')
-			// 	return (0);
-			if (received[i][n] == '$' && received[i][n + 1] != '?')
-				n++;
-			else if (received[i][n] == '$' && (received[i][n + 1] != '_' || received[i][n + 1] != '?'))
+			if (received[i][n] == '$' && ft_mini_isalpha(received[i][n + 1]))
+				n += 2;
+			else if (received[i][n] == '$')
 				return (0);
-			else if (received[i][n] == '$' && ft_isalpha(received[i][n + 1]) != 1)
-				return (0);
-			n++;
 			while ((received[i][n] != '$' || received[i][n] != '\'') && received[i][n])
 				n++;
 		}
-		i++;
 	}
 	return (1);
+}
+
+static int	ft_mini_isalpha(int c)
+{
+	return ((c == '?') || (c == '_') || \
+	(c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }

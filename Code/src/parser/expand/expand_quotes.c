@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:18:10 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/13 12:38:24 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/18 18:19:15 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /* Revisar tema de los ++ porque ppor la norminette lo he reducido mucho */
 
-static int	ft_count_quotes(t_token *tokens);
+static int	ft_count_quotes(char *str);
 
 void	ft_expand_quotes(t_token *tokens)
 {
@@ -24,49 +24,59 @@ void	ft_expand_quotes(t_token *tokens)
 
 	i = -1;
 	n = 0;
-	str = (char *)malloc(sizeof(char) * \
-	(ft_strlen(tokens->str) - ft_count_quotes(tokens)));
+	// ft_printf("EXPAND QUOTES: %s\n", tokens->str);
+	str = (char *)ft_calloc((ft_strlen(tokens->str) - \
+	ft_count_quotes(tokens->str)), sizeof(char));
 	while (tokens->str[++i])
 	{
 		if (tokens->str[i] == '\'')
 		{
-			while (tokens->str[++i] != '\'')
+			i++;
+			while (tokens->str[i] != '\'')
+			{
 				str[n++] = tokens->str[i];
+				i++;
+			}
 		}
 		else if (tokens->str[i] == '\"')
 		{
-			while (tokens->str[++i] != '\"')
+			i++;
+			while (tokens->str[i] != '\"')
+			{
 				str[n++] = tokens->str[i];
+				i++;
+			}
 		}
 		else
 			str[n++] = tokens->str[i];
 	}
 	tokens->str = str;
+	// ft_printf("EXPAND QUOTES: %s\n", tokens->str);
 	free (str);
 }
 
-static int	ft_count_quotes(t_token *tokens)
+static int	ft_count_quotes(char *str)
 {
 	int	i;
 	int	len;
 
 	i = -1;
 	len = 0;
-	while (tokens->str[++i])
+	while (str[++i])
 	{
-		if (tokens->str[i] == '\'')
+		if (str[i] == '\'')
 		{
 			len++;
 			i++;
-			while (tokens->str[i] != '\'')
+			while (str[i] != '\'')
 				i++;
 			len++;
 		}
-		else if (tokens->str[i] == '\"')
+		else if (str[i] == '\"')
 		{
 			len++;
 			i++;
-			while (tokens->str[i] != '\"')
+			while (str[i] != '\"')
 				i++;
 			len++;
 		}

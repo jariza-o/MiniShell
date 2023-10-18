@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:54:16 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/13 12:44:46 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/18 18:23:14 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	ft_expand_data(void)
 	int		i;
 
 	aux = g_data.tokens;
+	// ft_printf("EXPAND TOKEN: %s\n", g_data.tokens->str);
+	// ft_printf("EXPAND AUX: %s\n", aux->str);
 	while (g_data.tokens)
 	{
 		i = 0;
@@ -34,15 +36,23 @@ void	ft_expand_data(void)
 				if (g_data.tokens->str[i] == '$')
 				{
 					ft_expand_env(g_data.tokens);
-					i = 0;
+					i = -1; // ESTABA A 0
 				}
 				i++;
 			}
 			ft_expand_quotes(g_data.tokens);
+			ft_printf("EXPAND QUOTES: %s\n", g_data.tokens->str);
 		}
 		g_data.tokens = g_data.tokens->next;
 	}
 	g_data.tokens = aux;
+	//	ft_printf("EXPAND dsfsdf: %s\n", g_data.tokens->str);
+	
+	while (aux)
+	{
+		ft_printf("EXPAND AUX: %s\n", aux->str);
+		aux = aux->next;
+	}
 }
 
 // static void	ft_del_single_quote(t_token *tokens)
