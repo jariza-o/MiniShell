@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/18 19:15:15 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/19 16:11:01 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	main(int argc, char **argv, char **env)
 	g_data.env = ft_dup_envs(env);
 	g_data.user = getenv("USER");
 	ft_signals();
-	init_shell();
+	// init_shell();
 	while ((str = readline("MiniSheh$> ")) != NULL)
 	{
 		add_history(str);
