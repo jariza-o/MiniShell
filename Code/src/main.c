@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/19 16:11:01 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/21 19:31:58 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,18 +98,21 @@ int	main(int argc, char **argv, char **env)
 		add_history(str);
 		if ((g_data.recieved = ft_mini_split(str)) != NULL)
 		{
+			int huevo = 0;
+			while (g_data.recieved[huevo])
+				ft_printf("STRING: %s\n", g_data.recieved[huevo++]);
 			if (ft_initial_errors())
 			{
 				g_data.tokens = ft_init_token();
 				ft_tokenizer();
-				// ft_print_tokens();
+				ft_print_tokens();
 				if (ft_errors())
 				{
 					ft_expand_data();
-					ft_tokens_to_str(); // ARREGLAR ESTA FUNCION VA MAL
-					ft_printf("STRING: %s\n", g_data.line);
+					ft_tokens_to_str();
+					ft_printf("LINE: %s\n", g_data.line);
 					g_data.tokens = NULL; // ESTO PORQUE?? LO METIO XEMA
-					ft_cmds();
+					// ft_cmds();
 					if (g_data.recieved)
 						g_data.recieved = ft_clean_matrix(g_data.recieved);
 				}
