@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:06:03 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/18 19:24:41 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/23 18:14:34 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	ft_expand_env(t_token *tokens)
 	if (!env)
 		return ;
 	content = ft_get_env(env); // ESTA FUNCION ESTa MAL, HASTA QUE XEMA NO ME LA ARREGLE NO PUEDO CONTINUAR
+	ft_printf("ENV NAME: %s CONTENT ENV: %s\n", env, content);
 	if (content == NULL)
 		content = ft_calloc(1,1); //ESTO SE PUEDE HACER SIN MALLOC?? CREO QUE NO
 	ft_printf("content: %s\n", content); // Borrar
@@ -117,10 +118,13 @@ static char	*ft_change_env_str(t_token *tokens, char *content, char *env)
 	int		len;
 	int		len_env;
 
-	if (!ft_strcmp(env, "?"))
-		return(ft_itoa(g_data.exit_status));
+	// if (!ft_strcmp(env, "?"))
+	// 	return(ft_itoa(g_data.exit_status));
 	len = ft_strlen(tokens->str);
-	len_env = ft_strlen(env);
+	if (!ft_strcmp(env, "?"))
+		len_env = ft_strlen(ft_itoa(g_data.exit_status));
+	else
+		len_env = ft_strlen(env);
 	str = (char *)ft_calloc((len - len_env + ft_strlen(content)), sizeof(char));
 	i = -1;
 	len = -1;
@@ -128,6 +132,8 @@ static char	*ft_change_env_str(t_token *tokens, char *content, char *env)
 		str[++len] = tokens->str[i];
 	++i;
 	while ((tokens->str[i] == '_' || ft_isalnum(tokens->str[i]) == 1) && tokens->str[i])
+		i++;
+	if (tokens->str[i - 1] == '$' && tokens->str[i] == '?')
 		i++;
 	len_env = -1;
 	while (content[++len_env])

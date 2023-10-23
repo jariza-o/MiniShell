@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mini_split.c                                    :+:      :+:    :+:   */
+/*   ft_mini_split_work_in_linux.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 10:14:32 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/19 22:00:14 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/23 17:58:19 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,10 +170,10 @@ static int	ft_split_close_quote(char *argv, int i)
 			i++;
 		return (i);
 	}
-	else if (argv[i] == '"')
+	else if (argv[i] == '\"')
 	{
 		i++;
-		while (argv[i] != '"' && argv[i])
+		while (argv[i] != '\"' && argv[i])
 			i++;
 		if (argv[i])
 			i++;
@@ -210,11 +210,11 @@ int	main(void)
 // 			len++;
 // 		}
 // 	}
-// 	else if (argv[i] == '"')
+// 	else if (argv[i] == '\"')
 // 	{
 // 		i++;
 // 		len++;
-// 		while (argv[i] != '"' && argv[i])
+// 		while (argv[i] != '\"' && argv[i])
 // 		{
 // 			i++;
 // 			len++;

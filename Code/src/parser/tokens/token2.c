@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 12:27:39 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/16 17:02:40 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/23 17:57:31 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_is_double_quote(t_token *token)
 		if (token->str[i] == '\'')
 		{
 		}
-		if (token->str[i] == '"')
+		if (token->str[i] == '\"')
 			return (1);
 		i++;
 	}

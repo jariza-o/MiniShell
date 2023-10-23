@@ -6,23 +6,24 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:41:41 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/10/17 16:51:37 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/23 18:58:43 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-char *ft_get_env(char *str)
+char	*ft_get_env(char *str)
 {
-	int cnt;
-	char *env;
+	int		cnt;
+	char	*env;
 
 	if (str[0] == '?') // AÑADIDO POR JARIZA PARA DEVOLVER $?
 		return (ft_itoa(g_data.exit_status));
 	cnt = 0;
-	while(g_data.env[cnt])
+	while (g_data.env[cnt])
 	{
-		if(ft_strncmp(g_data.env[cnt], str, ft_strlen(str)) == 0)
+		if (ft_strncmp(g_data.env[cnt], str, ft_strlen(str)) == 0 \
+		&& g_data.env[cnt][ft_strlen(str)] == '=')
 		{
 			env = ft_strdup(g_data.env[cnt] + (ft_strlen(str) + 1));
 			return (env);

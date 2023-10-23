@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:54:16 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/18 19:14:30 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/23 17:59:50 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	ft_expand_data(void)
 	while (g_data.tokens)
 	{
 		i = 0;
-		if (g_data.tokens->type == ENVI_VAR)
-			ft_expand_env(g_data.tokens);
-		else if (g_data.tokens->type == SINGLE_QUOTE)
-			g_data.tokens->str = ft_expand_quotes(g_data.tokens->str);
-		else
-		{
+		// if (g_data.tokens->type == ENVI_VAR)
+		// 	ft_expand_env(g_data.tokens);
+		// else if (g_data.tokens->type == SINGLE_QUOTE)
+		// 	g_data.tokens->str = ft_expand_quotes(g_data.tokens->str);
+		// else
+		// {
 			while (g_data.tokens->str[i])
 			{
 				if (g_data.tokens->str[i] == '$')
@@ -39,7 +39,7 @@ void	ft_expand_data(void)
 				i++;
 			}
 			g_data.tokens->str = ft_expand_quotes(g_data.tokens->str);
-		}
+		// }
 		g_data.tokens = g_data.tokens->next;
 	}
 	g_data.tokens = aux;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:03:11 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/05 13:39:45 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/23 19:02:19 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_signals(void)
 	signal(SIGTSTP, ctr_d);
 	signal(SIGQUIT, SIG_IGN);
 }
+
 static void	ctr_c(int signal)
 {
 	(void)signal;

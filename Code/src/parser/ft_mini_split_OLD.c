@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mini_split.c                                    :+:      :+:    :+:   */
+/*   ft_mini_split_OLD.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 10:14:32 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/10 19:56:14 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/23 17:58:19 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static int		ft_len_close_quote(char *argv, int i, int len);
 // 	{
 // 		if (s[i] == '\'')
 // 			i = ft_split_close_quote(s, i);
-// 		else if (s[i] == '"')
+// 		else if (s[i] == '\"')
 // 			i = ft_split_close_quote(s, i);
 // 		if (s[i] != ' ' && s[i] != '<' && s[i] != '>' && s[i] != '|')
 // 			i++;
@@ -242,10 +242,10 @@ static int	ft_split_close_quote(char *argv, int i)
 			i++;
 		return (i);
 	}
-	else if (argv[i] == '"')
+	else if (argv[i] == '\"')
 	{
 		i++;
-		while (argv[i] != '"' && argv[i])
+		while (argv[i] != '\"' && argv[i])
 			i++;
 		if (argv[i])
 			i++;
@@ -268,11 +268,11 @@ static int	ft_len_close_quote(char *argv, int i, int len)
 		if (argv[i])
 			i++;
 	}
-	else if (argv[i] == '"')
+	else if (argv[i] == '\"')
 	{
 		i++;
 		len++;
-		while (argv[i] != '"' && argv[i])
+		while (argv[i] != '\"' && argv[i])
 		{
 			i++;
 			len++;

@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 18:12:04 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/18 19:12:51 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/23 17:05:45 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_tokens_to_str(void)
 		}
 	}
 	g_data.tokens = aux;
-	g_data.line = str;
+	g_data.line = ft_strdup(str);
 	free (str);
 }
 

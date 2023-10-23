@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 15:59:36 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/28 14:11:35 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/23 17:58:19 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_check_slash(char **argv)
 		{
 			if (argv[i][n] == '\'')
 				n = ft_close_quote(argv, i, n);
-			else if (argv[i][n] == '"')
+			else if (argv[i][n] == '\"')
 				n = ft_close_quote(argv, i, n);
 			if (argv[i][n] == '\\')
 				return (0);
@@ -51,7 +51,7 @@ int	ft_check_semicolon(char **argv)
 		{
 			if (argv[i][n] == '\'')
 				n = ft_close_quote(argv, i, n);
-			else if (argv[i][n] == '"')
+			else if (argv[i][n] == '\"')
 				n = ft_close_quote(argv, i, n);
 			if (argv[i][n] == ';')
 				return (0);
@@ -67,17 +67,19 @@ static int	ft_close_quote(char **argv, int i, int n)
 	if (argv[i][n] == '\'')
 	{
 		n++;
-		while (argv[i][n] != '\'')
+		while (argv[i][n] != '\'' && argv[i][n])
 			n++;
-		n++;
+		if (argv[i][n] == '\'')
+			n++;
 		return (n);
 	}
-	else if (argv[i][n] == '"')
+	else if (argv[i][n] == '\"')
 	{
 		n++;
-		while (argv[i][n] != '"')
+		while (argv[i][n] != '\"' && argv[i][n])
 			n++;
-		n++;
+		if (argv[i][n] == '\"')
+			n++;
 		return (n);
 	}
 	return (n); // VER BIEN ESTE RETURN
