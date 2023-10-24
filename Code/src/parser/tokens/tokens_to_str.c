@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 18:12:04 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/23 17:05:45 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:30:10 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static int	ft_strlen_tokens(void)
 	aux = g_data.tokens;
 	while (g_data.tokens)
 	{
+		ft_printf("TOKENS_TO_STR: %s\n", g_data.tokens->str);
 		len += ft_strlen(g_data.tokens->str);
 		g_data.tokens = g_data.tokens->next;
 		if (g_data.tokens)

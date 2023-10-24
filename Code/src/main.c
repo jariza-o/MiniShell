@@ -6,11 +6,16 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/23 19:08:11 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/24 18:28:31 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+// void ft_leaks()
+// {
+// 	system("leaks -q Minishell");
+// }
 
 void	init_shell(void)
 {
@@ -41,24 +46,24 @@ void	init_shell(void)
 	printf("\n\n");
 }
 
-static char	**ft_dup_envs(char **env)
-{
-	int		cnt;
-	char	**new_env;
+// static char	**ft_dup_envs(char **env)
+// {
+// 	int		cnt;
+// 	char	**new_env;
 
-	cnt = 0;
-	while (env[cnt])
-		cnt++;
-	new_env = (char **)malloc(sizeof(char *) * (cnt + 1));
-	cnt = 0;
-	while (env[cnt])
-	{
-		new_env[cnt] = ft_strdup(env[cnt]);
-		cnt++;
-	}
-	new_env[cnt] = NULL;
-	return (new_env);
-}
+// 	cnt = 0;
+// 	while (env[cnt])
+// 		cnt++;
+// 	new_env = (char **)malloc(sizeof(char *) * (cnt + 1));
+// 	cnt = 0;
+// 	while (env[cnt])
+// 	{
+// 		new_env[cnt] = ft_strdup(env[cnt]);
+// 		cnt++;
+// 	}
+// 	new_env[cnt] = NULL;
+// 	return (new_env);
+// }
 
 void	ft_cmds(void)
 {
@@ -84,26 +89,22 @@ void	ft_cmds(void)
 
 int	main(int argc, char **argv, char **env)
 {
-	char	*str;
-
+	// atexit(ft_leaks);
+	(void)env; //
 	(void)argc;
 	(void)argv;
-	str = 0;
-	g_data.env = ft_dup_envs(env);
+	// g_data.env = ft_dup_envs(env);
+	g_data.env = NULL; //
 	g_data.user = getenv("USER");
 	ft_signals();
 	// init_shell();
-	while ((str = readline("MiniSheh$> ")) != NULL)
+	while ((g_data.prompt = readline("MiniSheh$> ")) != NULL)
 	{
-		if (str[0] != '\0')
+		if (g_data.prompt[0] != '\0')
 		{
-			add_history(str);
-			if ((g_data.recieved = ft_mini_split(str)) != NULL)
+			add_history(g_data.prompt);
+			if ((g_data.recieved = ft_mini_split(g_data.prompt)) != NULL)
 			{
-				// int huevo = 0;
-				// while (g_data.recieved[huevo])
-				// 	ft_printf("STRING: %s\n", g_data.recieved[huevo++]);
-				// ft_printf("MAINNNNNNNNNNNN\n");
 				if (ft_initial_errors())
 				{
 					g_data.tokens = ft_init_token();
@@ -114,14 +115,16 @@ int	main(int argc, char **argv, char **env)
 						ft_expand_data();
 						ft_tokens_to_str();
 						ft_printf("LINE: %s\n", g_data.line);
-						g_data.tokens = NULL; // ESTO PORQUE?? LO METIO XEMA
+						// g_data.tokens = NULL; // ESTO PORQUE?? LO METIO XEMA
 						// ft_cmds();
-						if (g_data.recieved)
-							g_data.recieved = ft_clean_matrix(g_data.recieved);
+						// if (g_data.recieved)
+						// 	g_data.recieved = ft_clean_matrix(g_data.recieved);
+						ft_clear();
 					}
 				}
 			}
 		}
+		free (g_data.prompt);
 	}
 	return (0);
 }

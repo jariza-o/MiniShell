@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 10:14:32 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/23 17:58:19 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/24 13:23:21 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,3 +282,50 @@ static int	ft_len_close_quote(char *argv, int i, int len)
 	}
 	return (len);
 }
+
+
+
+
+void    ft_mini_split_util(char **s, int *i)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

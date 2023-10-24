@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/18 18:58:48 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/24 18:31:23 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_token
 
 typedef struct s_data
 {
+	char			*prompt;
 	char			**recieved;
 	char			*line;
 	t_token			*tokens;
@@ -151,6 +152,17 @@ void		ft_expand_data(void);
 void		ft_expand_env(t_token *tokens);
 char		*ft_expand_quotes(char *quote);
 
+/* CLEAR FUNCTIONS */
+/* Clear with Errors */
+void		ft_clear_parser(int i);
+/* Clear when finish the command */
+void		ft_clear(void);
+/* Clear Utils */
+void		ft_clean_double_pointer(char **matrix);
+void		ft_clear_tokens(t_token **tokens);
+
 char		*ft_get_env(char *str);
+
+
 
 #endif

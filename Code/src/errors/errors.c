@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:33:09 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/23 17:04:44 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/24 19:52:32 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,25 @@
 int	ft_initial_errors(void)
 {
 	if (!ft_check_slash(g_data.recieved))
-		return (ft_print_errors(SLASH), g_data.exit_status = 1, 0);
+		return (ft_clear_parser(0), ft_print_errors(SLASH), \
+		g_data.exit_status = 1, 0);
 	if (!ft_check_semicolon(g_data.recieved))
-		return (ft_print_errors(SEMICOLON), g_data.exit_status = 1, 0);
+		return (ft_clear_parser(0), ft_print_errors(SEMICOLON), \
+		g_data.exit_status = 1, 0);
 	if (!ft_check_env_errors(g_data.recieved))
-		return (ft_print_errors(ENVS), g_data.exit_status = 1, 0);
+		return (ft_clear_parser(0), ft_print_errors(ENVS), \
+		g_data.exit_status = 1, 0);
 	return (1);
 }
 
 int	ft_errors(void)
 {
 	if (!ft_check_redirections())
-		return (ft_print_errors(REDIRECTIONS), g_data.exit_status = 1, 0);
+		return (ft_clear_parser(1), ft_print_errors(REDIRECTIONS), \
+		g_data.exit_status = 1, 0);
 	if (!ft_check_quotes(g_data.recieved))
-		return (ft_print_errors(QUOTES), g_data.exit_status = 1, 0);
+		return (ft_clear_parser(1), ft_print_errors(QUOTES), \
+		g_data.exit_status = 1, 0);
 	return (1);
 }
 
