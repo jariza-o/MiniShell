@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:06:03 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/23 18:14:34 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/25 19:17:57 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,11 @@ void	ft_expand_env(t_token *tokens)
 	}
 	if (!env)
 		return ;
-	content = ft_get_env(env); // ESTA FUNCION ESTa MAL, HASTA QUE XEMA NO ME LA ARREGLE NO PUEDO CONTINUAR
-	ft_printf("ENV NAME: %s CONTENT ENV: %s\n", env, content);
+	content = ft_get_env(env);
 	if (content == NULL)
-		content = ft_calloc(1,1); //ESTO SE PUEDE HACER SIN MALLOC?? CREO QUE NO
-	ft_printf("content: %s\n", content); // Borrar
+		content = ft_calloc(1,1);
+	free(tokens->str); // PUESTO DESPUES 
 	tokens->str = ft_change_env_str(tokens, content, env);
-	ft_printf("VARIABLE: %s\n\n", tokens->str);
 	free(env);
 	free(content);
 }

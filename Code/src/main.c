@@ -6,16 +6,16 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/24 18:28:31 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/25 20:05:50 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-// void ft_leaks()
-// {
-// 	system("leaks -q Minishell");
-// }
+void ft_leaks()
+{
+	system("leaks -q Minishell");
+}
 
 void	init_shell(void)
 {
@@ -42,7 +42,6 @@ void	init_shell(void)
 	printf("^~~~~~~~~Y##&&&&&&&&&&&#PPGGGGGGGB#&&&&&&&P5Y??JY#&&##5~~~~~~~~\n");
 	printf("~~~~~~~~~?##&&&&&&&&&&&&PGGGGGGGBB##&&&&&&#G5YYY5B#####Y~~~~~~~\n");
 	printf("~~~~~~~~~!B&&&&&&&&&&&&&PGGGGGGGGBBB#&&&&&@@&##B#&######J~~~~~~\n");
-	printf("\n\t\t<--USER is: @%s-->", g_data.user);
 	printf("\n\n");
 }
 
@@ -89,13 +88,12 @@ void	ft_cmds(void)
 
 int	main(int argc, char **argv, char **env)
 {
-	// atexit(ft_leaks);
+	atexit(ft_leaks);
 	(void)env; //
 	(void)argc;
 	(void)argv;
 	// g_data.env = ft_dup_envs(env);
 	g_data.env = NULL; //
-	g_data.user = getenv("USER");
 	ft_signals();
 	// init_shell();
 	while ((g_data.prompt = readline("MiniSheh$> ")) != NULL)
@@ -115,10 +113,10 @@ int	main(int argc, char **argv, char **env)
 						ft_expand_data();
 						ft_tokens_to_str();
 						ft_printf("LINE: %s\n", g_data.line);
-						// g_data.tokens = NULL; // ESTO PORQUE?? LO METIO XEMA
+						int huevo = 0;
+						while (g_data.recieved[huevo])
+							ft_printf("REC: %s\n", g_data.recieved[huevo++]);
 						// ft_cmds();
-						// if (g_data.recieved)
-						// 	g_data.recieved = ft_clean_matrix(g_data.recieved);
 						ft_clear();
 					}
 				}

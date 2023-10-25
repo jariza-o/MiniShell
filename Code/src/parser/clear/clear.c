@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 13:52:42 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/24 19:53:21 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/25 19:15:09 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,18 @@ void	ft_clear_parser(int i)
 
 void	ft_clean_double_pointer(char **matrix)
 {
-	char	**str;
 	int		cnt;
 
-	str = matrix;
 	cnt = 0;
-	while (str[cnt])
+	ft_printf("DDDD: %s\n", matrix[2]);
+	while (matrix[cnt])
 	{
-		ft_printf("DOUBLEFREE: %s\n", str[cnt]);
-		free(str[cnt]);
+		free(matrix[cnt]);
+		ft_printf("DOUBLEFREE: %s\n", matrix[cnt]);
 		cnt++;
 	}
-	free(str);
-	str = NULL;
+	free(matrix);
+	matrix = NULL;
 }
 
 void	ft_clear_tokens(t_token **tokens)

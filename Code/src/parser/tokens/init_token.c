@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 20:07:14 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/17 15:44:33 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/25 17:57:37 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static t_token	*ft_lstnew_mini(char *argv)
 	node = (t_token *)malloc(sizeof(t_token));
 	if (node == NULL)
 		return (NULL);
-	node->str = argv;
+	node->str = ft_strdup(argv);
 	node->type = VOID;
 	node->prev = NULL;
 	node->next = NULL;
