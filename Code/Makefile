@@ -6,7 +6,7 @@
 #    By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 12:59:03 by jariza-o          #+#    #+#              #
-#    Updated: 2023/10/17 19:56:43 by jjaen-mo         ###   ########.fr        #
+#    Updated: 2023/10/25 18:30:20 by jjaen-mo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRC =		src/main.c \
 			src/parser/ft_mini_split.c src/parser/tokens/init_token.c src/parser/tokens/token.c src/parser/tokens/tokens_to_str.c \
 			src/parser/expand/expand_env.c src/parser/expand/expand.c src/parser/expand/expand_quotes.c \
 			src/errors/special_caracters/quotes.c src/errors/special_caracters/slash_semicolon.c  src/errors/redirections/redirections.c src/errors/errors.c \
-			src/otherfts/system-cmds.c src/otherfts/clean.c src/otherfts/pipes.c\
+			src/otherfts/system-cmds.c src/otherfts/utils.c src/otherfts/pipes.c\
 			src/otherfts/redirs.c src/signals/signals.c \
 
 OBJT =		$(SRC:.c=.o)

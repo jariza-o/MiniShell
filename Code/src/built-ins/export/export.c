@@ -6,27 +6,42 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:26:44 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/06 16:44:52 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:49:17 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
 
-char	**ft_clean_matrix(char **matrix)
+void	ft_sort_matrix(char **env)
 {
-	int	cnt;
+	int		cnt;
+	int		cnt2;
+	int		size;
+	char	*tmp;
 
 	cnt = 0;
-	while (matrix[cnt])
+	while (env[cnt])
+		cnt++;
+	size = cnt;
+	cnt = 0;
+	while (cnt < size)
 	{
-		free(matrix[cnt]);
+		cnt2 = 0;
+		while (cnt2 < size - cnt - 1)
+		{
+			if (ft_strcmpup(env[cnt2], env[cnt2 + 1]) > 0)
+			{
+				tmp = env[cnt2];
+				env[cnt2] = env[cnt2 + 1];
+				env[cnt2 + 1] = tmp;
+			}
+			cnt2++;
+		}
 		cnt++;
 	}
-	free(matrix);
-	return (NULL);
 }
 
-static void	ft_reasign(char *name, char *value)
+void	ft_reasign(char *name, char *value)
 {
 	int		cnt;
 	char	**tmp;
@@ -47,7 +62,7 @@ static void	ft_reasign(char *name, char *value)
 	g_data.vars_mod = 1;
 }
 
-static int	ft_exists(char *var)
+static int	ft_exists_var(char *var)
 {
 	int	cnt;
 	int	eq;
@@ -85,7 +100,8 @@ void	ft_new_env(char *name, char *value)
 	tmp = ft_strjoin(name, "=");
 	env[cnt2] = ft_strjoin(tmp, value);
 	env[cnt2 + 1] = NULL;
-	g_data.env = env;
+	g_data.env = ft_dup_envs(env);
+	env = ft_clean_matrix(env);
 	free(tmp);
 	g_data.vars_mod = 1;
 }
@@ -95,13 +111,16 @@ void	ft_export(char **argv)
 	char	**vars;
 
 	if (!argv[1])
+	{
+		ft_sort_matrix(g_data.env);
 		ft_print_matrix(g_data.env);
+	}
 	else
 	{
 		vars = ft_split(argv[1], '=');
 		if (!vars[1] || !vars[0])
 			return ;
-		if (ft_exists(argv[1]))
+		if (ft_exists_var(argv[1]))
 			ft_reasign(vars[0], vars[1]);
 		else
 			ft_new_env(vars[0], vars[1]);

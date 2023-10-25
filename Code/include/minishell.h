@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/17 19:55:35 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:36:43 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,5 +147,17 @@ void				ft_expand_quotes(t_token *tokens);
 char				*ft_get_env(char *str);
 
 char				*ft_check_redir(char *line);
+
+int					ft_exists(char *cmd);
+
+char				**ft_dup_envs(char **env);
+
+char				*ft_strup(char *str);
+
+int					ft_strcmpup(char *str1, char *str2);
+
+void				ft_sort_matrix(char **env);
+
+void				ft_reasign(char *name, char *value);
 
 #endif

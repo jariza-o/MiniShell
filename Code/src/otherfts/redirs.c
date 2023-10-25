@@ -6,16 +6,16 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:45:26 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/10/18 21:02:39 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:50:03 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-static void ft_heredoc(char *limiter)
+static void	ft_heredoc(char *limiter)
 {
-	char *line;
-	int fd;
+	char	*line;
+	int		fd;
 
 	fd = open("tmp", O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	while (1)
@@ -52,64 +52,65 @@ static int	ft_double_redir_ck(char *line, char red)
 
 static char	*ft_in_redir(char *line)
 {
-	char **cmd;
-	int cnt;
+	char	**cmd;
 
-	cnt = 0;
 	cmd = ft_split(line, '<');
-	while (cmd[cnt])
-		cnt++;
-	if (cnt > 2)
+	if (ft_exists(cmd[2]))
 	{
 		printf("[ERROR] Infile redirection error\n");
 		g_data.exit_status = 1;
-		return(cmd[0]);
+		cmd = ft_clean_matrix(cmd);
+		return (NULL);
 	}
 	cmd[0] = ft_strtrim(cmd[0], " ");
 	cmd[1] = ft_strtrim(cmd[1], " ");
-	if(ft_double_redir_ck(line, '<'))
+	if (ft_double_redir_ck(line, '<'))
 		ft_heredoc(cmd[1]);
 	else
 		g_data.spipe.fd_in = open(cmd[1], O_RDONLY);
+	free(cmd[1]);
 	return (cmd[0]);
 }
 
 static char	*ft_out_redir(char *line)
 {
 	char	**cmd;
-	int		cnt;
+	char	*tmp;
 
-	cnt = 0;
 	cmd = ft_split(line, '>');
-	while (cmd[cnt])
-		cnt++;
-	if (cnt > 2)
+	if (ft_exists(cmd[2]))
 	{
 		printf("[ERROR] Outfile redirection error\n");
 		g_data.exit_status = 1;
-		exit(1);
+		cmd = ft_clean_matrix(cmd);
+		return (NULL);
 	}
 	else
 	{
-		cmd[0] = ft_strtrim(cmd[0], " ");
-		cmd[1] = ft_strtrim(cmd[1], " ");
+		tmp = ft_strtrim(cmd[1], " ");
 		if (ft_double_redir_ck(line, '>'))
-			g_data.spipe.fd_out = open(cmd[1], O_CREAT | O_WRONLY | O_APPEND,
+			g_data.spipe.fd_out = open(tmp, O_CREAT | O_WRONLY | O_APPEND,
 					0644);
 		else
-			g_data.spipe.fd_out = open(cmd[1], O_CREAT | O_WRONLY | O_TRUNC,
-					0644);
+			g_data.spipe.fd_out = open(tmp, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+		free(tmp);
 	}
-	return (cmd[0]);
+	tmp = ft_strtrim(cmd[0], " ");
+	cmd = ft_clean_matrix(cmd);
+	return (tmp);
 }
 
 char	*ft_check_redir(char *line)
 {
 	g_data.spipe.fd_in = 0;
 	g_data.spipe.fd_out = 1;
+	if (!line)
+		return (NULL);
 	if (ft_strchr(line, '>'))
 		line = ft_out_redir(line);
 	if (ft_strchr(line, '<'))
 		line = ft_in_redir(line);
+	if (!line)
+		return (NULL);
 	return (line);
 }

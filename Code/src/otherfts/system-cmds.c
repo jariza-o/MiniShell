@@ -6,21 +6,35 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:41:41 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/10/12 15:17:38 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:48:53 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-char *ft_get_env(char *str)
+char	**ft_clean_matrix(char **matrix)
 {
-	int cnt;
-	char *env;
+	int	cnt;
 
 	cnt = 0;
-	while(g_data.env[cnt])
+	while (matrix[cnt])
 	{
-		if(ft_strncmp(g_data.env[cnt], str, ft_strlen(str)) == 0)
+		free(matrix[cnt]);
+		cnt++;
+	}
+	free(matrix);
+	return (NULL);
+}
+
+char	*ft_get_env(char *str)
+{
+	int		cnt;
+	char	*env;
+
+	cnt = 0;
+	while (g_data.env[cnt])
+	{
+		if (ft_strncmp(g_data.env[cnt], str, ft_strlen(str)) == 0)
 		{
 			env = ft_strdup(g_data.env[cnt] + (ft_strlen(str) + 1));
 			return (env);
@@ -53,10 +67,10 @@ static int	ft_check_file(char *cmd)
 
 char	*ft_get_cmdpath(char *cmd)
 {
-	int			cnt;
-	int			exists;
-	char		*cmdpath;
-	char		**path;
+	int		cnt;
+	int		exists;
+	char	*cmdpath;
+	char	**path;
 
 	cnt = -1;
 	exists = 1;

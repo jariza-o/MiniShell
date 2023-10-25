@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:53:54 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/10/18 20:35:07 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:51:49 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,24 +54,21 @@ void	ft_check_pipe(char *command)
 		ft_pipe(command);
 	else
 	{
-		if(fork() == 0)
+		command = ft_check_redir(command);
+		if (!command)
+			return ;
+		if (g_data.spipe.fd_in != 0)
 		{
-			if (g_data.spipe.fd_in != 0)
-			{
-				dup2(g_data.spipe.fd_in, 0);
-				close(g_data.spipe.fd_in);
-			}
-			if (g_data.spipe.fd_out != 1)
-			{
-				dup2(g_data.spipe.fd_out, 1);
-				close(g_data.spipe.fd_out);
-			}
-			ft_cmds();
-			g_data.exit_status = 0;
-			exit(0);
+			dup2(g_data.spipe.fd_in, 0);
+			close(g_data.spipe.fd_in);
 		}
-		else
-			wait(NULL);
+		if (g_data.spipe.fd_out != 1)
+		{
+			dup2(g_data.spipe.fd_out, 1);
+			close(g_data.spipe.fd_out);
+		}
+		ft_cmds();
+		g_data.exit_status = 0;
 	}
 }
 
@@ -87,14 +84,16 @@ void	ft_pipe(char *line)
 	int		cnt;
 	char	**cmdp;
 
-	cnt = 0;
+	cnt = -1;
 	cmdp = ft_split(line, '|');
 	g_data.spipe.prev_pipe = 0;
-	while (cmdp[cnt])
+	while (cmdp[++cnt])
 	{
 		pipe(g_data.spipe.fds);
 		cmdp[cnt] = ft_check_redir(cmdp[cnt]);
 		g_data.r_pid = fork();
+		if (!cmdp[cnt])
+			break ;
 		if (g_data.r_pid == -1)
 		{
 			g_data.exit_status = 1;
@@ -104,7 +103,7 @@ void	ft_pipe(char *line)
 			ft_child(cmdp[cnt], ft_exists(cmdp[cnt + 1]));
 		else
 			ft_parent();
-		cnt++;
 	}
 	close(g_data.spipe.prev_pipe);
+	cmdp = ft_clean_matrix(cmdp);
 }

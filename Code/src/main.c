@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/18 20:23:28 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:31:52 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	init_shell(void)
 	printf("\n\t\t<--USER is: @%s-->\n\n", g_data.user);
 }
 
-static char	**ft_dup_envs(char **env)
+char	**ft_dup_envs(char **env)
 {
 	int		cnt;
 	char	**new_env;
@@ -72,7 +72,10 @@ void	ft_cmds(void)
 	else if (ft_strcmp(g_data.recieved[0], "unset") == 0)
 		ft_unset(g_data.recieved);
 	else if (ft_strcmp(g_data.recieved[0], "env") == 0)
+	{
+		ft_sort_matrix(g_data.env);
 		ft_print_matrix(g_data.env);
+	}
 	else if (ft_strcmp(g_data.recieved[0], "exit") == 0)
 		ft_exit();
 	else
@@ -83,6 +86,7 @@ int	main(int argc, char **argv, char **env)
 {
 	char	*str;
 
+	//t_data data;
 	(void)argc;
 	(void)argv;
 	str = 0;
@@ -95,7 +99,7 @@ int	main(int argc, char **argv, char **env)
 		if (str[0] == '\0')
 			continue ;
 		add_history(str);
-		g_data.line = ft_check_redir(str);
+		g_data.line = ft_strdup(str);
 		if ((g_data.recieved = ft_mini_split(g_data.line)) != NULL)
 		{
 			ft_tokens_to_str();
@@ -111,5 +115,6 @@ int	main(int argc, char **argv, char **env)
 			}
 		}
 	}
+	g_data.env = ft_clean_matrix(g_data.env);
 	return (0);
 }
