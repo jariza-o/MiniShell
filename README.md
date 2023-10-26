@@ -1,5 +1,6 @@
 # COSAS QUE HACER
 
+- ft_change_env_str DA SEGMENTATION FAULT
 - echo hola da 2 leaks
 - TOKENS TO RECIEVED GENER 2 LEAKS MAS
 

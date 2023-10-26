@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/25 20:05:50 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/26 18:33:38 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,24 +45,24 @@ void	init_shell(void)
 	printf("\n\n");
 }
 
-// static char	**ft_dup_envs(char **env)
-// {
-// 	int		cnt;
-// 	char	**new_env;
+static char	**ft_dup_envs(char **env)
+{
+	int		cnt;
+	char	**new_env;
 
-// 	cnt = 0;
-// 	while (env[cnt])
-// 		cnt++;
-// 	new_env = (char **)malloc(sizeof(char *) * (cnt + 1));
-// 	cnt = 0;
-// 	while (env[cnt])
-// 	{
-// 		new_env[cnt] = ft_strdup(env[cnt]);
-// 		cnt++;
-// 	}
-// 	new_env[cnt] = NULL;
-// 	return (new_env);
-// }
+	cnt = 0;
+	while (env[cnt])
+		cnt++;
+	new_env = (char **)malloc(sizeof(char *) * (cnt + 1));
+	cnt = 0;
+	while (env[cnt])
+	{
+		new_env[cnt] = ft_strdup(env[cnt]);
+		cnt++;
+	}
+	new_env[cnt] = NULL;
+	return (new_env);
+}
 
 void	ft_cmds(void)
 {
@@ -89,11 +89,9 @@ void	ft_cmds(void)
 int	main(int argc, char **argv, char **env)
 {
 	atexit(ft_leaks);
-	(void)env; //
 	(void)argc;
 	(void)argv;
-	// g_data.env = ft_dup_envs(env);
-	g_data.env = NULL; //
+	g_data.env = ft_dup_envs(env);
 	ft_signals();
 	// init_shell();
 	while ((g_data.prompt = readline("MiniSheh$> ")) != NULL)
@@ -107,15 +105,12 @@ int	main(int argc, char **argv, char **env)
 				{
 					g_data.tokens = ft_init_token();
 					ft_tokenizer();
-					ft_print_tokens();
 					if (ft_errors())
 					{
 						ft_expand_data();
+	ft_printf("TEST\n");
 						ft_tokens_to_str();
 						ft_printf("LINE: %s\n", g_data.line);
-						int huevo = 0;
-						while (g_data.recieved[huevo])
-							ft_printf("REC: %s\n", g_data.recieved[huevo++]);
 						// ft_cmds();
 						ft_clear();
 					}

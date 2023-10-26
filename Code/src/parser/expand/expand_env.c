@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:06:03 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/25 19:17:57 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/26 19:03:28 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	ft_expand_env(t_token *tokens)
 		content = ft_calloc(1,1);
 	free(tokens->str); // PUESTO DESPUES 
 	tokens->str = ft_change_env_str(tokens, content, env);
+	ft_printf("FT_EXPAND_ENV_YTEST\n");
 	free(env);
 	free(content);
 }
@@ -135,11 +136,16 @@ static char	*ft_change_env_str(t_token *tokens, char *content, char *env)
 		i++;
 	len_env = -1;
 	while (content[++len_env])
+	{
 		str[++len] = content[len_env];
+	}
+	ft_printf("%c %c\n", str[len], tokens->str[i]); //A VECES LLEGA A VECES NO
+	ft_printf("ttgrgrtg: %s\n", tokens->str);
 	while (tokens->str[i])
 	{
 		str[++len] = tokens->str[i];
 		i++;
 	}
+ft_printf("FT_CHANGE_ENV_STR_TEST\n");
 	return (str);
 }
