@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 13:52:42 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/25 19:15:09 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/27 11:17:31 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_clear(void)
 	// if (g_data.recieved)
 		ft_clean_double_pointer(g_data.recieved);
 	// if (g_data.tokens)
-		ft_clear_tokens(&g_data.tokens);
+		// ft_clear_tokens(&g_data.tokens);
 	// if (g_data.line)
 		free(g_data.line);
 }

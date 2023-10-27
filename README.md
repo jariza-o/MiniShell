@@ -1,13 +1,14 @@
 # COSAS QUE HACER
-- Comilla simple no funciona cuando hay variable dentro REOLVED
+
+- mirar que si pones espacio antes del comando me crea un espacio, nose si le vendrá bien a xema
+-ME ESTA FALLANDO ERROR REDIRECCIONES Y PIPES (tiene que ser por el split)
+- NOSE SI EL SPLIT DE REDIRECCIONES ME LO HACE BIEN o puede que sea el tokens to str que no pone el espacio
+
 - comprobar que si es $USE y no existe, en g_data.line no ponga un espacio en blanco
 - echo $USE? da fallo, no imprime ?
-- echo hola da 2 leaks
-- TOKENS TO RECIEVED GENER 2 LEAKS MAS
-
--- DOBLE FREE CUADNO LAS COMILLAS ESTAN ABIERTAS
 
 
+- Comilla simple no funciona cuando hay variable dentro REOLVED
 
 
 

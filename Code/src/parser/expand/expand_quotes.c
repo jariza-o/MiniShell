@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:18:10 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/18 19:10:05 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/27 12:42:48 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char	*ft_expand_quotes(char *quote)
 		else
 			str[n++] = quote[i];
 	}
+	free (quote); // AÑADIDO NUEVO
 	return (str);
 }
 

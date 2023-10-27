@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 10:14:32 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/24 13:17:24 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/27 13:12:31 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ char	**ft_mini_split(char *s)
 	int		is_quote_encountred;
 
 	str = (char **)ft_calloc((ft_mini_wordcounter(s) + 1), sizeof(char *));
+	ft_printf("WORDCOUNTER: %d\n", ft_mini_wordcounter(s) + 1);
 	if (!str)
 		return (0);
 	i = 0;

@@ -6,16 +6,14 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:06:03 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/27 08:28:41 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/27 11:15:18 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
 
-/* HACER CUANDO NO EXISTA VARIABLE $ENV */
-
 static char	*ft_obtain_env(t_token *tokens, int i);
-// static char	*ft_obtain_env_content(char *env);
+
 static char	*ft_change_env_str(t_token *tokens, char *content, char *env);
 
 void	ft_expand_env(t_token *tokens)
@@ -71,37 +69,6 @@ static char	*ft_obtain_env(t_token *tokens, int i)
 		env[n++] = tokens->str[i++];
 	return (env);
 }
-
-// static char	*ft_obtain_env_content(char *env)
-// {
-// 	int		i;
-// 	int		n;
-// 	int		j;
-// 	int		len;
-// 	char	*content;
-
-// 	i = 0;
-// 	while (g_data.env[i])
-// 	{
-// 		len = ft_strlen(env);
-// 		if ((ft_strncmp(g_data.env[i], env, len) == 0) && g_data.env[i][len] == '=')
-// 			break ;
-// 		i++;
-// 	}
-// 	if (!g_data.env[i])
-// 		return (NULL);
-// 	content = (char *)malloc(sizeof(char) * (ft_strlen(env) + 1));
-// 	n = 0;
-// 	while (g_data.env[i][n] != '=')
-// 		n++;
-// 	j = 0;
-// 	while (g_data.env[i][++n])
-// 	{
-// 		content[j] = g_data.env[i][n];
-// 		j++;
-// 	}
-// 	return (content);
-// }
 
 static char	*ft_change_env_str(t_token *tokens, char *content, char *env)
 {
