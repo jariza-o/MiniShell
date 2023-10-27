@@ -1,6 +1,7 @@
 # COSAS QUE HACER
-
-- ft_change_env_str DA SEGMENTATION FAULT
+- Comilla simple no funciona cuando hay variable dentro REOLVED
+- comprobar que si es $USE y no existe, en g_data.line no ponga un espacio en blanco
+- echo $USE? da fallo, no imprime ?
 - echo hola da 2 leaks
 - TOKENS TO RECIEVED GENER 2 LEAKS MAS
 
