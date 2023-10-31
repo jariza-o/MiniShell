@@ -1,8 +1,12 @@
 # COSAS QUE HACER
 
+- ver que si haces echo ~ imprime $HOME y si pones echo - pone - y no la rutra anterior
+- implementar cd ~ y cd -
 - mirar que si pones espacio antes del comando me crea un espacio, nose si le vendrá bien a xema
--ME ESTA FALLANDO ERROR REDIRECCIONES Y PIPES (tiene que ser por el split)
-- NOSE SI EL SPLIT DE REDIRECCIONES ME LO HACE BIEN o puede que sea el tokens to str que no pone el espacio
+- cuando pongo echo ~ da fallo y rellena de ma
+
+**COMPROBAR NIVEL DE SHELL en la variable
+
 
 - comprobar que si es $USE y no existe, en g_data.line no ponga un espacio en blanco
 - echo $USE? da fallo, no imprime ?

@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/25 17:39:18 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/31 19:04:32 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,8 +135,11 @@ char				*ft_get_cmdpath(char *cmd);
 void				ft_pipe(char *line);
 void				ft_signals(void);
 
+
+/* SPLIT */
+size_t				ft_words(char *s);
 char				**ft_mini_split(char *s);
-void	ft_printf_recivied(void);
+void				ft_printf_recivied(void);
 
 /* Tokens */
 t_token		*ft_init_token(void);
