@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 13:52:42 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/27 11:17:31 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/01 16:27:20 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	ft_clean_double_pointer(char **matrix)
 	int		cnt;
 
 	cnt = 0;
-	ft_printf("DDDD: %s\n", matrix[2]);
 	while (matrix[cnt])
 	{
 		free(matrix[cnt]);

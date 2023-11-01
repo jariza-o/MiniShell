@@ -1,5 +1,7 @@
 # COSAS QUE HACER
 
+- echo "hola adios" me devuelve echo hola adioss"
+
 - ver que si haces echo ~ imprime $HOME y si pones echo - pone - y no la rutra anterior
 - implementar cd ~ y cd -
 - mirar que si pones espacio antes del comando me crea un espacio, nose si le vendrá bien a xema

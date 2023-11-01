@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/27 13:47:09 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/01 17:17:11 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,9 @@ int	main(int argc, char **argv, char **env)
 				{
 					g_data.tokens = ft_init_token();
 					ft_tokenizer();
-					ft_print_tokens();
 					if (ft_errors())
 					{
+					ft_print_tokens();
 						ft_expand_data();
 						ft_tokens_to_str();
 						ft_printf("LINE: %s\n", g_data.line);
