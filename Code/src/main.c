@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/10 19:53:26 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/01 18:10:20 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,10 @@ void	init_shell(void)
 	printf("^~~~~~~~~Y##&&&&&&&&&&&#PPGGGGGGGB#&&&&&&&P5Y??JY#&&##5~~~~~~~~\n");
 	printf("~~~~~~~~~?##&&&&&&&&&&&&PGGGGGGGBB##&&&&&&#G5YYY5B#####Y~~~~~~~\n");
 	printf("~~~~~~~~~!B&&&&&&&&&&&&&PGGGGGGGGBBB#&&&&&@@&##B#&######J~~~~~~\n");
-	printf("\n\t\t<--USER is: @%s-->", g_data.user);
-	printf("\n\n");
+	printf("\n\t\t<--USER is: @%s-->\n\n", g_data.user);
 }
 
-static char **ft_dup_envs(char **env)
+char	**ft_dup_envs(char **env)
 {
 	int		cnt;
 	char	**new_env;
@@ -73,11 +72,12 @@ void	ft_cmds(void)
 	else if (ft_strcmp(g_data.recieved[0], "unset") == 0)
 		ft_unset(g_data.recieved);
 	else if (ft_strcmp(g_data.recieved[0], "env") == 0)
+	{
+		ft_sort_matrix(g_data.env);
 		ft_print_matrix(g_data.env);
+	}
 	else if (ft_strcmp(g_data.recieved[0], "exit") == 0)
 		ft_exit();
-	else if (ft_strcmp(g_data.recieved[0], "clear") == 0)
-		printf("\e[1;1H\e[2J");
 	else
 		ft_system_cmds(g_data.recieved);
 }
@@ -86,6 +86,7 @@ int	main(int argc, char **argv, char **env)
 {
 	char	*str;
 
+	//t_data data;
 	(void)argc;
 	(void)argv;
 	str = 0;
@@ -95,8 +96,11 @@ int	main(int argc, char **argv, char **env)
 	init_shell();
 	while ((str = readline("MiniSheh$> ")) != NULL)
 	{
+		if (str[0] == '\0')
+			continue ;
 		add_history(str);
-		if ((g_data.recieved = ft_mini_split(str)) != NULL)
+		g_data.line = ft_strdup(str);
+		if ((g_data.recieved = ft_mini_split(g_data.line)) != NULL)
 		{
 			ft_tokens_to_str();
 			if (ft_errors())
@@ -105,11 +109,12 @@ int	main(int argc, char **argv, char **env)
 				g_data.tokens = ft_init_token();
 				ft_tokenizer();
 				ft_expand_data();
-				ft_cmds();
+				ft_check_pipe(str);
 				if (g_data.recieved)
 					g_data.recieved = ft_clean_matrix(g_data.recieved);
 			}
 		}
 	}
+	g_data.env = ft_clean_matrix(g_data.env);
 	return (0);
 }

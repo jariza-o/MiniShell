@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 10:14:32 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/10 19:56:14 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/12 14:42:12 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ char	**ft_mini_split(char *s)
     size_t	j;
 
     str = (char **)ft_calloc((ft_mini_wordcounter(s) + 1), sizeof(char *));
-	printf("Wordcounter: %ld\n", ft_mini_wordcounter(s));
+	//printf("Wordcounter: %ld\n", ft_mini_wordcounter(s));
     if (!str)
         return (0);
     i = 0;

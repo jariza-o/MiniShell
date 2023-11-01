@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/10 19:52:32 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:36:43 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ enum				e_datatype
 typedef struct s_pipe
 {
 	int				fds[2];
-	pid_t			pid_c1;
-	pid_t			pid_c2;
-	int				pipe_n;
+	int				prev_pipe;
+	int				fd_in;
+	int				fd_out;
 }					t_pipe;
 
 typedef struct s_token
@@ -89,19 +89,19 @@ typedef struct s_data
 t_data				g_data;
 
 /* ERRORS */
-int			ft_errors(void);
+int					ft_errors(void);
 /* Print error message */
 void				ft_print_errors(int error);
 /* Quotes (" and ') */
 int					ft_check_quotes(char **argv);
 /* Semicolon */
-int			ft_check_semicolon(char **argv);
+int					ft_check_semicolon(char **argv);
 /* Slash */
-int			ft_check_slash(char **argv);
+int					ft_check_slash(char **argv);
 /* Redirections */
-int			ft_check_redirections(char **argv);
+int					ft_check_redirections(char **argv);
 /* Pipes */
-int			ft_check_pipes(char **argv);
+int					ft_check_pipes(char **argv);
 
 void				ft_cmds(void);
 /* Built-ins */
@@ -132,18 +132,32 @@ char				*ft_get_cmdpath(char *cmd);
 void				ft_pipe(char *line);
 void				ft_signals(void);
 
-char		**ft_mini_split(char *s);
+char				**ft_mini_split(char *s);
 
 /* Tokens */
-t_token		*ft_init_token(void);
-void		ft_tokenizer(void);
-void		ft_tokens_to_str(void);
+t_token				*ft_init_token(void);
+void				ft_tokenizer(void);
+void				ft_tokens_to_str(void);
 
 /* Expand */
-void		ft_expand_data(void);
-void		ft_expand_env(t_token *tokens);
-void		ft_expand_quotes(t_token *tokens);
+void				ft_expand_data(void);
+void				ft_expand_env(t_token *tokens);
+void				ft_expand_quotes(t_token *tokens);
 
-char		*ft_get_env(char *str);
+char				*ft_get_env(char *str);
+
+char				*ft_check_redir(char *line);
+
+int					ft_exists(char *cmd);
+
+char				**ft_dup_envs(char **env);
+
+char				*ft_strup(char *str);
+
+int					ft_strcmpup(char *str1, char *str2);
+
+void				ft_sort_matrix(char **env);
+
+void				ft_reasign(char *name, char *value);
 
 #endif
