@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:18:10 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/27 12:42:48 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/01 16:23:38 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 static int	ft_count_quotes(char *str);
 
-char	*ft_expand_quotes(char *quote)
+void	ft_expand_quotes(char *quote)
 {
 	char	*str;
 	int		i;
@@ -24,21 +24,22 @@ char	*ft_expand_quotes(char *quote)
 
 	i = -1;
 	n = 0;
-	str = (char *)ft_calloc((ft_strlen(quote) - \
+	str = ft_strdup(quote);
+	free (quote);
+	quote = (char *)ft_calloc((ft_strlen(quote) - \
 	ft_count_quotes(quote)), sizeof(char));
-	while (quote[++i])
+	while (str[++i])
 	{
-		if (quote[i] == '\'')
-			while (quote[++i] != '\'')
-				str[n++] = quote[i];
-		else if (quote[i] == '\"')
-			while (quote[++i] != '\"')
-				str[n++] = quote[i];
+		if (str[i] == '\'')
+			while (str[++i] != '\'')
+				quote[n++] = str[i];
+		else if (str[i] == '\"')
+			while (str[++i] != '\"')
+				quote[n++] = str[i];
 		else
-			str[n++] = quote[i];
+			quote[n++] = str[i];
 	}
-	free (quote); // AÑADIDO NUEVO
-	return (str);
+	free (str);
 }
 
 static int	ft_count_quotes(char *str)
@@ -105,5 +106,32 @@ static int	ft_count_quotes(char *str)
 // 		else
 // 			str[n++] = quote[i];
 // 	}
+// 	free (quote);
+// 	return (str);
+// }
+
+
+// char	*ft_expand_quotes(char *quote)
+// {
+// 	char	*str;
+// 	int		i;
+// 	int		n;
+
+// 	i = -1;
+// 	n = 0;
+// 	str = (char *)ft_calloc((ft_strlen(quote) - \
+// 	ft_count_quotes(quote)), sizeof(char));
+// 	while (quote[++i])
+// 	{
+// 		if (quote[i] == '\'')
+// 			while (quote[++i] != '\'')
+// 				str[n++] = quote[i];
+// 		else if (quote[i] == '\"')
+// 			while (quote[++i] != '\"')
+// 				str[n++] = quote[i];
+// 		else
+// 			str[n++] = quote[i];
+// 	}
+// 	free (quote); // AÑADIDO NUEVO
 // 	return (str);
 // }
