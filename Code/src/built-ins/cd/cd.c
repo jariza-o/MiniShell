@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:26:26 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/25 18:49:31 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/01 18:12:13 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_cd(char *path)
 	char	oldpwd[255];
 
 	getcwd(oldpwd, sizeof(oldpwd));
+	if(path && !ft_strcmp(path, "-"))
+		path = ft_get_env("OLDPWD");
 	if (!path || !ft_strcmp(path, ""))
 	{
 		if (chdir(ft_get_env("HOME")) != 0)

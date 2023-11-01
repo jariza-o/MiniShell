@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:53:54 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/10/25 18:51:49 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/01 18:16:02 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	ft_check_pipe(char *command)
 			close(g_data.spipe.fd_out);
 		}
 		ft_cmds();
-		g_data.exit_status = 0;
 	}
 }
 
