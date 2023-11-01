@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/01 19:27:08 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/01 19:35:23 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	init_shell(void)
 	printf("\n\n");
 }
 
-static char	**ft_dup_envs(char **env)
+char	**ft_dup_envs(char **env)
 {
 	int		cnt;
 	char	**new_env;

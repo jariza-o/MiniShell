@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/01 19:25:48 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/01 19:34:31 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 
 /* ERRORS */
 enum				e_errors
-enum				e_errors
 {
 	QUOTES,
 	SLASH,
@@ -44,7 +43,6 @@ enum				e_errors
 };
 
 /* Token List */
-enum				e_datatype
 enum				e_datatype
 {
 	VOID,
@@ -60,14 +58,6 @@ enum				e_datatype
 	HERE_DOC_RED,
 	APPEND_RED,
 };
-
-typedef struct s_pipe
-{
-	int				fds[2];
-	pid_t			pid_c1;
-	pid_t			pid_c2;
-	int				pipe_n;
-}					t_pipe;
 
 typedef struct s_pipe
 {
