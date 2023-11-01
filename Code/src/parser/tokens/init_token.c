@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_token.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 20:07:14 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/25 17:57:37 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/01 18:45:18 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ static void	ft_lstadd_back_mini(t_token **lst, t_token *new)
 	{
 		new->prev = ft_lstlast_mini(*lst);
 		ft_lstlast_mini(*lst)->next = new;
+	}
 	}
 }

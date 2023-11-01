@@ -3,27 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   system-cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:41:41 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/10/23 18:58:43 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/01 18:44:42 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-char	*ft_get_env(char *str)
+char *ft_get_env(char *str)
 {
-	int		cnt;
-	char	*env;
+	int cnt;
+	char *env;
 
 	if (str[0] == '?') // AÑADIDO POR JARIZA PARA DEVOLVER $?
 		return (ft_itoa(g_data.exit_status));
 	cnt = 0;
-	while (g_data.env[cnt])
+	while(g_data.env[cnt])
 	{
-		if (ft_strncmp(g_data.env[cnt], str, ft_strlen(str)) == 0 \
-		&& g_data.env[cnt][ft_strlen(str)] == '=')
+		if(ft_strncmp(g_data.env[cnt], str, ft_strlen(str)) == 0)
 		{
 			env = ft_strdup(g_data.env[cnt] + (ft_strlen(str) + 1));
 			return (env);
@@ -55,20 +54,26 @@ static int	ft_check_file(char *cmd)
 }
 
 char	*ft_get_cmdpath(char *cmd)
+char	*ft_get_cmdpath(char *cmd)
 {
 	int			cnt;
 	int			exists;
+	char		*cmdpath;
 	char		*cmdpath;
 	char		**path;
 
 	cnt = -1;
 	exists = 1;
 	path = ft_split(ft_get_env("PATH"), ':');
+	exists = 1;
+	path = ft_split(ft_get_env("PATH"), ':');
 	while (cmd[++cnt])
 	{
 		if (cmd[cnt] == '/')
 			exists = access(cmd, F_OK);
+			exists = access(cmd, F_OK);
 	}
+	if (!exists)
 	if (!exists)
 		return (cmd);
 	cnt = -1;
@@ -77,7 +82,12 @@ char	*ft_get_cmdpath(char *cmd)
 		cmdpath = ft_strjoin(ft_strjoin(path[cnt], "/"), cmd);
 		if (access(cmdpath, F_OK) == 0)
 			return (cmdpath);
+		cmdpath = ft_strjoin(ft_strjoin(path[cnt], "/"), cmd);
+		if (access(cmdpath, F_OK) == 0)
+			return (cmdpath);
 	}
+	ft_clean_matrix(path);
+	free(cmdpath);
 	ft_clean_matrix(path);
 	free(cmdpath);
 	return (NULL);
@@ -96,12 +106,16 @@ void	ft_system_cmds(char **command)
 	else if (g_data.r_pid == 0)
 	{
 		cmdpath = ft_get_cmdpath(command[0]);
+		cmdpath = ft_get_cmdpath(command[0]);
 		if (!cmdpath)
 			printf("[ERROR] Command not found: %s \n", command[0]);
 		else if (execve(cmdpath, command, g_data.env) < 0)
 			printf("[ERROR] Could not execute command %s \n", command[0]);
 		exit(0);
+		exit(0);
 	}
+	else
+		wait(&g_data.r_pid);
 	else
 		wait(&g_data.r_pid);
 	free(cmdpath);

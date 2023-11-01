@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+         #
+#    By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 12:59:03 by jariza-o          #+#    #+#              #
-#    Updated: 2023/10/31 19:06:39 by jariza-o         ###   ########.fr        #
+#    Updated: 2023/11/01 18:40:52 by jjaen-mo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

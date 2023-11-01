@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/01 16:18:05 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/01 18:40:49 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../libft/libft.h"
 # include <errno.h>
+# include <fcntl.h>
 # include <fcntl.h>
 # include <readline/history.h>
 # include <readline/readline.h>
@@ -28,6 +29,7 @@
 # include <unistd.h>
 
 /* ERRORS */
+enum				e_errors
 enum				e_errors
 {
 	QUOTES,
@@ -43,6 +45,7 @@ enum				e_errors
 
 /* Token List */
 enum				e_datatype
+enum				e_datatype
 {
 	VOID,
 	NO_QUOTE,
@@ -57,6 +60,14 @@ enum				e_datatype
 	HERE_DOC_RED,
 	APPEND_RED,
 };
+
+typedef struct s_pipe
+{
+	int				fds[2];
+	pid_t			pid_c1;
+	pid_t			pid_c2;
+	int				pipe_n;
+}					t_pipe;
 
 typedef struct s_pipe
 {
@@ -89,13 +100,16 @@ typedef struct s_data
 }					t_data;
 
 t_data				g_data;
+t_data				g_data;
 
 /* ERRORS */
 int			ft_initial_errors(void);
 int			ft_errors(void);
 /* Print error message */
 void				ft_print_errors(int error);
+void				ft_print_errors(int error);
 /* Quotes (" and ') */
+int					ft_check_quotes(char **argv);
 int					ft_check_quotes(char **argv);
 /* Semicolon */
 int			ft_check_semicolon(char **argv);
@@ -107,22 +121,30 @@ int			ft_check_redirections(void);
 int			ft_check_env_errors(char **received);
 
 void				ft_cmds(void);
+void				ft_cmds(void);
 /* Built-ins */
 /* Echo */
 void				ft_echo(char **argv);
 /* Cd */
 void				ft_cd(char *path);
+void				ft_cd(char *path);
 
+void				ft_pwd(void);
 void				ft_pwd(void);
 
 void				ft_print_matrix(char **matrix);
+void				ft_print_matrix(char **matrix);
 
+void				ft_export(char **argv);
 void				ft_export(char **argv);
 
 void				ft_unset(char **argv);
+void				ft_unset(char **argv);
 
 void				ft_exit(void);
+void				ft_exit(void);
 
+void				ft_system_cmds(char **command);
 void				ft_system_cmds(char **command);
 
 void				ft_signals(void);
