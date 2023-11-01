@@ -6,13 +6,11 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:54:16 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/07 13:40:48 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/01 17:48:32 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
-
-// static void ft_del_single_quote(t_token *tokens);
 
 void	ft_expand_data(void)
 {
@@ -22,93 +20,23 @@ void	ft_expand_data(void)
 	aux = g_data.tokens;
 	while (g_data.tokens)
 	{
-		i = 0;
-		if (g_data.tokens->type == ENVI_VAR)
-			ft_expand_env(g_data.tokens);
-		else if (g_data.tokens->type == SINGLE_QUOTE)
-			ft_expand_quotes(g_data.tokens);
-		else
+		i = -1;
+		while (g_data.tokens->str[++i])
 		{
-			while (g_data.tokens->str[i])
+			if (g_data.tokens->str[i] == '\'')
 			{
-				if (g_data.tokens->str[i] == '$')
-				{
-					ft_expand_env(g_data.tokens);
-					i = 0;
-				}
+				while (g_data.tokens->str[++i] != '\'')
+					;
 				i++;
 			}
-			ft_expand_quotes(g_data.tokens);
+			if (g_data.tokens->str[i] == '$')
+			{
+				ft_expand_env(g_data.tokens);
+				i = -1;
+			}
 		}
+		ft_expand_quotes(g_data.tokens->str);
 		g_data.tokens = g_data.tokens->next;
 	}
 	g_data.tokens = aux;
 }
-
-// static void	ft_del_single_quote(t_token *tokens)
-// {
-// 	char	*str;
-// 	int		i;
-// 	int		n;
-
-// 	i = 0;
-// 	n = 0;
-// 	while (tokens->str[i])
-// 	{
-// 		if (tokens->str[i] == '\'')
-// 			n++;
-// 		i++;
-// 	}
-// 	str = (char *)malloc(sizeof(char) * (i - n));
-// 	if (!str)
-// 		return ;
-// 	i = 0;
-// 	n = 0;
-// 	while (tokens->str[i])
-// 	{
-// 		if (tokens->str[i] == '\'')
-// 			i++;
-// 		else
-// 		{
-// 			str[n] = tokens->str[i];
-// 			i++;
-// 			n++;
-// 		}
-// 	}
-// 	tokens->str = str;
-// 	free (str);
-// }
-
-// static void ft_del_double_quote(t_token *tokens)
-// {
-// 	char	*str;
-// 	int		i;
-// 	int		n;
-
-// 	i = 0;
-// 	n = 0;
-// 	while (tokens->str[i])
-// 	{
-// 		if (tokens->str[i] == '\"')
-// 			n++;
-// 		i++;
-// 	}
-// 	str = (char *)malloc(sizeof(char) * (i - n));
-// 	if (!str)
-// 		return ;
-// 	i = 0;
-// 	n = 0;
-// 	while (tokens->str[i])
-// 	{
-// 		if (tokens->str[i] == '\"')
-// 			i++;
-// 		else
-// 		{
-// 			str[n] = tokens->str[i];
-// 			i++;
-// 			n++;
-// 		}
-// 	}
-// 	tokens->str = str;
-// 	free (str);
-// }

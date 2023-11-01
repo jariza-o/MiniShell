@@ -1,38 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirections.c                                     :+:      :+:    :+:   */
+/*   ft_print_tokens.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/08 12:40:43 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/27 13:53:39 by jariza-o         ###   ########.fr       */
+/*   Created: 2023/10/16 16:51:12 by jariza-o          #+#    #+#             */
+/*   Updated: 2023/11/01 17:19:15 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
 
-int	ft_check_redirections(void)
+void	ft_print_tokens(void)
 {
 	t_token	*aux;
 
 	aux = g_data.tokens;
 	while (g_data.tokens)
 	{
-		if ((g_data.tokens->type == IN_RED || g_data.tokens->type == OUT_RED || \
-		g_data.tokens->type == HERE_DOC_RED || \
-		g_data.tokens->type == APPEND_RED || g_data.tokens->type == PIPE) && \
-		(g_data.tokens->next->type == IN_RED || \
-		g_data.tokens->next->type == OUT_RED || \
-		g_data.tokens->next->type == HERE_DOC_RED || \
-		g_data.tokens->next->type == APPEND_RED || \
-		g_data.tokens->next->type == PIPE))
-		{
-			g_data.tokens = aux;
-			return (0);
-		}
+		ft_printf("Token STR: %s\n", g_data.tokens->str);
+		// ft_printf("Token TYPE: %d\n", g_data.tokens->type);
 		g_data.tokens = g_data.tokens->next;
 	}
 	g_data.tokens = aux;
-	return (1);
+}
+
+void	ft_printf_recivied(void)
+{
+	int i = 0;
+
+	while (g_data.recieved[i])
+	{
+		ft_printf("RECEIVED: %s\n", g_data.recieved[i]);
+		i++;
+		ft_printf("-----------------------------------\n\n");
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_token.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 20:07:14 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/10 19:57:09 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/01 19:31:31 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static t_token	*ft_lstnew_mini(char *argv);
 static t_token	*ft_lstlast_mini(t_token *lst);
 static void		ft_lstadd_back_mini(t_token **lst, t_token *new);
-
 
 t_token	*ft_init_token(void)
 {
@@ -40,7 +39,7 @@ static t_token	*ft_lstnew_mini(char *argv)
 	node = (t_token *)malloc(sizeof(t_token));
 	if (node == NULL)
 		return (NULL);
-	node->str = argv;
+	node->str = ft_strdup(argv);
 	node->type = VOID;
 	node->prev = NULL;
 	node->next = NULL;

@@ -1,24 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   token2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/17 20:26:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/01 19:27:26 by jariza-o         ###   ########.fr       */
+/*   Created: 2023/10/13 12:27:39 by jariza-o          #+#    #+#             */
+/*   Updated: 2023/10/23 17:57:31 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
 
-void	ft_exit(void)
+int	ft_is_command(t_token *token)
 {
-	ft_clean_double_pointer(g_data.recieved);
-	free(g_data.prompt);
-	free(g_data.user);
-	free(g_data.line);
-	ft_clean_double_pointer(g_data.env);
-	// ft_clear_tokens(&g_data.tokens);
-	exit(g_data.exit_status);
+	if (!token->prev || token->prev->type == PIPE)
+		return (1);
+	return (0);
+}
+
+int	ft_is_env(t_token *token)
+{
+	int	i;
+
+	i = 0;
+	while (token->str[i])
+	{
+		if (token->str[i] == '$')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	ft_is_double_quote(t_token *token)
+{
+	int	i;
+
+	i = 0;
+	while (token->str[i])
+	{
+		if (token->str[i] == '\'')
+		{
+		}
+		if (token->str[i] == '\"')
+			return (1);
+		i++;
+	}
+	return (0);
 }
