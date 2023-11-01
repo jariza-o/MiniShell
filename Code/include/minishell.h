@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/01 16:18:05 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/01 19:12:35 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ enum				e_datatype
 typedef struct s_pipe
 {
 	int				fds[2];
-	pid_t			pid_c1;
-	pid_t			pid_c2;
-	int				pipe_n;
+	int				prev_pipe;
+	int				fd_in;
+	int				fd_out;
 }					t_pipe;
 
 typedef struct s_token
@@ -89,18 +89,20 @@ typedef struct s_data
 }					t_data;
 
 t_data				g_data;
+t_data				g_data;
 
 /* ERRORS */
 int			ft_initial_errors(void);
 int			ft_errors(void);
 /* Print error message */
 void				ft_print_errors(int error);
+void				ft_print_errors(int error);
 /* Quotes (" and ') */
 int					ft_check_quotes(char **argv);
 /* Semicolon */
-int			ft_check_semicolon(char **argv);
+int					ft_check_semicolon(char **argv);
 /* Slash */
-int			ft_check_slash(char **argv);
+int					ft_check_slash(char **argv);
 /* Redirections */
 int			ft_check_redirections(void);
 /* Env Name */
@@ -164,8 +166,20 @@ void		ft_clear(void);
 void		ft_clean_double_pointer(char **matrix);
 void		ft_clear_tokens(t_token **tokens);
 
-char		*ft_get_env(char *str);
+char				*ft_get_env(char *str);
 
+char				*ft_check_redir(char *line);
 
+int					ft_exists(char *cmd);
+
+char				**ft_dup_envs(char **env);
+
+char				*ft_strup(char *str);
+
+int					ft_strcmpup(char *str1, char *str2);
+
+void				ft_sort_matrix(char **env);
+
+void				ft_reasign(char *name, char *value);
 
 #endif

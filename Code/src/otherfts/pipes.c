@@ -3,39 +3,79 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:53:54 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/10/10 19:37:38 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/01 19:16:26 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-// COMENT GIT
-static int	ft_count_pipes(char *line)
-{
-	int	cnt;
-	int	pipes;
 
-	pipes = 0;
-	cnt = 0;
-	while (line[cnt])
-	{
-		if (line[cnt] == '|')
-			pipes++;
-		cnt++;
-	}
-	return (pipes);
-}
-
-static void	ft_child(char *cmd)
+static void	ft_child(char *cmd, int flag)
 {
 	char	**args;
 	char	*path;
 
+	close(g_data.spipe.fds[0]);
+	if (g_data.spipe.fd_in != 0)
+		dup2(g_data.spipe.fd_in, 0);
+	else
+		dup2(g_data.spipe.prev_pipe, g_data.spipe.fd_in);
+	if (flag)
+		dup2(g_data.spipe.fds[1], g_data.spipe.fd_out);
+	if (g_data.spipe.fd_out != 1)
+	{
+		dup2(g_data.spipe.fd_out, 1);
+		g_data.spipe.fd_in = dup(g_data.spipe.fd_out);
+	}
+	else
+		g_data.spipe.fd_in = 0;
+	close(g_data.spipe.fds[1]);
 	args = ft_split(cmd, ' ');
 	path = ft_get_cmdpath(args[0]);
-	execve(path, args, g_data.env);
+	if (execve(path, args, g_data.env) < 0)
+	{
+		g_data.exit_status = 1;
+		exit(1);
+	}
+}
+
+static void	ft_parent(void)
+{
+	close(g_data.spipe.fds[1]);
+	wait(NULL);
+	g_data.spipe.prev_pipe = g_data.spipe.fds[0];
+}
+
+void	ft_check_pipe(char *command)
+{
+	if (ft_strchr(command, '|'))
+		ft_pipe(command);
+	else
+	{
+		command = ft_check_redir(command);
+		if (!command)
+			return ;
+		if (g_data.spipe.fd_in != 0)
+		{
+			dup2(g_data.spipe.fd_in, 0);
+			close(g_data.spipe.fd_in);
+		}
+		if (g_data.spipe.fd_out != 1)
+		{
+			dup2(g_data.spipe.fd_out, 1);
+			close(g_data.spipe.fd_out);
+		}
+		ft_cmds();
+	}
+}
+
+int	ft_exists(char *cmd)
+{
+	if (cmd)
+		return (1);
+	return (0);
 }
 
 // static void	ft_parent(void)
@@ -58,29 +98,28 @@ void	ft_check_pipe(char *command)
 void	ft_pipe(char *line)
 {
 	int		cnt;
-	int		pipecnt;
 	char	**cmdp;
 
-	cnt = 0;
-	pipecnt = 0;
+	cnt = -1;
 	cmdp = ft_split(line, '|');
-	g_data.spipe.pipe_n = ft_count_pipes(line);
-	while (cmdp[cnt])
+	g_data.spipe.prev_pipe = 0;
+	while (cmdp[++cnt])
 	{
 		pipe(g_data.spipe.fds);
-		g_data.spipe.pid_c1 = fork();
-		if (g_data.spipe.pid_c1 == 0)
+		cmdp[cnt] = ft_check_redir(cmdp[cnt]);
+		g_data.r_pid = fork();
+		if (!cmdp[cnt])
+			break ;
+		if (g_data.r_pid == -1)
 		{
-			close(g_data.spipe.fds[0]);
-			dup2(g_data.spipe.fds[1], 1);
-			ft_child(cmdp[cnt]);
+			g_data.exit_status = 1;
+			exit(1);
 		}
+		if (g_data.r_pid == 0)
+			ft_child(cmdp[cnt], ft_exists(cmdp[cnt + 1]));
 		else
-		{
-			close(g_data.spipe.fds[1]);
-			dup2(g_data.spipe.fds[0], 0);
-			waitpid(g_data.spipe.pid_c1, NULL, 0);
-		}
-		cnt++;
+			ft_parent();
 	}
+	close(g_data.spipe.prev_pipe);
+	cmdp = ft_clean_matrix(cmdp);
 }

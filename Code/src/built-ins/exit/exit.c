@@ -6,17 +6,11 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:26:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/27 11:17:41 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/01 19:14:24 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
-
-/* He puesto 0, pero cuando salga tiene, te saca con un estado de salida,
-	habrá que implemnetarlo,
-	0 si está bien o otro si está mal. Este estado será segúnn el estado 
-	del comando anteriror
-*/
 
 void	ft_exit(void)
 {

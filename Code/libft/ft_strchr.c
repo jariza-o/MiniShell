@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:02:13 by jariza-o          #+#    #+#             */
-/*   Updated: 2022/10/03 23:08:41 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/24 19:18:32 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strchr(const char *s, int c)
 	int	count;
 
 	count = 0;
-	while (s[count] != '\0')
+	while (s[count])
 	{
 		if (s[count] == (char)c)
 			return ((char *)&s[count]);

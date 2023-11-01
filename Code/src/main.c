@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/01 17:17:11 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/01 19:05:22 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,12 @@ void	ft_cmds(void)
 	else if (ft_strcmp(g_data.recieved[0], "unset") == 0)
 		ft_unset(g_data.recieved);
 	else if (ft_strcmp(g_data.recieved[0], "env") == 0)
+	{
+		ft_sort_matrix(g_data.env);
 		ft_print_matrix(g_data.env);
+	}
 	else if (ft_strcmp(g_data.recieved[0], "exit") == 0)
 		ft_exit();
-	else if (ft_strcmp(g_data.recieved[0], "clear") == 0)
-		printf("\e[1;1H\e[2J");
 	else
 		ft_system_cmds(g_data.recieved);
 }
@@ -92,6 +93,7 @@ int	main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 	g_data.env = ft_dup_envs(env);
+	g_data.user = getenv("USER");
 	ft_signals();
 	// init_shell();
 	while ((g_data.prompt = readline("MiniSheh$> ")) != NULL)
@@ -107,11 +109,11 @@ int	main(int argc, char **argv, char **env)
 					ft_tokenizer();
 					if (ft_errors())
 					{
-					ft_print_tokens();
+						ft_print_tokens();
 						ft_expand_data();
 						ft_tokens_to_str();
 						ft_printf("LINE: %s\n", g_data.line);
-						// ft_cmds();
+						ft_check_pipe(g_data.line);
 						ft_clear();
 					}
 				}
@@ -119,5 +121,6 @@ int	main(int argc, char **argv, char **env)
 		}
 		free (g_data.prompt);
 	}
+	g_data.env = ft_clean_matrix(g_data.env);
 	return (0);
 }
