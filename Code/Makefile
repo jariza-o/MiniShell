@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+         #
+#    By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 12:59:03 by jariza-o          #+#    #+#              #
-#    Updated: 2023/10/25 18:30:20 by jjaen-mo         ###   ########.fr        #
+#    Updated: 2023/11/01 19:39:27 by jariza-o         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,11 +27,13 @@ SRC =		src/main.c \
 			src/built-ins/pwd/pwd.c src/built-ins/env/env.c \
 			src/built-ins/export/export.c src/built-ins/unset/unset.c \
 			src/built-ins/exit/exit.c \
-			src/parser/ft_mini_split.c src/parser/tokens/init_token.c src/parser/tokens/token.c src/parser/tokens/tokens_to_str.c \
+			src/parser/split/ft_words.c src/parser/split/ft_mini_split.c \
+			src/parser/tokens/init_token.c src/parser/tokens/token.c src/parser/tokens/token2.c src/parser/tokens/tokens_to_str.c src/parser/tokens/ft_print_tokens.c\
 			src/parser/expand/expand_env.c src/parser/expand/expand.c src/parser/expand/expand_quotes.c \
-			src/errors/special_caracters/quotes.c src/errors/special_caracters/slash_semicolon.c  src/errors/redirections/redirections.c src/errors/errors.c \
-			src/otherfts/system-cmds.c src/otherfts/utils.c src/otherfts/pipes.c\
-			src/otherfts/redirs.c src/signals/signals.c \
+			src/parser/clear/clear.c \
+			src/otherfts/system-cmds.c src/otherfts/utils.c src/otherfts/pipes.c src/otherfts/redirs.c \
+			src/errors/special_caracters/quotes.c src/errors/special_caracters/slash_semicolon.c  src/errors/redirections/redirections.c src/errors/env/env.c src/errors/errors.c \
+			src/signals/signals.c \
 
 OBJT =		$(SRC:.c=.o)
 

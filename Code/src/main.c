@@ -6,11 +6,16 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/01 18:10:20 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/02 19:10:21 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+void ft_leaks()
+{
+	system("leaks -q Minishell");
+}
 
 void	init_shell(void)
 {
@@ -37,7 +42,7 @@ void	init_shell(void)
 	printf("^~~~~~~~~Y##&&&&&&&&&&&#PPGGGGGGGB#&&&&&&&P5Y??JY#&&##5~~~~~~~~\n");
 	printf("~~~~~~~~~?##&&&&&&&&&&&&PGGGGGGGBB##&&&&&&#G5YYY5B#####Y~~~~~~~\n");
 	printf("~~~~~~~~~!B&&&&&&&&&&&&&PGGGGGGGGBBB#&&&&&@@&##B#&######J~~~~~~\n");
-	printf("\n\t\t<--USER is: @%s-->\n\n", g_data.user);
+	printf("\n\n");
 }
 
 char	**ft_dup_envs(char **env)
@@ -84,37 +89,36 @@ void	ft_cmds(void)
 
 int	main(int argc, char **argv, char **env)
 {
-	char	*str;
-
-	//t_data data;
+	//atexit(ft_leaks);
 	(void)argc;
 	(void)argv;
-	str = 0;
 	g_data.env = ft_dup_envs(env);
 	g_data.user = getenv("USER");
 	ft_signals();
 	init_shell();
-	while ((str = readline("MiniSheh$> ")) != NULL)
+	while ((g_data.prompt = readline("MiniSheh$> ")) != NULL)
 	{
-		if (str[0] == '\0')
-			continue ;
-		add_history(str);
-		g_data.line = ft_strdup(str);
-		if ((g_data.recieved = ft_mini_split(g_data.line)) != NULL)
+		if (g_data.prompt[0] != '\0')
 		{
-			ft_tokens_to_str();
-			if (ft_errors())
+			add_history(g_data.prompt);
+			if ((g_data.recieved = ft_mini_split(g_data.prompt)) != NULL)
 			{
-				g_data.tokens = NULL;
-				g_data.tokens = ft_init_token();
-				ft_tokenizer();
-				ft_expand_data();
-				ft_check_pipe(str);
-				if (g_data.recieved)
-					g_data.recieved = ft_clean_matrix(g_data.recieved);
+				if (ft_initial_errors())
+				{
+					g_data.tokens = ft_init_token();
+					ft_tokenizer();
+					if (ft_errors())
+					{
+						ft_expand_data();
+						ft_tokens_to_str();
+						ft_check_pipe(g_data.line);
+						ft_clear();
+					}
+				}
 			}
 		}
+		free (g_data.prompt);
 	}
 	g_data.env = ft_clean_matrix(g_data.env);
-	return (0);
+	return (g_data.exit_status);
 }

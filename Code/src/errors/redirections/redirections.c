@@ -6,55 +6,33 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 12:40:43 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/09 16:16:03 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/10/27 13:53:39 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
 
-int	ft_check_redirections(char **argv)
+int	ft_check_redirections(void)
 {
-	int	i;
-	int	n;
+	t_token	*aux;
 
-	i = 0;
-	while (argv[i])
+	aux = g_data.tokens;
+	while (g_data.tokens)
 	{
-		n = 0;
-		while (argv[i][n])
+		if ((g_data.tokens->type == IN_RED || g_data.tokens->type == OUT_RED || \
+		g_data.tokens->type == HERE_DOC_RED || \
+		g_data.tokens->type == APPEND_RED || g_data.tokens->type == PIPE) && \
+		(g_data.tokens->next->type == IN_RED || \
+		g_data.tokens->next->type == OUT_RED || \
+		g_data.tokens->next->type == HERE_DOC_RED || \
+		g_data.tokens->next->type == APPEND_RED || \
+		g_data.tokens->next->type == PIPE))
 		{
-			if (argv[i][n] == '<' || argv[i][n] == '>')
-			{
-				if ((argv[i][n] == '<' && argv[i][n + 1] == '>') || (argv[i][n] == '>' && argv[i][n + 1] == '<'))
-					return (0);
-				if (argv[i + 1][0] == '<' || argv[i + 1][0] == '>'|| argv[i + 1][0] == '|')
-					return (0);
-			}
-			n++;
+			g_data.tokens = aux;
+			return (0);
 		}
-		i++;
+		g_data.tokens = g_data.tokens->next;
 	}
-	return (1);
-}
-int	ft_check_pipes(char **argv)
-{
-	int	i;
-	int	n;
-
-	i = 0;
-	while (argv[i])
-	{
-		n = 0;
-		while (argv[i][n])
-		{
-			if (argv[i][n] == '|')
-			{
-				if (argv[i + 1][0] == '|' || argv[i + 1][0] == '\0')
-					return (0);
-			}
-			n++;
-		}
-		i++;
-	}
+	g_data.tokens = aux;
 	return (1);
 }

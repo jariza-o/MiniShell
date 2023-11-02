@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 15:13:05 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/25 18:49:27 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/02 17:35:52 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,20 @@ y que se pueda escribir
 
 static int	ft_echo_flag(char **argv);
 
+static int	ft_status(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i] == '$')
+	{
+		i++;
+		if (str[i] == '?')
+			return (1);
+	}
+	return (0);
+}
+
 void	ft_echo(char **argv)
 {
 	int	i;
@@ -36,7 +50,10 @@ void	ft_echo(char **argv)
 		i++;
 	while (argv[i])
 	{
-		ft_putstr(argv[i]);
+		if(ft_status(argv[i]) == 1)
+			ft_printf("%i", g_data.exit_status);
+		else
+			ft_putstr(argv[i]);
 		i++;
 		if (argv[i])
 			write(1, " ", 1);

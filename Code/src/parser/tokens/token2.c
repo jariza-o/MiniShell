@@ -1,24 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   token2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/17 20:26:49 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/01 19:14:44 by jariza-o         ###   ########.fr       */
+/*   Created: 2023/10/13 12:27:39 by jariza-o          #+#    #+#             */
+/*   Updated: 2023/10/23 17:57:31 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
 
-void	ft_pwd(void)
+int	ft_is_command(t_token *token)
 {
-	char	cwd[256];
+	if (!token->prev || token->prev->type == PIPE)
+		return (1);
+	return (0);
+}
 
-	cwd[255] = '\0';
-	if (getcwd(cwd, sizeof(cwd)) != NULL)
-		printf("%s\n", cwd);
-	else
-		ft_print_errors(PWD);
+int	ft_is_env(t_token *token)
+{
+	int	i;
+
+	i = 0;
+	while (token->str[i])
+	{
+		if (token->str[i] == '$')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	ft_is_double_quote(t_token *token)
+{
+	int	i;
+
+	i = 0;
+	while (token->str[i])
+	{
+		if (token->str[i] == '\'')
+		{
+		}
+		if (token->str[i] == '\"')
+			return (1);
+		i++;
+	}
+	return (0);
 }
