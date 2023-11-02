@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/01 19:27:08 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/02 16:20:42 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	init_shell(void)
 	printf("\n\n");
 }
 
-static char	**ft_dup_envs(char **env)
+char	**ft_dup_envs(char **env)
 {
 	int		cnt;
 	char	**new_env;
@@ -98,7 +98,7 @@ int	main(int argc, char **argv, char **env)
 	// init_shell();
 	while ((g_data.prompt = readline("MiniSheh$> ")) != NULL)
 	{
-		if (g_data.prompt[0] != '\0')
+		if (ft_check_prompt() == 1)
 		{
 			add_history(g_data.prompt);
 			if ((g_data.recieved = ft_mini_split(g_data.prompt)) != NULL)
@@ -121,6 +121,5 @@ int	main(int argc, char **argv, char **env)
 		}
 		free (g_data.prompt);
 	}
-	g_data.env = ft_clean_matrix(g_data.env);
 	return (0);
 }

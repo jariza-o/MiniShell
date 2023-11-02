@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:53:54 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/01 19:16:26 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/01 19:37:18 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,23 +78,6 @@ int	ft_exists(char *cmd)
 	return (0);
 }
 
-// static void	ft_parent(void)
-// {
-// 	waitpid(g_data.spipe.pid_c1, NULL, 0);
-// 	close(g_data.spipe.fds[1]);
-// 	dup2(g_data.spipe.fds[0], 0);
-// }
-
-void	ft_check_pipe(char *command)
-{
-	if (ft_strchr(command, '|'))
-		ft_pipe(command);
-	else
-		ft_cmds();
-}
-
-// TODO: Try with only one pipe instead of **fds. Also see if pipe() need clean or not.
-//Rutas relativas execve
 void	ft_pipe(char *line)
 {
 	int		cnt;
