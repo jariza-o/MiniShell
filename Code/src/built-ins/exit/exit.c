@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:26:37 by jariza-o          #+#    #+#             */
 /*   Updated: 2023/11/02 18:03:26 by jjaen-mo         ###   ########.fr       */
@@ -47,6 +47,5 @@ void	ft_exit(void)
 	free(g_data.line);
 	ft_clean_double_pointer(g_data.env);
 	// ft_clear_tokens(&g_data.tokens);
-	ft_printf("%i\n", g_data.exit_status);
 	exit(g_data.exit_status);
 }

@@ -16,8 +16,6 @@ void	ft_clear(void)
 {
 	if (g_data.recieved)
 		ft_clean_double_pointer(g_data.recieved);
-	// if (g_data.tokens)
-		// ft_clear_tokens(&g_data.tokens);
 	if (g_data.line)
 		free(g_data.line);
 }

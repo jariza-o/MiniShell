@@ -1,7 +1,53 @@
 # COSAS QUE HACER
 
-- COMPROBAR FT_ERRORS
--Historial con muchos comandos no deja de ir 
+- echo "hola adios" me devuelve echo hola adioss"
+
+- ver que si haces echo ~ imprime $HOME y si pones echo - pone - y no la rutra anterior
+- implementar cd ~ y cd -
+- mirar que si pones espacio antes del comando me crea un espacio, nose si le vendrá bien a xema
+- cuando pongo echo ~ da fallo y rellena de ma
+
+**COMPROBAR NIVEL DE SHELL en la variable
+
+
+- comprobar que si es $USE y no existe, en g_data.line no ponga un espacio en blanco
+- echo $USE? da fallo, no imprime ?
+
+
+- Comilla simple no funciona cuando hay variable dentro REOLVED
+
+
+
+- VER LO QUE SE META DESPUES DE DOLAR INTERROGACION T PROVAR $ENV casos
+
+- MINI SPLIT NO FUNCIONA CON TEMA DE COMILLAS, SI ANTES DE UNA COMILLA HAY ESPACIO SUMA WORDCOUNTER SI NO NO LO SUMES
+- VER FALLO ft_change_env_str
+
+
+
+
+
+- CHECH ENV NO VA CON $?
+- COMPROBAR QUE CHECK_QUOTES NO DE PROBLEMAS AL MOVER EL PUNTERO
+- ft_tokens_to_STR no va
+- MODIFCIAR ft_GET_ENV para tener en cuenta que solo mire numeros, _ y letras
+- FT_INITIAL_ERRORS:
+        - No va en \ y en $
+        SI UNA ENV EMPIEZA POR NUMERO DEVUELVE ERROR o Calquier simbolo FUNCION INITIAL ERRORS NO VA
+- VER EN EXPAND_ENV SI ESTA BIEN LAS SEPARACIONES para el tema de guiones y demás
+
+
+
+
+
+
+
+
+
+Tareas para cuando llegue a 42:
+- Mirar si quotes funciona bien, debería
+- COMPROBAR FT_ERRORS nueva comprobación
+
 - MIniSPLIT WORDCOUNTER NO FUNCIONA BIEN
 - 
 - Cuando la variable no existe, tengo que tenerlo en cuenta

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   system-cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:41:41 by jjaen-mo          #+#    #+#             */
 /*   Updated: 2023/11/02 19:12:21 by jjaen-mo         ###   ########.fr       */
@@ -78,11 +78,15 @@ char	*ft_get_cmdpath(char *cmd)
 	cnt = -1;
 	exists = 1;
 	path = ft_split(ft_get_env("PATH"), ':');
+	exists = 1;
+	path = ft_split(ft_get_env("PATH"), ':');
 	while (cmd[++cnt])
 	{
 		if (cmd[cnt] == '/')
 			exists = access(cmd, F_OK);
+			exists = access(cmd, F_OK);
 	}
+	if (!exists)
 	if (!exists)
 		return (cmd);
 	cnt = -1;
