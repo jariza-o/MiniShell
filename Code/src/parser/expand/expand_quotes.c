@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:18:10 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/01 18:30:26 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/02 16:57:57 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ void	ft_expand_quotes(char *quote)
 				quote[n++] = str[i];
 		else if (str[i])
 			quote[n++] = str[i];
-		ft_printf("AAA: %c\n",str[i]);
 	}
-	ft_printf("EXPAN QUOTES: %s\n", quote);
 	free (str);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clear.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 13:52:42 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/01 16:27:20 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/02 19:08:23 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 void	ft_clear(void)
 {
-	// if (g_data.recieved)
+	if (g_data.recieved)
 		ft_clean_double_pointer(g_data.recieved);
-	// if (g_data.tokens)
-		// ft_clear_tokens(&g_data.tokens);
-	// if (g_data.line)
+	if (g_data.line)
 		free(g_data.line);
 }
 
@@ -38,10 +36,9 @@ void	ft_clean_double_pointer(char **matrix)
 	int		cnt;
 
 	cnt = 0;
-	while (matrix[cnt])
+	while (matrix[cnt + 1])
 	{
 		free(matrix[cnt]);
-		ft_printf("DOUBLEFREE: %s\n", matrix[cnt]);
 		cnt++;
 	}
 	free(matrix);

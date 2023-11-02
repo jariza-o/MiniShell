@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:41:41 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/01 19:30:53 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/02 19:12:21 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ char	*ft_get_env(char *str)
 	cnt = 0;
 	while (g_data.env[cnt])
 	{
-		if (ft_strncmp(g_data.env[cnt], str, ft_strlen(str)) == 0 \
-		&& g_data.env[cnt][ft_strlen(str)] == '=')
+		if (ft_strncmp(g_data.env[cnt], str, ft_strlen(str)) == 0
+			&& g_data.env[cnt][ft_strlen(str)] == '=')
 		{
 			env = ft_strdup(g_data.env[cnt] + (ft_strlen(str) + 1));
 			return (env);
@@ -114,17 +114,7 @@ void	ft_system_cmds(char **command)
 		printf("[ERROR] Command not found: %s \n", command[0]);
 		g_data.exit_status = 127;
 	}
-	g_data.r_pid = fork();
-	if (g_data.r_pid < 0)
-		printf("[ERROR] Could not create a child process \n");
-	else if (g_data.r_pid == 0)
-	{
-		if (execve(cmdpath, command, g_data.env) < 0
-			&& g_data.exit_status != 127)
-			printf("[ERROR] Could not execute command %s \n", command[0]);
-		exit(1);
-	}
 	else
-		wait(&g_data.r_pid);
+		ft_exec(cmdpath, command);
 	free(cmdpath);
 }
