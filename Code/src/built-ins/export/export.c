@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:26:44 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/01 19:14:38 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/04 18:15:22 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void	ft_new_env(char *name, char *value)
 	tmp = ft_strjoin(name, "=");
 	env[cnt2] = ft_strjoin(tmp, value);
 	env[cnt2 + 1] = NULL;
+	g_data.env = ft_clean_matrix(g_data.env);
 	g_data.env = ft_dup_envs(env);
 	env = ft_clean_matrix(env);
 	free(tmp);
