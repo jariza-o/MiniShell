@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   tokens_to_str.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 18:12:04 by jariza-o          #+#    #+#             */
 /*   Updated: 2023/11/02 16:58:51 by jjaen-mo         ###   ########.fr       */
@@ -50,6 +50,7 @@ static int	ft_strlen_tokens(void)
 	aux = g_data.tokens;
 	while (g_data.tokens)
 	{
+		ft_printf("TOKENS_TO_STR: %s\n", g_data.tokens->str);
 		len += ft_strlen(g_data.tokens->str);
 		g_data.tokens = g_data.tokens->next;
 		if (g_data.tokens)

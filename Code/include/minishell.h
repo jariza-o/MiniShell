@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
 /*   Updated: 2023/11/04 18:23:43 by jjaen-mo         ###   ########.fr       */
@@ -15,6 +15,7 @@
 
 # include "../libft/libft.h"
 # include <errno.h>
+# include <fcntl.h>
 # include <fcntl.h>
 # include <readline/history.h>
 # include <readline/readline.h>
