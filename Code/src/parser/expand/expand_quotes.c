@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:18:10 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/02 12:56:48 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/04 21:03:01 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	ft_count_quotes(char *str);
 static void	ft_all_null(char *str);
 
-void	ft_expand_quotes(char *quote)
+void	ft_expand_quotes(char *quote) //POSIBLE LEAKS
 {
 	char	*str;
 	int		i;

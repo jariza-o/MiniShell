@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/02 16:20:42 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/04 20:23:50 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	ft_cmds(void)
 
 int	main(int argc, char **argv, char **env)
 {
-	atexit(ft_leaks);
+	//atexit(ft_leaks);
 	(void)argc;
 	(void)argv;
 	g_data.env = ft_dup_envs(env);
@@ -105,11 +105,12 @@ int	main(int argc, char **argv, char **env)
 			{
 				if (ft_initial_errors())
 				{
+					ft_printf("TEST\n");
 					g_data.tokens = ft_init_token();
 					ft_tokenizer();
 					if (ft_errors())
 					{
-						ft_print_tokens();
+						//ft_print_tokens();
 						ft_expand_data();
 						ft_tokens_to_str();
 						ft_printf("LINE: %s\n", g_data.line);

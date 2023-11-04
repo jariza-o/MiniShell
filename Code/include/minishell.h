@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/02 15:56:26 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/04 19:12:57 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ void		ft_clear_parser(int i);
 void		ft_clear(void);
 /* Clear Utils */
 void		ft_clean_double_pointer(char **matrix);
-void		ft_clear_tokens(t_token **tokens);
+void		ft_clear_tokens(void);
 
 char				*ft_get_env(char *str);
 
