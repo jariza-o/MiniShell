@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 15:13:05 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/02 17:35:52 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/04 18:27:05 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_echo(char **argv)
 		i++;
 	while (argv[i])
 	{
-		if(ft_status(argv[i]) == 1)
+		if (ft_status(argv[i]) == 1)
 			ft_printf("%i", g_data.exit_status);
 		else
 			ft_putstr(argv[i]);

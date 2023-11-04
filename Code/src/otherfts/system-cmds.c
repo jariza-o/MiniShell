@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   system-cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:41:41 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/02 19:12:21 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/04 21:08:32 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*ft_get_env(char *str)
 	int		cnt;
 	char	*env;
 
-	if (str[0] == '?') // AÑADIDO POR JARIZA PARA DEVOLVER $?
+	if (str[0] == '?')
 		return (ft_itoa(g_data.exit_status));
 	cnt = 0;
 	while (g_data.env[cnt])
@@ -74,12 +74,15 @@ char	*ft_get_cmdpath(char *cmd)
 	int		exists;
 	char	*cmdpath;
 	char	**path;
+	char	*tmp;
 
 	cnt = -1;
 	exists = 1;
 	path = ft_split(ft_get_env("PATH"), ':');
 	exists = 1;
-	path = ft_split(ft_get_env("PATH"), ':');
+	tmp = ft_get_env("PATH");
+	path = ft_split(tmp, ':');
+	free(tmp);
 	while (cmd[++cnt])
 	{
 		if (cmd[cnt] == '/')
@@ -89,15 +92,10 @@ char	*ft_get_cmdpath(char *cmd)
 	if (!exists)
 	if (!exists)
 		return (cmd);
-	cnt = -1;
-	while (path[++cnt])
-	{
-		cmdpath = ft_strjoin(ft_strjoin(path[cnt], "/"), cmd);
-		if (access(cmdpath, F_OK) == 0)
-			return (cmdpath);
-	}
+	cmdpath = ft_path(path, cmd);
+	if (cmdpath)
+		return (cmdpath);
 	ft_clean_matrix(path);
-	free(cmdpath);
 	return (NULL);
 }
 
@@ -115,6 +113,8 @@ void	ft_system_cmds(char **command)
 		g_data.exit_status = 127;
 	}
 	else
+	{
 		ft_exec(cmdpath, command);
-	free(cmdpath);
+		free(cmdpath);
+	}
 }

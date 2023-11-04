@@ -6,13 +6,13 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/02 19:10:21 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/04 19:30:37 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void ft_leaks()
+void	ft_leaks(void)
 {
 	system("leaks -q Minishell");
 }
@@ -89,19 +89,20 @@ void	ft_cmds(void)
 
 int	main(int argc, char **argv, char **env)
 {
-	//atexit(ft_leaks);
 	(void)argc;
 	(void)argv;
 	g_data.env = ft_dup_envs(env);
-	g_data.user = getenv("USER");
 	ft_signals();
 	init_shell();
-	while ((g_data.prompt = readline("MiniSheh$> ")) != NULL)
+	g_data.prompt = "a";
+	while (g_data.prompt != NULL)
 	{
-		if (g_data.prompt[0] != '\0')
+		g_data.prompt = readline("MiniSheh$> ");
+		if (g_data.prompt && g_data.prompt[0] != '\0')
 		{
 			add_history(g_data.prompt);
-			if ((g_data.recieved = ft_mini_split(g_data.prompt)) != NULL)
+			g_data.recieved = ft_mini_split(g_data.prompt);
+			if (g_data.recieved != NULL)
 			{
 				if (ft_initial_errors())
 				{
@@ -117,7 +118,7 @@ int	main(int argc, char **argv, char **env)
 				}
 			}
 		}
-		free (g_data.prompt);
+		free(g_data.prompt);
 	}
 	g_data.env = ft_clean_matrix(g_data.env);
 	return (g_data.exit_status);
