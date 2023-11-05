@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mini_split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 19:03:57 by jariza-o          #+#    #+#             */
 /*   Updated: 2023/11/05 12:15:59 by jariza-o         ###   ########.fr       */
