@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_tokens.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 16:51:12 by jariza-o          #+#    #+#             */
 /*   Updated: 2023/11/04 17:52:43 by jariza-o         ###   ########.fr       */

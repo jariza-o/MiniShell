@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   clear.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 13:52:42 by jariza-o          #+#    #+#             */
 /*   Updated: 2023/11/04 20:25:04 by jariza-o         ###   ########.fr       */
@@ -14,10 +14,10 @@
 
 void	ft_clear(void)
 {
-	// if (g_data.recieved)
+	if (g_data.recieved)
 		ft_clean_double_pointer(g_data.recieved);
 		//ft_clear_tokens(&g_data.tokens);
-	// if (g_data.line)
+	if (g_data.line)
 		free(g_data.line);
 }
 
@@ -37,7 +37,7 @@ void	ft_clean_double_pointer(char **matrix)
 	int		cnt;
 
 	cnt = 0;
-	while (matrix[cnt])
+	while (matrix[cnt + 1])
 	{
 		free(matrix[cnt]);
 		cnt++;
