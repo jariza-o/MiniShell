@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/04 18:23:43 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/04 19:12:57 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ typedef struct s_data
 
 t_data				g_data;
 
+/* PROMPT */
+int			ft_check_prompt(void);
 /* ERRORS */
 int					ft_initial_errors(void);
 int					ft_errors(void);
@@ -167,8 +169,8 @@ void				ft_clear_parser(int i);
 /* Clear when finish the command */
 void				ft_clear(void);
 /* Clear Utils */
-void				ft_clean_double_pointer(char **matrix);
-void				ft_clear_tokens(t_token **tokens);
+void		    ft_clean_double_pointer(char **matrix);
+void		    ft_clear_tokens(void);
 
 char				*ft_get_env(char *str);
 

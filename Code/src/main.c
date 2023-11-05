@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/04 19:30:37 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/04 20:23:50 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void	ft_cmds(void)
 
 int	main(int argc, char **argv, char **env)
 {
+	//atexit(ft_leaks);
 	(void)argc;
 	(void)argv;
 	g_data.env = ft_dup_envs(env);
@@ -98,7 +99,7 @@ int	main(int argc, char **argv, char **env)
 	while (g_data.prompt != NULL)
 	{
 		g_data.prompt = readline("MiniSheh$> ");
-		if (g_data.prompt && g_data.prompt[0] != '\0')
+		if (ft_check_prompt() == 1)
 		{
 			add_history(g_data.prompt);
 			g_data.recieved = ft_mini_split(g_data.prompt);
@@ -106,10 +107,12 @@ int	main(int argc, char **argv, char **env)
 			{
 				if (ft_initial_errors())
 				{
+					ft_printf("TEST\n");
 					g_data.tokens = ft_init_token();
 					ft_tokenizer();
 					if (ft_errors())
 					{
+						//ft_print_tokens();
 						ft_expand_data();
 						ft_tokens_to_str();
 						ft_check_pipe(g_data.line);

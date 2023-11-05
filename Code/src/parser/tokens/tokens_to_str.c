@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 18:12:04 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/02 16:58:51 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/04 19:17:22 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_tokens_to_str(void)
 	g_data.line = ft_strdup(str);
 	free (str);
 	ft_tokens_to_recivied(); // ESTO HA GENERADO 2 LEAKS MAS
-	ft_clear_tokens(&g_data.tokens);
+	ft_clear_tokens();
 }
 
 static int	ft_strlen_tokens(void)
