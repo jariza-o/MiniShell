@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   expand_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:18:10 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/05 13:28:04 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/05 17:58:17 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
 
 static int	ft_count_quotes(char *str);
-// static void	ft_all_null(char *str);
+static void	ft_all_null(char *str);
 
 void	ft_expand_quotes(char *quote) //POSIBLE LEAKS
 {
@@ -73,14 +73,14 @@ static int	ft_count_quotes(char *str)
 	return (len);
 }
 
-// static void	ft_all_null(char *str) //Comprobar guarrada
-// {
-// 	int	i;
+static void	ft_all_null(char *str) //Comprobar guarrada
+{
+	int	i;
 
-// 	i = 0;
-// 	while (str && str[i])
-// 	{
-// 		str[i] = '\0';
-// 		i++;
-// 	}
-// }
+	i = 0;
+	while (str && str[i])
+	{
+		str[i] = '\0';
+		i++;
+	}
+}

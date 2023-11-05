@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clear.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 13:52:42 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/04 20:25:04 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/05 17:18:30 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	ft_clear_tokens(void)
 		free (aux);
 		g_data.tokens = next;
 	}
+	g_data.tokens = NULL; //NOSE SI ESTO ESTA GUAY
 	// free (aux);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:26:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/04 21:07:47 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/05 17:18:58 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,15 @@ void	ft_exit(void)
 		else
 			g_data.exit_status = ft_atoi(g_data.recieved[1]);
 	}
-	if(g_data.recieved)
+	if (g_data.recieved)
 		ft_clean_double_pointer(g_data.recieved);
-	if(g_data.prompt)
+	if (g_data.prompt)
 		free(g_data.prompt);
-	if(g_data.prompt)
+	if (g_data.prompt)
 		free(g_data.line);
-	if(g_data.env)
+	if (g_data.env)
 		g_data.env = ft_clean_matrix(g_data.env);
+	if (g_data.tokens)
+		ft_clear_tokens();
 	exit(g_data.exit_status);
 }
