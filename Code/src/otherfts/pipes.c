@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:53:54 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/01 19:37:18 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/04 19:04:38 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,13 @@ static void	ft_child(char *cmd, int flag)
 	args = ft_split(cmd, ' ');
 	path = ft_get_cmdpath(args[0]);
 	if (execve(path, args, g_data.env) < 0)
-	{
-		g_data.exit_status = 1;
 		exit(1);
-	}
 }
 
 static void	ft_parent(void)
 {
 	close(g_data.spipe.fds[1]);
-	wait(NULL);
+	waitpid(g_data.r_pid, &g_data.exit_status, 0);
 	g_data.spipe.prev_pipe = g_data.spipe.fds[0];
 }
 
@@ -94,10 +91,7 @@ void	ft_pipe(char *line)
 		if (!cmdp[cnt])
 			break ;
 		if (g_data.r_pid == -1)
-		{
-			g_data.exit_status = 1;
 			exit(1);
-		}
 		if (g_data.r_pid == 0)
 			ft_child(cmdp[cnt], ft_exists(cmdp[cnt + 1]));
 		else

@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 19:03:57 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/04 17:57:38 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/05 12:15:59 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ char	**ft_mini_split(char *s)
 	size_t	len;
 
 	str = (char **)ft_calloc((ft_words(s) + 1), sizeof(char *));
+	if (!str)
+		return (NULL);
 	i = 0;
 	j = 0;
-	while (s[i] == ' ')
+	while (s && s[i] == ' ')
 		i++;
-	while (s[i])
+	while (s && s[i])
 	{
 		aux = 0;
 		len = 0;

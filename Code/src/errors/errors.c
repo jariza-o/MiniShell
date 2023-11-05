@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:33:09 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/04 20:19:06 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/05 11:43:49 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,5 @@ void	ft_print_errors(int error)
 		printf("Error: Syntax error\n");
 	else if (error == ENVS)
 		printf("Error: Env syntax error\n");
+	g_data.exit_status = 1;
 }

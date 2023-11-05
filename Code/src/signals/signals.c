@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:03:11 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/01 19:31:01 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/04 19:14:40 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-/* Ctr+D y Ctr+\ listos.  Creo que no es necesario hacer SIGACTION y esas cosas.
-Terminar función de Ctr+C que ahora mismo no la entiendo */
 
 static void	ctr_c(int signal);
 static void	ctr_d(int signal);
