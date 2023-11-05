@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 19:18:15 by jariza-o          #+#    #+#             */
-/*   Updated: 2022/10/02 22:14:48 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/05 12:17:39 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_strlen(const char *s)
 	size_t	n;
 
 	n = 0;
-	while (s[n] != '\0')
+	while (s && s[n] != '\0')
 		n++;
 	return (n);
 }

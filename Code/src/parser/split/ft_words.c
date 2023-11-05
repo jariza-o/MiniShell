@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:30:32 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/10/31 19:02:26 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/05 15:22:22 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ size_t	ft_words(char *s)
 
 	i = 0;
 	len = 0;
-	while (s[i])
+	while (s && s[i])
 	{
 		if (s[i] == '\'' || s[i] == '\"')
 			ft_close_quotes_words(s, &i, &len);
@@ -31,21 +31,22 @@ size_t	ft_words(char *s)
 		else
 			i++;
 	}
-	if (!s[i] && !ft_strchr(" |<>", s[i - 1]))
+	if (s && !s[i] && !ft_strchr(" |<>'\"", s[i - 1]))
 		len++;
+	ft_printf("FT_WORDS: %d\n", len);
 	return (len);
 }
 
 static void	ft_close_quotes_words(char *str, int *i, size_t *len)
 {
-	int	j;
+	char	q;
 
-	j = *i;
+	q = str[*i];
 	(*i)++;
-	while (str[*i] != str[j] && str[*i])
+	while (str && str[*i] && str[*i] != q)
 		(*i)++;
 	(*i)++;
-	if (ft_strchr(" |<>", str[*i]))
+	if (str && ft_strchr(" |<>", str[*i]))
 	{
 		(*len)++;
 		while (str[*i] == ' ' && str[*i])

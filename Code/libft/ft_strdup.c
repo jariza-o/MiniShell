@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:17:07 by jariza-o          #+#    #+#             */
-/*   Updated: 2022/10/10 10:51:11 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/05 12:18:29 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strdup(const char *s1)
 	if (d == NULL)
 		return (NULL);
 	c = 0;
-	while (ss1[c] != '\0')
+	while (ss1 && ss1[c] != '\0')
 	{
 		d[c] = ss1[c];
 		c++;
