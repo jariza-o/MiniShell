@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:18:10 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/05 17:58:17 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/06 17:37:47 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ void	ft_expand_quotes(char *quote) //POSIBLE LEAKS
 	free (quote);
 	quote = (char *)ft_calloc((ft_strlen(str) - \
 	ft_count_quotes(str)), sizeof(char));
-    if (!quote)
-        return ;
+	ft_printf("STR: %s || Nº Quotes: %d\n", str, ft_count_quotes(str));
+	if (!quote)
+		return ;
 	while (str && str[++i])
 	{
 		if (str[i] == '\'')
@@ -41,6 +42,7 @@ void	ft_expand_quotes(char *quote) //POSIBLE LEAKS
 		else if (str[i])
 			quote[n++] = str[i];
 	}
+	ft_printf("RESULT: %s\n\n", quote);
 	free (str);
 }
 

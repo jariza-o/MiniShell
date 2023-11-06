@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_tokens.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 16:51:12 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/04 17:52:43 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/06 17:39:24 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@ void	ft_print_tokens(void)
 	t_token	*aux;
 
 	aux = g_data.tokens;
+	ft_printf("\n\n__________________\n");
 	while (g_data.tokens)
 	{
 		ft_printf("Token STR:%s\n", g_data.tokens->str);
 		// ft_printf("Token TYPE: %d\n", g_data.tokens->type);
 		g_data.tokens = g_data.tokens->next;
 	}
+	ft_printf("__________________\n");
 	g_data.tokens = aux;
 }
 

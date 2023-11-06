@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/05 18:09:58 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/06 20:25:38 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,15 +105,15 @@ int	main(int argc, char **argv, char **env)
 			g_data.recieved = ft_mini_split(g_data.prompt);
 			if (g_data.recieved != NULL)
 			{
+					ft_printf("TEST\n");
 				if (ft_initial_errors())
 				{
-					ft_printf("TEST\n");
 					g_data.tokens = ft_init_token();
 					ft_tokenizer();
 					if (ft_errors())
 					{
-						//ft_print_tokens();
 						ft_expand_data();
+						// ft_print_tokens();
 						ft_tokens_to_str();
 						ft_printf("LINE: %s\n", g_data.line);
 						ft_check_pipe(g_data.line);
