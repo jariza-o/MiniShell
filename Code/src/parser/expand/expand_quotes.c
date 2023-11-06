@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   expand_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:18:10 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/02 16:57:57 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/05 17:58:17 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
 
 static int	ft_count_quotes(char *str);
+static void	ft_all_null(char *str);
 
-void	ft_expand_quotes(char *quote)
+void	ft_expand_quotes(char *quote) //POSIBLE LEAKS
 {
 	char	*str;
 	int		i;
@@ -23,10 +24,13 @@ void	ft_expand_quotes(char *quote)
 	i = -1;
 	n = 0;
 	str = ft_strdup(quote);
+	ft_all_null(quote); //me da doble free en valgrind pero si lo quito no me expande
 	free (quote);
 	quote = (char *)ft_calloc((ft_strlen(str) - \
 	ft_count_quotes(str)), sizeof(char));
-	while (str[++i])
+    if (!quote)
+        return ;
+	while (str && str[++i])
 	{
 		if (str[i] == '\'')
 			while (str[++i] != '\'')
@@ -47,7 +51,7 @@ static int	ft_count_quotes(char *str)
 
 	i = -1;
 	len = 0;
-	while (str[++i])
+	while (str && str[++i])
 	{
 		if (str[i] == '\'')
 		{
@@ -67,4 +71,16 @@ static int	ft_count_quotes(char *str)
 		}
 	}
 	return (len);
+}
+
+static void	ft_all_null(char *str) //Comprobar guarrada
+{
+	int	i;
+
+	i = 0;
+	while (str && str[i])
+	{
+		str[i] = '\0';
+		i++;
+	}
 }

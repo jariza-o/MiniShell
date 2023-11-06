@@ -91,6 +91,8 @@ typedef struct s_data
 
 t_data				g_data;
 
+/* PROMPT */
+int					ft_check_prompt(void);
 /* ERRORS */
 int					ft_initial_errors(void);
 int					ft_errors(void);
@@ -168,7 +170,7 @@ void				ft_clear_parser(int i);
 void				ft_clear(void);
 /* Clear Utils */
 void				ft_clean_double_pointer(char **matrix);
-void				ft_clear_tokens(t_token **tokens);
+void				ft_clear_tokens(void);
 
 char				*ft_get_env(char *str);
 

@@ -1,0 +1,65 @@
+Fallos:
+- echo -n -nh -n hola (FALLO EXEC)
+- echo ""uhjkhnkj"hjbmb"'''' defdjhfkjb "iujiouhj"f'f'f'f'f''f'f'f'f'f'f' (FALLO PARSER)
+- echo ""uhjkhnkj"hjbmb"'''' defdjhfkjb "iujiouhj"f'f'a'j'o''i'w'q''q (FALLO PARSER)
+- echo ""aaaaaaaa"bbbbb"'''' ccccccccc "dddddddd"e'e'e (FALLO PARSER)
+- echo "ho   $USER"'la   $LESS'$USER$TERM (SEGMENTATION PARTE PARSER)
+- echo "$HOME '$LESS' $USER" (NOSE SI LESS LO CREA DESPUES O ES PARSER)
+
+Export:
+- c=lala=kaka
+
+Ctr+D / exit:
+- Ctr+D a veces da segmentation fault
+
+CD:
+- cd ~ = $HOME (PARSER, NO TENEMOS POR QUE SOLUCIONARLO)
+- cd directorio con distintos permisos (PROBARLO BIEN PARECE QUE NO FALLA)
+
+Unset:
+- varios argumentos (NO HACE EL SEGUNDO UNSET, NOSE SI ES CORRECTO, PARTE EXEC)
+
+Pipe:
+- ls | wc | (PARSER SEGMENTATION FAULT)
+- | ls | wc (PARSER LO PASA IGUAL, LO EJECUTA COMO SI NO HUBIESE DELANTE |, COMPROBAR EN PARSER O EN EXEC)
+
+Redirecciones:
+- echo hola </<</>/>>   </<</>/>> file
+  El parser lo hace y no debería creo nose
+  da segmentation fault, hay que ver en las pipes si le pasas algo erroneo que no de fallos
+  Salida Minishell:
+  LINE: echo hola < /<< /> />> < /<< /> />> file
+  [ERROR] Outfile redirection error
+  zsh: segmentation fault  ./Minishell
+  Salida Shell:
+  bash: syntax error near unexpected token `<'
+  > 
+- echo hola </<</>/>>   | file
+  Salida Minishell:
+  LINE: echo hola < /<< /> />> < /<< /> />> file
+  [ERROR] Outfile redirection error
+  zsh: segmentation fault  ./Minishell
+  Salida Shell:
+  bash: syntax error near unexpected token `|'
+  > 
+- echo hola > file </<</>/>>
+  Salida Minishell:
+  LINE: echo hola > file < /<< /> />>
+  [ERROR] Outfile redirection error
+  zsh: segmentation fault  ./Minishell
+  Salida bash (funciona):
+  >
+- echo hola > file (FALLO PARSER SEGMENTATION)
+- echo hola > file > file2 > file3 (FALLO PARSER SEGMENTATION)
+- echo hola > file > file2 > file3 | ls (FALLO PARSER SEGMENTATION)
+- wc < colors.txt (FALLO EXEC)
+  Salida Minishell:
+  Salida muy larga con fallos y segmentations.
+  Salida bash:
+         9      10      48
+
+Por probar:
+# miscelania
+    - enter en input -> vacio
+    - solo espacios
+    - comillas sin cerrar

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mini_split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 19:03:57 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/02 19:05:32 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/05 16:22:37 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,13 @@ char	**ft_mini_split(char *s)
 	size_t	len;
 
 	str = (char **)ft_calloc((ft_words(s) + 1), sizeof(char *));
+	if (!str)
+		return (NULL);
 	i = 0;
 	j = 0;
-	while (s[i])
+	while (s && s[i] == ' ')
+		i++;
+	while (s && s[i])
 	{
 		aux = 0;
 		len = 0;
@@ -43,19 +47,19 @@ char	**ft_mini_split(char *s)
 static void	ft_take_word(char *str, int *i, int *aux, size_t *len)
 {
 	*aux = *i;
-	while (!ft_strchr(" |<>", str[*i]) && str[*i])
+	while (str && str[*i] && !ft_strchr(" |<>", str[*i]))
 	{
 		if (str[*i] == '\'' || str[*i] == '\"')
 			ft_close_quotes(str, i, len);
 		(*i)++;
 		(*len)++;
 	}
-	if ((str[*i] == '<' || str[*i] == '>') && str[*i + 1] == str[*i])
+	if (str && (str[*i] == '<' || str[*i] == '>') && str[*i + 1] == str[*i])
 	{
 		(*i) += 2;
 		(*len) += 2;
 	}
-	else if (str[*i] == '<' || str[*i] == '>' || str[*i] == '|')
+	else if (str && (str[*i] == '<' || str[*i] == '>' || str[*i] == '|'))
 	{
 		(*i)++;
 		(*len)++;
@@ -69,7 +73,7 @@ static void	ft_close_quotes(char *str, int *i, size_t *len)
 	quote = str[*i];
 	(*i)++;
 	(*len)++;
-	while (str[*i] != quote && str[*i])
+	while (str && str[*i] && str[*i] != quote)
 	{
 		(*i)++;
 		(*len)++;
@@ -82,8 +86,10 @@ static char	*ft_complete_word(char *s, int *i, int *aux, size_t len)
 	int		n;
 
 	str = (char *)ft_calloc((len + 1), sizeof(char));
+	if (!str)
+		return (NULL);
 	n = 0;
-	while (*aux != *i)
+	while (s && s[*aux] && *aux != *i) // NOSE SI AÑADIR s &&
 	{
 		str[n] = s[*aux];
 		n++;

@@ -27,6 +27,7 @@ SRC =		src/main.c \
 			src/built-ins/pwd/pwd.c src/built-ins/env/env.c \
 			src/built-ins/export/export.c src/built-ins/unset/unset.c \
 			src/built-ins/exit/exit.c \
+			src/parser/prompt/prompt.c \
 			src/parser/split/ft_words.c src/parser/split/ft_mini_split.c \
 			src/parser/tokens/init_token.c src/parser/tokens/token.c src/parser/tokens/token2.c src/parser/tokens/tokens_to_str.c src/parser/tokens/ft_print_tokens.c\
 			src/parser/expand/expand_env.c src/parser/expand/expand.c src/parser/expand/expand_quotes.c \
