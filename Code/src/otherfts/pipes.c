@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:53:54 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/04 19:04:38 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/06 20:24:12 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ static void	ft_parent(void)
 
 void	ft_check_pipe(char *command)
 {
+	int saved_stdout;
+
+	saved_stdout = dup(1);
 	if (ft_strchr(command, '|'))
 		ft_pipe(command);
 	else
@@ -65,6 +68,8 @@ void	ft_check_pipe(char *command)
 			close(g_data.spipe.fd_out);
 		}
 		ft_cmds();
+		dup2(saved_stdout, 1);
+		close(saved_stdout);
 	}
 }
 
