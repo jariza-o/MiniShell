@@ -6,11 +6,25 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:45:26 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/04 18:18:01 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/06 21:09:06 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+// Fix heredoc try with get next line
+// clean recieved
+
+static char **ft_realloc_recieved(char *cmd)
+{
+	char **tmp;
+	
+	tmp = malloc(sizeof(char *) * 2);
+	tmp[0] = ft_strdup(cmd);
+	tmp[1] = NULL;
+	g_data.recieved = ft_clean_matrix(g_data.recieved);
+	return (tmp);
+}
 
 static void	ft_heredoc(char *limiter)
 {
@@ -18,9 +32,13 @@ static void	ft_heredoc(char *limiter)
 	int		fd;
 
 	fd = open("tmp", O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	if(ft_strcmp(limiter, "EOF") == 0)
+		limiter = ft_strdup("\n");
 	while (1)
 	{
 		line = readline("Input> ");
+		if (!line)
+			break;
 		if (!ft_strcmp(line, limiter))
 		{
 			free(line);
@@ -32,6 +50,7 @@ static void	ft_heredoc(char *limiter)
 	close(fd);
 	g_data.spipe.fd_in = open("tmp", O_RDONLY);
 	unlink("tmp");
+	g_data.prompt = ft_strdup("giueriug");
 }
 
 static int	ft_double_redir_ck(char *line, char red)
@@ -69,6 +88,7 @@ static char	*ft_in_redir(char *line)
 	else
 		g_data.spipe.fd_in = open(cmd[1], O_RDONLY);
 	free(cmd[1]);
+	g_data.recieved = ft_realloc_recieved(cmd[0]);
 	return (cmd[0]);
 }
 
@@ -97,6 +117,7 @@ static char	*ft_out_redir(char *line)
 	}
 	tmp = ft_strtrim(cmd[0], " ");
 	cmd = ft_clean_matrix(cmd);
+	g_data.recieved = ft_realloc_recieved(tmp);
 	return (tmp);
 }
 
