@@ -1,3 +1,6 @@
+|echo >><<<><<>><<<< < < < < < |
+|echo >><<<><<< < < < < < < < <   < < < < < < <| < < < <
+
 Fallos:
 - echo -n -nh -n hola (FALLO EXEC)
 - echo ""uhjkhnkj"hjbmb"'''' defdjhfkjb "iujiouhj"f'f'f'f'f''f'f'f'f'f'f' (FALLO PARSER)
@@ -20,8 +23,8 @@ Unset:
 - varios argumentos (NO HACE EL SEGUNDO UNSET, NOSE SI ES CORRECTO, PARTE EXEC)
 
 Pipe:
-- ls | wc | (PARSER SEGMENTATION FAULT)
-- | ls | wc (PARSER LO PASA IGUAL, LO EJECUTA COMO SI NO HUBIESE DELANTE |, COMPROBAR EN PARSER O EN EXEC)
+- ls | wc | (EXEC EJECUTA MAL)
+- | ls | wc (EXEC EJECUTA MAL)
 
 Redirecciones:
 - echo hola </<</>/>>   </<</>/>> file

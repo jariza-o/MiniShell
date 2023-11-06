@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:33:09 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/05 11:43:49 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/06 20:37:06 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,15 @@ int	ft_initial_errors(void)
 	if (!ft_check_slash(g_data.recieved))
 		return (ft_clear_parser(0), ft_print_errors(SLASH), \
 		g_data.exit_status = 1, 0);
+		// ft_printf("ERRORES1\n");
 	if (!ft_check_semicolon(g_data.recieved))
 		return (ft_clear_parser(0), ft_print_errors(SEMICOLON), \
 		g_data.exit_status = 1, 0);
+		// ft_printf("ERRORES2\n");
 	if (!ft_check_env_errors(g_data.recieved))
 		return (ft_clear_parser(0), ft_print_errors(ENVS), \
 		g_data.exit_status = 1, 0);
+		// ft_printf("ERRORES2\n");
 	return (1);
 }
 
