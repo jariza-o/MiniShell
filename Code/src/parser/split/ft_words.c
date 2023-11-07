@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:30:32 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/05 15:22:22 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/07 18:27:10 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,14 @@ static void	ft_close_quotes_words(char *str, int *i, size_t *len)
 
 static void	ft_special_character(char *str, int *i, size_t *len)
 {
-	if ((!ft_strchr(" |<>", str[*i - 1])) && str[*i] != ' ')
+	if (str && str[*i] && (!ft_strchr(" |<>", str[*i - 1])) && str[*i] != ' ')
 		(*len)++;
-	if ((str[*i] == '<' && str[*i + 1] == '<')
-		|| (str[*i + 1] == '>' && str[*i + 1] == '>'))
+	if ((str && str[*i]) && ((str[*i] == '<' && str[*i + 1] == '<')
+			|| (str[*i + 1] == '>' && str[*i + 1] == '>')))
 		(*i) += 2;
-	else
+	else if (str && str[*i])
 		(*i)++;
 	(*len)++;
-	while (str[*i] == ' ' && str[*i])
+	while (str && str[*i] && str[*i] == ' ')
 		(*i)++;
 }
