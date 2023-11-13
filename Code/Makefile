@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+         #
+#    By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 12:59:03 by jariza-o          #+#    #+#              #
-#    Updated: 2023/11/06 21:12:24 by jariza-o         ###   ########.fr        #
+#    Updated: 2023/11/13 15:32:44 by jariza-o         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRC =		src/main.c \
 			src/otherfts/system-cmds.c src/otherfts/utils.c src/otherfts/pipes.c src/otherfts/redirs.c \
 			src/errors/special_caracters/quotes.c src/errors/special_caracters/slash_semicolon.c  src/errors/redirections/redirections.c src/errors/env/env.c src/errors/errors.c \
 			src/signals/signals.c \
+			src/utils/prints.c \
 
 OBJT =		$(SRC:.c=.o)
 
