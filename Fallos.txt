@@ -1,3 +1,14 @@
+exho hdfhbdhfjhkjsdhf 
+echo "JYgbyjghjy" $USER "rfgcvg" 'dghddghdfgdyg$SR""'
+
+ft_mini_split me falla al contar
+y al poner echo "ddd"<>
+
+
+
+echo solo da segmentation en parte de xema
+
+
 |echo >><<<><<>><<<< < < < < < |
 |echo >><<<><<< < < < < < < < <   < < < < < < <| < < < <
 
@@ -5,6 +16,8 @@ Fallos:
 - echo -n -nh -n hola (FALLO EXEC)
 - echo ""uhjkhnkj"hjbmb"'''' defdjhfkjb "iujiouhj"f'f'f'f'f''f'f'f'f'f'f' (FALLO PARSER)
 - echo ""uhjkhnkj"hjbmb"'''' defdjhfkjb "iujiouhj"f'f'a'j'o''i'w'q''q (FALLO PARSER)
+
+
 - echo ""aaaaaaaa"bbbbb"'''' ccccccccc "dddddddd"e'e'e (FALLO PARSER)
 - echo "ho   $USER"'la   $LESS'$USER$TERM (SEGMENTATION PARTE PARSER)
 - echo "$HOME '$LESS' $USER" (NOSE SI LESS LO CREA DESPUES O ES PARSER)
