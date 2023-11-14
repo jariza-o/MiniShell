@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clear.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 13:52:42 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/05 17:18:30 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:58:01 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	ft_clear(void)
 {
 	if (g_data.recieved)
 		ft_clean_double_pointer(g_data.recieved);
+	if(g_data.vars_mod == 10)
+		unlink("tmp");
 		//ft_clear_tokens(&g_data.tokens);
 	if (g_data.line)
 		free(g_data.line);

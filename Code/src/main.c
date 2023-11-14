@@ -6,16 +6,11 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/07 20:13:30 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/14 20:05:11 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-void	ft_leaks(void)
-{
-	system("leaks -q Minishell");
-}
 
 void	init_shell(void)
 {
@@ -87,9 +82,9 @@ void	ft_cmds(void)
 		ft_system_cmds(g_data.recieved);
 }
 
+
 int	main(int argc, char **argv, char **env)
 {
-	//atexit(ft_leaks);
 	(void)argc;
 	(void)argv;
 	g_data.env = ft_dup_envs(env);
@@ -122,6 +117,5 @@ int	main(int argc, char **argv, char **env)
 		}
 		free(g_data.prompt);
 	}
-	g_data.env = ft_clean_matrix(g_data.env);
 	return (g_data.exit_status);
 }

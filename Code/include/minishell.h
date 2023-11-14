@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/07 20:05:27 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/14 20:09:58 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,5 +201,13 @@ char				**ft_shell_lvl(char **env);
 char				*ft_path(char **path, char *cmd);
 
 void				ft_new_env(char *name, char *value);
+
+void				ft_restore_fds(int stdout, int stdin);
+
+int					ft_is_comma(t_token *tokens);
+
+char				*ft_nl(char *line);
+
+char				*ft_eof(char *limiter);
 
 #endif
