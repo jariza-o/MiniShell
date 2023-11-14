@@ -12,11 +12,6 @@
 
 #include "../include/minishell.h"
 
-void	ft_leaks(void)
-{
-	system("leaks -q Minishell");
-}
-
 void	init_shell(void)
 {
 	printf("^^^~~~~~~!!!!!!!!!!!!!!!!!?PPGGGGGGP5J!~~~~~~~~!!!!!!!!!!!~~~~~\n");
@@ -87,15 +82,16 @@ void	ft_cmds(void)
 		ft_system_cmds(g_data.recieved);
 }
 
+
 int	main(int argc, char **argv, char **env)
 {
-	//atexit(ft_leaks);
 	(void)argc;
 	(void)argv;
 	g_data.env = ft_dup_envs(env);
 	ft_signals();
 	init_shell();
 	g_data.prompt = "a";
+	g_data.env = ft_shell_lvl(g_data.env);
 	while (g_data.prompt != NULL)
 	{
 		g_data.prompt = readline("MiniSheh$> ");
@@ -115,7 +111,7 @@ int	main(int argc, char **argv, char **env)
 						ft_expand_data();
 						ft_tokens_to_str();
 						ft_printf("LINE: %s\n", g_data.line);
-						// ft_check_pipe(g_data.line);
+						ft_check_pipe(g_data.line);
 						ft_clear();
 					}
 				}
@@ -123,6 +119,5 @@ int	main(int argc, char **argv, char **env)
 		}
 		free(g_data.prompt);
 	}
-	g_data.env = ft_clean_matrix(g_data.env);
 	return (g_data.exit_status);
 }

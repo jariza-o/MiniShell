@@ -6,7 +6,7 @@
 #    By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 12:59:03 by jariza-o          #+#    #+#              #
-#    Updated: 2023/11/13 15:32:44 by jariza-o         ###   ########.fr        #
+#    Updated: 2023/11/14 19:27:44 by jjaen-mo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ SRC =		src/main.c \
 			src/parser/split/ft_words.c src/parser/split/ft_mini_split.c \
 			src/parser/tokens/init_token.c src/parser/tokens/token.c src/parser/tokens/token2.c src/parser/tokens/tokens_to_str.c src/parser/tokens/ft_print_tokens.c\
 			src/parser/expand/expand_env.c src/parser/expand/expand.c src/parser/expand/expand_quotes.c \
-			src/parser/clear/clear.c \
+			src/parser/clear/clear.c src/otherfts/utils2.c\
 			src/otherfts/system-cmds.c src/otherfts/utils.c src/otherfts/pipes.c src/otherfts/redirs.c \
 			src/errors/special_caracters/quotes.c src/errors/special_caracters/slash_semicolon.c  src/errors/redirections/redirections.c src/errors/env/env.c src/errors/errors.c \
 			src/signals/signals.c \

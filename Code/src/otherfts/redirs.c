@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:45:26 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/06 21:09:06 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/14 20:10:01 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 // Fix heredoc try with get next line
 // clean recieved
 
-static char **ft_realloc_recieved(char *cmd)
+static char	**ft_realloc_recieved(char *cmd)
 {
-	char **tmp;
-	
+	char	**tmp;
+
 	tmp = malloc(sizeof(char *) * 2);
 	tmp[0] = ft_strdup(cmd);
 	tmp[1] = NULL;
@@ -29,28 +29,29 @@ static char **ft_realloc_recieved(char *cmd)
 static void	ft_heredoc(char *limiter)
 {
 	char	*line;
+	char	*test;
 	int		fd;
 
-	fd = open("tmp", O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	if(ft_strcmp(limiter, "EOF") == 0)
-		limiter = ft_strdup("\n");
+	fd = open("tmp", O_CREAT | O_RDWR, 0644);
+	test = ft_eof(limiter);
 	while (1)
 	{
-		line = readline("Input> ");
+		line = get_next_line(0);
 		if (!line)
-			break;
-		if (!ft_strcmp(line, limiter))
+			break ;
+		line = ft_nl(line);
+		if (ft_strcmp(line, test) == 0)
 		{
 			free(line);
 			break ;
 		}
-		ft_putendl_fd(line, fd);
+		write(fd, line, ft_strlen(line));
+		write(fd, "\n", 1);
 		free(line);
 	}
 	close(fd);
+	g_data.vars_mod = 10;
 	g_data.spipe.fd_in = open("tmp", O_RDONLY);
-	unlink("tmp");
-	g_data.prompt = ft_strdup("giueriug");
 }
 
 static int	ft_double_redir_ck(char *line, char red)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clear.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 13:52:42 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/14 21:48:20 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:58:01 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	ft_clear(void)
 {
-	// if (g_data.recieved)
-		g_data.recieved = ft_clean_matrix(g_data.recieved);
-		ft_clear_tokens();
-	// if (g_data.line)
-	// {
+	if (g_data.recieved)
+		ft_clean_double_pointer(g_data.recieved);
+	if(g_data.vars_mod == 10)
+		unlink("tmp");
+	if (g_data.line)
 		free(g_data.line);
-		g_data.line = NULL;
-	// }
+  ft_clear_tokens();
+	g_data.line = NULL;
 }
 
 void	ft_clear_parser(int i)
