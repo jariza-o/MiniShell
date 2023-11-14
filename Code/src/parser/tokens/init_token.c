@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 20:07:14 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/05 17:13:49 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/14 21:05:18 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_token	*ft_init_token(void)
 	int		i;
 
 	i = 0;
+	list = NULL;
 	if (g_data.recieved)
 		list = ft_lstnew_mini(g_data.recieved[i]);
 	i++;
