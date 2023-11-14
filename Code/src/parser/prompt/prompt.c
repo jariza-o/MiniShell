@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 13:11:36 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/05 12:12:26 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/07 19:40:09 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	ft_all_spaces(char *str);
 
 int	ft_check_prompt(void)
 {
-	if (g_data.prompt && g_data.prompt[0] == '\0')
+	if (!g_data.prompt || g_data.prompt[0] == '\0')
 		return (0);
 	if (ft_all_spaces(g_data.prompt))
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:45:26 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/06 21:09:06 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/06 21:23:25 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ static void	ft_heredoc(char *limiter)
 	close(fd);
 	g_data.spipe.fd_in = open("tmp", O_RDONLY);
 	unlink("tmp");
-	g_data.prompt = ft_strdup("giueriug");
 }
 
 static int	ft_double_redir_ck(char *line, char red)

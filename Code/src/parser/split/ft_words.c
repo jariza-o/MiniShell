@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_words.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:30:32 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/05 15:22:22 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/07 18:23:24 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ size_t	ft_words(char *s)
 	}
 	if (s && !s[i] && !ft_strchr(" |<>'\"", s[i - 1]))
 		len++;
-	ft_printf("FT_WORDS: %d\n", len);
 	return (len);
 }
 

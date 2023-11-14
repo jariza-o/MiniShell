@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/06 21:12:15 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/07 20:13:30 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int	main(int argc, char **argv, char **env)
 	ft_signals();
 	init_shell();
 	g_data.prompt = "a";
+	g_data.env = ft_shell_lvl(g_data.env);
 	while (g_data.prompt != NULL)
 	{
 		g_data.prompt = readline("MiniSheh$> ");
@@ -107,15 +108,12 @@ int	main(int argc, char **argv, char **env)
 			{
 				if (ft_initial_errors())
 				{
-					ft_printf("TEST\n");
 					g_data.tokens = ft_init_token();
 					ft_tokenizer();
 					if (ft_errors())
 					{
-						//ft_print_tokens();
 						ft_expand_data();
 						ft_tokens_to_str();
-						ft_printf("LINE: %s\n", g_data.line);
 						ft_check_pipe(g_data.line);
 						ft_clear();
 					}
