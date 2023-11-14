@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 13:52:42 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/14 18:55:07 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/14 21:48:20 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,27 +56,20 @@ void	ft_clean_double_pointer(char **matrix)
 
 void	ft_clear_tokens(void)
 {
-	// t_token	*aux = g_data.tokens;
 	t_token	*next;
-	
+
+	next = NULL;
 	while (g_data.tokens)
 	{
-		ft_printf("CLEAR TOKENS: %s\n", g_data.tokens->str);
-		// aux = g_data.tokens;
 		next = g_data.tokens->next;
-		free (g_data.tokens->str);
-		free (g_data.tokens);
-		// ft_printf("CLEANED TOKENS: %s\n", g_data.tokens->str);
+		if (g_data.tokens->str)
+			free (g_data.tokens->str);
+		if (g_data.tokens)
+			free (g_data.tokens);
 		g_data.tokens = next;
 	}
-	// g_data.tokens = aux;
-	// if (g_data.tokens)
-	// 	ft_printf("JHGBJHB: %s\n", g_data.tokens->str);
-	// g_data.tokens = g_data.tokens->next;
-	// if (g_data.tokens)
-	// 	ft_printf("JHGBJHB: %s\n", g_data.tokens->str);
-	g_data.tokens = NULL; //NOSE SI ESTO ESTA GUAY
-	// free (aux);
+	if (g_data.tokens)
+		free(g_data.tokens);
 }
 
 // void	ft_clear_tokens(t_token **tokens)
