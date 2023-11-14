@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 19:03:57 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/13 15:28:04 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/14 17:32:04 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,24 @@ char	**ft_mini_split(char *s)
 
 static void	ft_take_word(char *str, int *i, int *aux, size_t *len)
 {
+	int	point;
+
+	point = 0;
 	*aux = *i;
 	while (str && str[*i] && !ft_strchr(" |<>", str[*i]))
 	{
+		point = 1;
 		if (str[*i] == '\'' || str[*i] == '\"')
 			ft_close_quotes(str, i, len);
 		(*i)++;
 		(*len)++;
 	}
-	if (str && (str[*i] == '<' || str[*i] == '>') && str[*i + 1] == str[*i])
+	if (!point && str && (str[*i] == '<' || str[*i] == '>') && str[*i + 1] == str[*i])
 	{
 		(*i) += 2;
 		(*len) += 2;
 	}
-	else if (str && (str[*i] == '<' || str[*i] == '>' || str[*i] == '|'))
+	else if (!point && str && (str[*i] == '<' || str[*i] == '>' || str[*i] == '|'))
 	{
 		(*i)++;
 		(*len)++;

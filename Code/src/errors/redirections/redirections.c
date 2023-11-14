@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 12:40:43 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/07 19:21:52 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/14 17:55:53 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	ft_check_redirections(void)
 		g_data.tokens->type == APPEND_RED || g_data.tokens->type == PIPE) && \
 		(!g_data.tokens->prev || (!g_data.tokens->next || g_data.tokens->next == NULL)))
 		{
-			ft_printf("FJUDHJUDH\n");
 			g_data.tokens = aux;
 			return (0);
 		}
@@ -39,7 +38,6 @@ int	ft_check_redirections(void)
 			g_data.tokens = aux;
 			return (0);
 		}
-			ft_printf("sswdsdsssss\n");
 		g_data.tokens = g_data.tokens->next;
 	}
 	g_data.tokens = aux;

@@ -1,3 +1,6 @@
+exho hdfhbdhfjhkjsdhf 
+echo "JYgbyjghjy" $USER "rfgcvg" 'dghddghdfgdyg$SR""'
+
 ft_mini_split me falla al contar
 y al poner echo "ddd"<>
 
