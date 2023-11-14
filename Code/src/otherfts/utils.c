@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:41:56 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/04 18:24:20 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/07 20:15:45 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,29 @@ char	*ft_path(char **path, char *cmd)
 char	**ft_shell_lvl(char **env)
 {
 	char	*tmp;
+	char	*tmp2;
 	int		cnt;
 
 	tmp = ft_get_env("SHLVL");
-	tmp = ft_itoa(ft_atoi(tmp) + 1);
-	cnt = 0;
-	while (env[cnt])
+	if(!tmp)
+	{
+		ft_new_env("SHLVL", "1");
+		return (g_data.env);
+	}
+	tmp2 = ft_itoa(ft_atoi(tmp) + 1);
+	free(tmp);
+	cnt = -1;
+	while (env[++cnt])
 	{
 		if (ft_strncmp(env[cnt], "SHLVL", 5) == 0)
 		{
 			free(env[cnt]);
-			env[cnt] = ft_strjoin("SHLVL=", tmp);
-			free(tmp);
+			env[cnt] = ft_strjoin("SHLVL=", tmp2);
+			free(tmp2);
 			return (env);
 		}
-		cnt++;
 	}
+	free(tmp2);
 	return (env);
 }
 
@@ -65,7 +72,6 @@ void	ft_exec(char *cmdpath, char **command)
 		printf("[ERROR] Could not create a child process \n");
 	else if (g_data.r_pid == 0)
 	{
-		g_data.env = ft_shell_lvl(g_data.env);
 		if (execve(cmdpath, command, g_data.env) < 0
 			&& g_data.exit_status != 127)
 			printf("[ERROR] Could not execute command %s \n", command[0]);

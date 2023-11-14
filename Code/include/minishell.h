@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/13 15:34:05 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/14 20:09:58 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,5 +203,15 @@ void				ft_exec(char *cmdpath, char **command);
 char				**ft_shell_lvl(char **env);
 
 char				*ft_path(char **path, char *cmd);
+
+void				ft_new_env(char *name, char *value);
+
+void				ft_restore_fds(int stdout, int stdin);
+
+int					ft_is_comma(t_token *tokens);
+
+char				*ft_nl(char *line);
+
+char				*ft_eof(char *limiter);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:03:11 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/06 19:24:59 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/07 18:37:01 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ void	ft_signals(void)
 static void	ctr_c(int signal)
 {
 	(void)signal;
-
-	//write(1, "\n", 1);
-	if(!g_data.line)
+	if (!g_data.line)
 		ioctl(0, TIOCSTI, "\n");
 	else
 		write(1, "\n", 1);
