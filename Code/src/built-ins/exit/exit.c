@@ -15,13 +15,15 @@
 static void	ft_cleaning(void)
 {
 	if (g_data.recieved)
-		ft_clean_double_pointer(g_data.recieved);
+		g_data.recieved = ft_clean_matrix(g_data.recieved);
 	if (g_data.prompt)
 		free(g_data.prompt);
-	if (g_data.prompt)
+	if (g_data.line)
 		free(g_data.line);
 	if (g_data.env)
 		g_data.env = ft_clean_matrix(g_data.env);
+	if (g_data.tokens != NULL)
+		ft_clear_tokens();
 }
 
 static int	ft_is_number(char *str)

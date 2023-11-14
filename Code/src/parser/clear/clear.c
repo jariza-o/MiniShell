@@ -18,19 +18,25 @@ void	ft_clear(void)
 		ft_clean_double_pointer(g_data.recieved);
 	if(g_data.vars_mod == 10)
 		unlink("tmp");
-		//ft_clear_tokens(&g_data.tokens);
 	if (g_data.line)
 		free(g_data.line);
+  ft_clear_tokens();
+	g_data.line = NULL;
 }
 
 void	ft_clear_parser(int i)
 {
 	if (i == 0)
-		ft_clean_double_pointer(g_data.recieved);
+	{
+		if (g_data.recieved)
+			ft_clean_matrix(g_data.recieved);
+	}
 	else if (i == 1)
 	{
-		ft_clean_double_pointer(g_data.recieved);
-		ft_clear_tokens();
+		if (g_data.recieved)
+			ft_clean_matrix(g_data.recieved);
+		if (g_data.tokens)
+			ft_clear_tokens();
 	}
 }
 
@@ -50,17 +56,25 @@ void	ft_clean_double_pointer(char **matrix)
 
 void	ft_clear_tokens(void)
 {
-	t_token	*aux;
+	// t_token	*aux = g_data.tokens;
 	t_token	*next;
-
+	
 	while (g_data.tokens)
 	{
-		aux = g_data.tokens;
+		ft_printf("CLEAR TOKENS: %s\n", g_data.tokens->str);
+		// aux = g_data.tokens;
 		next = g_data.tokens->next;
 		free (g_data.tokens->str);
-		free (aux);
+		free (g_data.tokens);
+		// ft_printf("CLEANED TOKENS: %s\n", g_data.tokens->str);
 		g_data.tokens = next;
 	}
+	// g_data.tokens = aux;
+	// if (g_data.tokens)
+	// 	ft_printf("JHGBJHB: %s\n", g_data.tokens->str);
+	// g_data.tokens = g_data.tokens->next;
+	// if (g_data.tokens)
+	// 	ft_printf("JHGBJHB: %s\n", g_data.tokens->str);
 	g_data.tokens = NULL; //NOSE SI ESTO ESTA GUAY
 	// free (aux);
 }

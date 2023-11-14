@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
 /*   Updated: 2023/11/14 20:09:58 by jjaen-mo         ###   ########.fr       */
@@ -171,6 +171,10 @@ void				ft_clear(void);
 /* Clear Utils */
 void				ft_clean_double_pointer(char **matrix);
 void				ft_clear_tokens(void);
+
+/* UTILS */
+/* Print Matrix */
+void				ft_printf_matrix(char **str);
 
 char				*ft_get_env(char *str);
 

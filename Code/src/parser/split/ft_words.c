@@ -31,7 +31,7 @@ size_t	ft_words(char *s)
 		else
 			i++;
 	}
-	if (s && !s[i] && !ft_strchr(" |<>'\"", s[i - 1]))
+	if (s && !s[i] && !ft_strchr(" |<>", s[i - 1]))
 		len++;
 	return (len);
 }
@@ -40,29 +40,31 @@ static void	ft_close_quotes_words(char *str, int *i, size_t *len)
 {
 	char	q;
 
+	(void)(*len);
 	q = str[*i];
 	(*i)++;
 	while (str && str[*i] && str[*i] != q)
 		(*i)++;
 	(*i)++;
-	if (str && ft_strchr(" |<>", str[*i]))
-	{
-		(*len)++;
-		while (str[*i] == ' ' && str[*i])
-			(*i)++;
-	}
+	// if (str && ft_strchr(" |<>", str[*i]))
+	// {
+	// 	// (*len)++;
+	// 	// while (str[*i] == ' ' && str[*i])
+	// 	// 	(*i)++;
+	// 	ft_special_character(str, i, len);
+	// }
 }
 
 static void	ft_special_character(char *str, int *i, size_t *len)
 {
-	if ((!ft_strchr(" |<>", str[*i - 1])) && str[*i] != ' ')
+	if (str && str[*i] && (!ft_strchr(" |<>", str[*i - 1])) && str[*i] != ' ')
 		(*len)++;
-	if ((str[*i] == '<' && str[*i + 1] == '<')
-		|| (str[*i + 1] == '>' && str[*i + 1] == '>'))
+	if ((str && str[*i]) && ((str[*i] == '<' && str[*i + 1] == '<')
+			|| (str[*i] == '>' && str[*i + 1] == '>')))
 		(*i) += 2;
-	else
+	else if (str && str[*i])
 		(*i)++;
 	(*len)++;
-	while (str[*i] == ' ' && str[*i])
+	while (str && str[*i] && str[*i] == ' ')
 		(*i)++;
 }
