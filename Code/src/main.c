@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/15 17:20:07 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:28:41 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int	main(int argc, char **argv, char **env)
 					{
 						ft_expand_data();
 						ft_tokens_to_str();
-						ft_printf("LINE: %s\n", g_data.line);
+						//ft_printf("LINE: %s\n", g_data.line);
 						ft_check_pipe(g_data.line);
 						ft_clear();
 					}
