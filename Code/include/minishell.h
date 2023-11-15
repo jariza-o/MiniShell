@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/15 17:24:02 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/15 22:17:59 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,12 +192,6 @@ void				ft_reasign(char *name, char *value);
 
 void				ft_exec(char *cmdpath, char **command);
 
-/**
- * @brief Updates the shell level when required
- * 
- * @param env The Environment Variables
- * @return char** The updated Environment Variables
- */
 char				**ft_shell_lvl(char **env);
 
 char				*ft_path(char **path, char *cmd);
@@ -212,6 +206,16 @@ char				*ft_nl(char *line);
 
 char				*ft_eof(char *limiter);
 
-char				**ft_realloc_recieved(char *cmd);
+char				**ft_realloc_recieved();
+
+int					ft_is_valid_name(char *name);
+
+char				*ft_empty_var(char *name);
+
+void				ft_export_vars(char *argv);
+
+int					ft_exists_var(char *var);
+
+char				**ft_split_var(char *argv);
 
 #endif
