@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:26:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/14 20:06:19 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:21:50 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_exit(void)
 		if (!ft_is_number(g_data.recieved[1]))
 		{
 			ft_printf("exit: %s: numeric argument required\n",
-						g_data.recieved[1]);
+				g_data.recieved[1]);
 			g_data.exit_status = 255;
 		}
 		else
