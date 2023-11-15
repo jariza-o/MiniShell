@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/15 17:24:02 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/15 22:16:35 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,6 @@ int					ft_initial_errors(void);
 int					ft_errors(void);
 /* Print error message */
 void				ft_print_errors(int error);
-/* Quotes (" and ') */
-int					ft_check_quotes(char **argv);
 /* Semicolon */
 int					ft_check_semicolon(char **argv);
 /* Slash */
