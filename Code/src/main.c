@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/15 19:35:34 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/15 21:25:36 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,16 +82,8 @@ void	ft_cmds(void)
 		ft_system_cmds(g_data.recieved);
 }
 
-
-int	main(int argc, char **argv, char **env)
+void	ft_shell(void)
 {
-	(void)argc;
-	(void)argv;
-	g_data.env = ft_dup_envs(env);
-	ft_signals();
-	init_shell();
-	g_data.prompt = "a";
-	g_data.env = ft_shell_lvl(g_data.env);
 	while (g_data.prompt != NULL)
 	{
 		g_data.prompt = readline("MiniSheh$> ");
@@ -118,5 +110,17 @@ int	main(int argc, char **argv, char **env)
 		}
 		free(g_data.prompt);
 	}
+}
+
+int	main(int argc, char **argv, char **env)
+{
+	(void)argc;
+	(void)argv;
+	g_data.env = ft_dup_envs(env);
+	ft_signals();
+	init_shell();
+	g_data.prompt = "a";
+	g_data.env = ft_shell_lvl(g_data.env);
+	ft_shell();
 	return (g_data.exit_status);
 }
