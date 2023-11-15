@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:06:03 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/01 19:18:27 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/15 19:33:18 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,19 @@ void	ft_expand_env(t_token *tokens)
 	char	*env = NULL;
 	char	*content;
 	int		i;
+	int		n;
 
 	i = -1;
-	while (tokens->str[++i])
+	while (tokens->str && tokens->str[++i])
 	{
 		if (tokens->str[i] == '\'')
-			while (tokens->str[++i] != '\'')
+		{
+			n = i;
+			while (tokens->str && tokens->str[++i] &&  tokens->str[i] != '\'')
 				;
+			if (!tokens->str[i])
+				i = n;
+		}
 		else if (tokens->str[i] == '$')
 		{
 			env = ft_obtain_env(tokens, ++i);
