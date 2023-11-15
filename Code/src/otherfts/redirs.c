@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:45:26 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/15 22:34:22 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/15 23:15:56 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ static char	*ft_out_redir(char *line)
 	tmp = ft_strtrim(cmd[0], " ");
 	cmd = ft_clean_matrix(cmd);
 	g_data.recieved = ft_realloc_recieved();
-	free(line);
 	return (tmp);
 }
 

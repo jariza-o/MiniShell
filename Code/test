@@ -1,1 +1,7 @@
-hola
+Makefile
+include
+libft
+minishell
+minishell.dSYM
+src
+test

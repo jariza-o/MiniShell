@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:53:54 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/15 22:11:03 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/15 23:17:30 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	ft_check_pipe(char *command)
 {
 	int	saved_stdout;
 	int	saved_stdin;
+	char *cmdcpy;
+	char *tmp;
 
 	saved_stdout = dup(1);
 	saved_stdin = dup(0);
@@ -56,9 +58,10 @@ void	ft_check_pipe(char *command)
 		ft_pipe(command);
 	else
 	{
-		command = ft_check_redir(command);
-		if (!command)
-			return ;
+		cmdcpy = ft_strdup(command);
+		tmp = ft_check_redir(cmdcpy);
+		if(cmdcpy)
+			free(cmdcpy);
 		if (g_data.spipe.fd_in != 0)
 		{
 			dup2(g_data.spipe.fd_in, 0);
