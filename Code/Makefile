@@ -6,7 +6,7 @@
 #    By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 12:59:03 by jariza-o          #+#    #+#              #
-#    Updated: 2023/11/14 19:27:44 by jjaen-mo         ###   ########.fr        #
+#    Updated: 2023/11/15 22:18:30 by jariza-o         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ SRC =		src/main.c \
 			src/parser/expand/expand_env.c src/parser/expand/expand.c src/parser/expand/expand_quotes.c \
 			src/parser/clear/clear.c src/otherfts/utils2.c\
 			src/otherfts/system-cmds.c src/otherfts/utils.c src/otherfts/pipes.c src/otherfts/redirs.c \
-			src/errors/special_caracters/quotes.c src/errors/special_caracters/slash_semicolon.c  src/errors/redirections/redirections.c src/errors/env/env.c src/errors/errors.c \
+			src/errors/special_caracters/slash_semicolon.c  src/errors/redirections/redirections.c src/errors/env/env.c src/errors/errors.c \
 			src/signals/signals.c \
 			src/utils/prints.c \
 
@@ -55,20 +55,16 @@ END =		\033[0m
 all:		$(NAME)
 
 $(NAME): ${OBJT}
-			@if [ ! -e $(LIBFT) ]; then \
-				echo "$(YELLOW)Compiling Libft.$(END)"; \
-				make -s -C libft; \
-				make clean -s -C libft; \
-				echo "$(GREEN)Libft Compiled.$(END)"; \
-			else \
-				echo "$(GREEN)Libft is already compiled.$(END)"; \
-			fi
+			@echo "$(YELLOW)Compiling Libft.$(END)"
+			@make -s -C libft
+			@echo "$(GREEN)Libft Compiled.$(END)"
 			@echo "$(YELLOW)Compiling Minishell.$(END)"
 			@gcc ${CFLAGS} ${INC} ${COMPILE} ${LIBFT} ${OBJT} -o ${NAME} ${LFLAGS}
 			@echo "$(GREEN)Minishell Compiled.$(END)"
 
 clean:
 			@rm -f ${OBJT}
+			@make clean -s -C libft
 			@echo "$(RED)Compiled objects have been removed.$(END)"
 
 fclean:		clean
