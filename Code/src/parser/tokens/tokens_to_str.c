@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens_to_str.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 18:12:04 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/06 18:34:42 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:50:50 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,9 @@ void	ft_tokens_to_str(void)
 			str[n++] = 32;
 	}
 	g_data.tokens = aux;
-	// if (g_data.line)
-	// 	free(g_data.line);
 	g_data.line = ft_strdup(str);
 	free (str);
-	ft_tokens_to_recivied(); // ESTO HA GENERADO 2 LEAKS MAS
-	// ft_clear_tokens();
+	ft_tokens_to_recivied();
 }
 
 static int	ft_strlen_tokens(void)

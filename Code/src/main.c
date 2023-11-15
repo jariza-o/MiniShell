@@ -109,6 +109,7 @@ int	main(int argc, char **argv, char **env)
 					{
 						ft_expand_data();
 						ft_tokens_to_str();
+						ft_printf("LINE: %s\n", g_data.line);
 						ft_check_pipe(g_data.line);
 						ft_clear();
 					}

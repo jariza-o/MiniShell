@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 15:59:36 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/14 15:41:05 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:48:58 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_check_slash(char **argv)
 	int	n;
 
 	i = 0;
-	while (argv && argv[i]) // argv && añadido despues
+	while (argv && argv[i])
 	{
 		n = 0;
 		while (argv[i][n])
@@ -34,7 +34,6 @@ int	ft_check_slash(char **argv)
 			if (argv[i][n])
 				n++;
 		}
-		// ft_printf("%s\n", argv[i]);
 		i++;
 	}
 	return (1);
@@ -85,5 +84,5 @@ static int	ft_close_quote(char **argv, int i, int n)
 			n++;
 		return (n);
 	}
-	return (n); // VER BIEN ESTE RETURN
+	return (n);
 }

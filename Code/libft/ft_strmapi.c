@@ -6,11 +6,11 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 13:37:47 by jariza-o          #+#    #+#             */
-/*   Updated: 2022/10/13 14:06:45 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:54:07 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"libft.h"
+#include "libft.h"
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {

@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 15:54:16 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/14 17:55:01 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:29:32 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,14 @@ void	ft_expand_data(void)
 	while (g_data.tokens)
 	{
 		i = -1;
-		while (g_data.tokens->str[++i])
+		while (g_data.tokens->str && g_data.tokens->str[++i])
 		{
 			if (g_data.tokens->str[i] == '\'')
 			{
-				while (g_data.tokens->str[++i] != '\'')
+				while (g_data.tokens->str && g_data.tokens->str[++i] != '\'')
 					;
-				i++;
 			}
-			if (g_data.tokens->str[i] == '$')
+			else if (g_data.tokens->str[i] == '$')
 			{
 				ft_expand_env(g_data.tokens);
 				i = -1;

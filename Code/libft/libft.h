@@ -6,18 +6,18 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 19:31:59 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/09/17 19:43:23 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:54:36 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include	<stdlib.h>
-# include	<unistd.h>
-# include   <stdarg.h>
-# include	<stdio.h>
-# include	<limits.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdarg.h>
+# include <stdio.h>
+# include <limits.h>
 
 typedef struct s_list
 {

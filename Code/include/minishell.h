@@ -38,8 +38,6 @@ enum				e_errors
 	PWD,
 	REDIRECTIONS,
 	ENVS,
-	// PIPES,
-	// BUILTINS,
 };
 
 /* Token List */
