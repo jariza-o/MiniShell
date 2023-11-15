@@ -86,6 +86,6 @@ Por probar:
 
 NEW FALLOS:
 
-echo -n -n hola (EXEC)
 echo "ho   $USE$HOME" (PARSER)
-echo "$HOME '$LESS "pa $TERM" na' $USER" (zegmentation)
+ARREGLADO: echo "$HOME '$LESS "pa $TERM" na' $USER" (zegmentation)
+
