@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:26:54 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/01 19:14:51 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/15 22:01:00 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,42 @@ static char	**ft_remove_env(int indx, char **tmp)
 	return (NULL);
 }
 
-void	ft_unset(char **argv)
+static void	ft_uset_var(char *argv)
 {
-	int		cnt;
 	char	**tmp;
+	int		cnt;
 
 	cnt = 0;
+	while (g_data.env[cnt])
+	{
+		tmp = ft_split(g_data.env[cnt], '=');
+		if (tmp == NULL || tmp[0] == NULL || argv == NULL)
+			continue ;
+		if (ft_strncmp(tmp[0], argv, ft_strlen(argv)) == 0)
+		{
+			tmp = ft_remove_env(cnt, tmp);
+			if (tmp == NULL)
+				continue ;
+		}
+		else
+			tmp = ft_clean_matrix(tmp);
+		cnt++;
+	}
+}
+
+void	ft_unset(char **argv)
+{
+	int		cnt2;
+
 	if (!argv[1])
 	{
 		printf("[ERROR] Not enough arguments\n");
 		return ;
 	}
-	while (g_data.env[cnt])
+	cnt2 = 1;
+	while (argv[cnt2])
 	{
-		tmp = ft_split(g_data.env[cnt], '=');
-		if (ft_strncmp(tmp[0], argv[1], ft_strlen(argv[1])) == 0)
-			tmp = ft_remove_env(cnt, tmp);
-		else
-			tmp = ft_clean_matrix(tmp);
-		cnt++;
+		ft_uset_var(argv[cnt2]);
+		cnt2++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:45:26 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/15 17:23:30 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/15 22:34:22 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static int	ft_double_redir_ck(char *line, char red)
 static char	*ft_in_redir(char *line)
 {
 	char	**cmd;
+	char	*tmp;
 
 	cmd = ft_split(line, '<');
 	if (ft_exists(cmd[2]))
@@ -68,15 +69,20 @@ static char	*ft_in_redir(char *line)
 		cmd = ft_clean_matrix(cmd);
 		return (NULL);
 	}
-	cmd[0] = ft_strtrim(cmd[0], " ");
-	cmd[1] = ft_strtrim(cmd[1], " ");
+	tmp = ft_strtrim(cmd[0], " ");
+	free(cmd[0]);
+	cmd[0] = tmp;
+	tmp = ft_strtrim(cmd[1], " ");
+	free(cmd[1]);
+	cmd[1] = tmp;
 	if (ft_double_redir_ck(line, '<'))
 		ft_heredoc(cmd[1]);
 	else
 		g_data.spipe.fd_in = open(cmd[1], O_RDONLY);
-	free(cmd[1]);
-	g_data.recieved = ft_realloc_recieved(cmd[0]);
-	return (cmd[0]);
+	g_data.recieved = ft_realloc_recieved();
+	tmp = ft_strdup(cmd[0]);
+	cmd = ft_clean_matrix(cmd);
+	return (tmp);
 }
 
 static char	*ft_out_redir(char *line)
@@ -104,7 +110,8 @@ static char	*ft_out_redir(char *line)
 	}
 	tmp = ft_strtrim(cmd[0], " ");
 	cmd = ft_clean_matrix(cmd);
-	g_data.recieved = ft_realloc_recieved(tmp);
+	g_data.recieved = ft_realloc_recieved();
+	free(line);
 	return (tmp);
 }
 
