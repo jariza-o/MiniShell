@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/14 20:09:58 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:18:42 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ enum				e_errors
 	PWD,
 	REDIRECTIONS,
 	ENVS,
-	// PIPES,
-	// BUILTINS,
 };
 
 /* Token List */

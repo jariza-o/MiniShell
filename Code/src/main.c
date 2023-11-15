@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/14 21:48:40 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:57:26 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ int	main(int argc, char **argv, char **env)
 		{
 			add_history(g_data.prompt);
 			g_data.recieved = ft_mini_split(g_data.prompt);
-			// ft_printf_matrix(g_data.recieved);
 			if (g_data.recieved != NULL)
 			{
 				if (ft_initial_errors())
