@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 15:13:05 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/14 19:02:01 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:21:03 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ static int	ft_status(char *str)
 
 void	ft_echo(char **argv)
 {
-	int cnt;
-	
+	int	cnt;
+
 	cnt = 1;
-	if(ft_echo_flag(argv))
+	if (ft_echo_flag(argv))
 		cnt++;
 	if (!argv[1])
 	{
@@ -67,9 +67,9 @@ static int	ft_echo_flag(char **argv)
 {
 	int	cnt;
 	int	cnt2;
-	
+
 	cnt = 0;
-	while(argv[cnt])
+	while (argv[cnt])
 	{
 		cnt2 = 0;
 		if (argv[cnt][cnt2] == '-')
@@ -80,7 +80,7 @@ static int	ft_echo_flag(char **argv)
 			if (argv[cnt][cnt2] == '\0')
 				return (1);
 		}
-		cnt++;	
+		cnt++;
 	}
 	return (0);
 }

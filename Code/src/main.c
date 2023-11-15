@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:00 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/14 20:05:11 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:20:07 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ int	main(int argc, char **argv, char **env)
 		{
 			add_history(g_data.prompt);
 			g_data.recieved = ft_mini_split(g_data.prompt);
-			// ft_printf_matrix(g_data.recieved);
 			if (g_data.recieved != NULL)
 			{
 				if (ft_initial_errors())
@@ -109,8 +108,6 @@ int	main(int argc, char **argv, char **env)
 					if (ft_errors())
 					{
 						ft_expand_data();
-						// ft_print_tokens();
-					//ft_printf("TEST\n");
 						ft_tokens_to_str();
 						ft_check_pipe(g_data.line);
 						ft_clear();

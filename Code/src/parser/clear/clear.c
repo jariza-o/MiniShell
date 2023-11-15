@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 13:52:42 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/14 19:58:01 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:20:02 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	ft_clear_tokens(void)
 	
 	while (g_data.tokens)
 	{
-		ft_printf("CLEAR TOKENS: %s\n", g_data.tokens->str);
 		// aux = g_data.tokens;
 		next = g_data.tokens->next;
 		free (g_data.tokens->str);
