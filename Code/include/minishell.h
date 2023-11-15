@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/15 17:18:42 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:24:02 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,5 +211,7 @@ int					ft_is_comma(t_token *tokens);
 char				*ft_nl(char *line);
 
 char				*ft_eof(char *limiter);
+
+char				**ft_realloc_recieved(char *cmd);
 
 #endif
