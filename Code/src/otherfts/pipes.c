@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:53:54 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/06 20:24:12 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:16:45 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,11 @@ static void	ft_parent(void)
 void	ft_check_pipe(char *command)
 {
 	int saved_stdout;
+	int saved_stdin;
 
 	saved_stdout = dup(1);
-	if (ft_strchr(command, '|'))
+	saved_stdin = dup(0);
+	if (ft_strchr(command, '|') && !ft_is_comma(g_data.tokens))
 		ft_pipe(command);
 	else
 	{
@@ -68,8 +70,7 @@ void	ft_check_pipe(char *command)
 			close(g_data.spipe.fd_out);
 		}
 		ft_cmds();
-		dup2(saved_stdout, 1);
-		close(saved_stdout);
+		ft_restore_fds(saved_stdout, saved_stdin);
 	}
 }
 

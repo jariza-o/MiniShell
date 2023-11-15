@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:30:32 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/14 15:40:24 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:48:34 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,6 @@ static void	ft_close_quotes_words(char *str, int *i, size_t *len)
 	while (str && str[*i] && str[*i] != q)
 		(*i)++;
 	(*i)++;
-	// if (str && ft_strchr(" |<>", str[*i]))
-	// {
-	// 	// (*len)++;
-	// 	// while (str[*i] == ' ' && str[*i])
-	// 	// 	(*i)++;
-	// 	ft_special_character(str, i, len);
-	// }
 }
 
 static void	ft_special_character(char *str, int *i, size_t *len)

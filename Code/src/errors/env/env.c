@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 19:31:38 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/05 16:03:23 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:49:21 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_check_env_errors(char **received)
 				n++;
 				while (received[i][n] != '\'' && received[i][n])
 					n++;
-				if (received[i][n]) //
+				if (received[i][n])
 					n++;
 			}
 			if (received[i][n] && received[i][n] == '$' && ft_mini_isalpha(received[i][n + 1]))

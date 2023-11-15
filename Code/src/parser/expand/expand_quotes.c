@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:18:10 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/14 20:29:28 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:25:21 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	ft_expand_quotes(char *quote) //POSIBLE LEAKS
 	i = -1;
 	n = 0;
 	str = ft_strdup(quote);
-	// ft_all_null(quote); //me da doble free en valgrind pero si lo quito no me expande
 	// free (quote);
 	// quote = (char *)ft_calloc(ft_strlen(str) + 1, sizeof(char)); // Con la version de abajo da problema con casos super ramdoms
 	// quote = (char *)ft_calloc((ft_strlen(str) - \
@@ -42,7 +41,7 @@ void	ft_expand_quotes(char *quote) //POSIBLE LEAKS
 		else if (str[i])
 			quote[n++] = str[i];
 	}
-	while (quote[n] != '\0') // GUARRADA EXTREMA
+	while (quote && quote[n] != '\0') // GUARRADA EXTREMA
 		quote[n++] = '\0';
 	free (str);
 }
@@ -78,14 +77,3 @@ void	ft_expand_quotes(char *quote) //POSIBLE LEAKS
 // 	return (len);
 // }
 
-// static void	ft_all_null(char *str) //Comprobar guarrada
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (str && str[i])
-// 	{
-// 		str[i] = '\0';
-// 		i++;
-// 	}
-// }
