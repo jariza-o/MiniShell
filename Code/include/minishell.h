@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
 /*   Updated: 2023/11/15 22:17:59 by jjaen-mo         ###   ########.fr       */
@@ -96,8 +96,6 @@ int					ft_initial_errors(void);
 int					ft_errors(void);
 /* Print error message */
 void				ft_print_errors(int error);
-/* Quotes (" and ') */
-int					ft_check_quotes(char **argv);
 /* Semicolon */
 int					ft_check_semicolon(char **argv);
 /* Slash */
@@ -118,18 +116,13 @@ void				ft_cd(char *path);
 void				ft_pwd(void);
 
 void				ft_print_matrix(char **matrix);
-void				ft_print_matrix(char **matrix);
 
-void				ft_export(char **argv);
 void				ft_export(char **argv);
 
 void				ft_unset(char **argv);
-void				ft_unset(char **argv);
 
 void				ft_exit(void);
-void				ft_exit(void);
 
-void				ft_system_cmds(char **command);
 void				ft_system_cmds(char **command);
 
 void				ft_signals(void);

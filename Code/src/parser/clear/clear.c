@@ -6,15 +6,16 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 13:52:42 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/15 17:20:02 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/15 22:32:02 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
 
-void	ft_clear(void)
+void	ft_clear(void) // esta dando leaks en /bin/ls -la por ft_check_pipe
 {
-	g_data.recieved = ft_clean_matrix(g_data.recieved);
+	if (g_data.recieved)
+		ft_clean_double_pointer(g_data.recieved);
 	if (g_data.vars_mod == 10)
 		unlink("tmp");
 	if (g_data.line)
@@ -28,12 +29,12 @@ void	ft_clear_parser(int i)
 	if (i == 0)
 	{
 		if (g_data.recieved)
-			ft_clean_matrix(g_data.recieved);
+			g_data.recieved = ft_clean_matrix(g_data.recieved);
 	}
 	else if (i == 1)
 	{
 		if (g_data.recieved)
-			ft_clean_matrix(g_data.recieved);
+			g_data.recieved = ft_clean_matrix(g_data.recieved);
 		if (g_data.tokens)
 			ft_clear_tokens();
 	}
