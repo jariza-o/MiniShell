@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 16:51:12 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/15 18:07:55 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/15 21:21:53 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_print_tokens(void)
 	while (g_data.tokens)
 	{
 		ft_printf("Token STR:%s\n", g_data.tokens->str);
-		// ft_printf("Token TYPE: %d\n", g_data.tokens->type);
+		ft_printf("Token TYPE: %d\n", g_data.tokens->type);
 		g_data.tokens = g_data.tokens->next;
 	}
 	ft_printf("__________________\n");

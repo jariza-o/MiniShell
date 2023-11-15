@@ -1,3 +1,6 @@
+echo 2hjgjhhgj"jhhjkhkj
+|echo <<<<>>>><<<<< < << <<<>>>< <||| 11 1
+
 exho hdfhbdhfjhkjsdhf 
 echo "JYgbyjghjy" $USER "rfgcvg" 'dghddghdfgdyg$SR""'
 
@@ -89,3 +92,27 @@ NEW FALLOS:
 echo "ho   $USE$HOME" (PARSER)
 ARREGLADO: echo "$HOME '$LESS "pa $TERM" na' $USER" (zegmentation)
 
+
+
+       echo "ho   $USER"
+==14148== Invalid read of size 1
+==14148==    at 0x100007447: ft_special_character (in ./minishell)
+==14148==    by 0x1000072D4: ft_words (in ./minishell)
+==14148==    by 0x1000075F4: ft_mini_split (in ./minishell)
+==14148==    by 0x1000061AF: main (in ./minishell)
+==14148==  Address 0x100924caf is 1 bytes before a block of size 25 alloc'd
+==14148==    at 0x10012D775: malloc (in /Users/jariza-o/.brew/Cellar/valgrind/HEAD-99f1028/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==14148==    by 0x100167C44: xmalloc (in /Users/jariza-o/.brew/Cellar/readline/8.2.1/lib/libreadline.8.2.dylib)
+==14148==    by 0x100145096: readline_internal_teardown (in /Users/jariza-o/.brew/Cellar/readline/8.2.1/lib/libreadline.8.2.dylib)
+==14148==    by 0x100144BB4: readline (in /Users/jariza-o/.brew/Cellar/readline/8.2.1/lib/libreadline.8.2.dylib)
+==14148==    by 0x100006179: main (in ./minishell)
+==14148== 
+
+
+==14148== 2 bytes in 1 blocks are definitely lost in loss record 2 of 114
+==14148==    at 0x10012D775: malloc (in /Users/jariza-o/.brew/Cellar/valgrind/HEAD-99f1028/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==14148==    by 0x100004A25: ft_itoa (in ./minishell)
+==14148==    by 0x100008AD6: ft_change_env_str (in ./minishell)
+==14148==    by 0x100008890: ft_expand_env (in ./minishell)
+==14148==    by 0x100008E9A: ft_expand_data (in ./minishell)
+==14148==    by 0x1000061FB: main (in ./minishell)

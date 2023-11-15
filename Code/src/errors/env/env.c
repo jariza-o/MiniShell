@@ -6,12 +6,13 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 19:31:38 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/15 15:49:21 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/15 21:09:40 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
 
+static void	ft_pass_env(char **received, int *i, int *n);
 static int	ft_mini_isalpha(int c);
 
 int	ft_check_env_errors(char **received)
@@ -26,22 +27,27 @@ int	ft_check_env_errors(char **received)
 		while (received[i][n])
 		{
 			if (received[i][n] == '\'')
-			{
-				n++;
-				while (received[i][n] != '\'' && received[i][n])
-					n++;
-				if (received[i][n])
-					n++;
-			}
-			if (received[i][n] && received[i][n] == '$' && ft_mini_isalpha(received[i][n + 1]))
+				ft_pass_env(received, &i, &n);
+			if (received[i][n] && received[i][n] == '$' && \
+			ft_mini_isalpha(received[i][n + 1]))
 				n += 2;
 			else if (received[i][n] && received[i][n] == '$')
 				return (0);
-			while (received[i][n] && (received[i][n] != '$' || received[i][n] != '\''))
+			while (received[i][n] && (received[i][n] != '$' || \
+			received[i][n] != '\''))
 				n++;
 		}
 	}
 	return (1);
+}
+
+static void	ft_pass_env(char **received, int *i, int *n)
+{
+	(*n)++;
+	while (received[*i][*n] != '\'' && received[*i][*n])
+		n++;
+	if (received[*i][*n])
+		(*n)++;
 }
 
 static int	ft_mini_isalpha(int c)
