@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:41:56 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/07 20:15:45 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:24:21 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	**ft_shell_lvl(char **env)
 	int		cnt;
 
 	tmp = ft_get_env("SHLVL");
-	if(!tmp)
+	if (!tmp)
 	{
 		ft_new_env("SHLVL", "1");
 		return (g_data.env);

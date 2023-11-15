@@ -6,11 +6,22 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:16:25 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/14 20:09:49 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:23:45 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+char	**ft_realloc_recieved(char *cmd)
+{
+	char	**tmp;
+
+	tmp = malloc(sizeof(char *) * 2);
+	tmp[0] = ft_strdup(cmd);
+	tmp[1] = NULL;
+	g_data.recieved = ft_clean_matrix(g_data.recieved);
+	return (tmp);
+}
 
 void	ft_restore_fds(int stdout, int stdin)
 {

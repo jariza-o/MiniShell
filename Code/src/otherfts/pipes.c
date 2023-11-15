@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:53:54 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/14 19:16:45 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:22:27 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ static void	ft_parent(void)
 
 void	ft_check_pipe(char *command)
 {
-	int saved_stdout;
-	int saved_stdin;
+	int	saved_stdout;
+	int	saved_stdin;
 
 	saved_stdout = dup(1);
 	saved_stdin = dup(0);

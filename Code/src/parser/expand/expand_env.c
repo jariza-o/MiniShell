@@ -6,34 +6,30 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:06:03 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/15 19:33:18 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/15 20:55:44 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
 
+static void	ft_one_simple_quotes(int *n, int *i, t_token *tokens);
 static char	*ft_obtain_env(t_token *tokens, int i);
-
 static char	*ft_change_env_str(t_token *tokens, char *content, char *env);
+static void	ft_len_change_env(int *len_env);
 
 void	ft_expand_env(t_token *tokens)
 {
-	char	*env = NULL;
+	char	*env;
 	char	*content;
 	int		i;
 	int		n;
 
+	env = NULL;
 	i = -1;
 	while (tokens->str && tokens->str[++i])
 	{
 		if (tokens->str[i] == '\'')
-		{
-			n = i;
-			while (tokens->str && tokens->str[++i] &&  tokens->str[i] != '\'')
-				;
-			if (!tokens->str[i])
-				i = n;
-		}
+			ft_one_simple_quotes(&n, &i, tokens);
 		else if (tokens->str[i] == '$')
 		{
 			env = ft_obtain_env(tokens, ++i);
@@ -48,6 +44,15 @@ void	ft_expand_env(t_token *tokens)
 	tokens->str = ft_change_env_str(tokens, content, env);
 	free(env);
 	free(content);
+}
+
+static void	ft_one_simple_quotes(int *n, int *i, t_token *tokens)
+{
+	*n = *i;
+	while (tokens->str && tokens->str[++(*i)] && tokens->str[*i] != '\'')
+		;
+	if (!tokens->str[*i])
+		*i = *n;
 }
 
 static char	*ft_obtain_env(t_token *tokens, int i)
@@ -86,15 +91,15 @@ static char	*ft_change_env_str(t_token *tokens, char *content, char *env)
 	len = ft_strlen(tokens->str);
 	len_env = ft_strlen(env);
 	if (!ft_strcmp(env, "?"))
-		len_env = ft_strlen(ft_itoa(g_data.exit_status));
+		ft_len_change_env(&len_env);
 	str = (char *)ft_calloc((len - len_env + ft_strlen(content)), sizeof(char));
 	i = -1;
 	len = -1;
 	while (tokens->str[++i] != '$')
 		str[++len] = tokens->str[i];
-	while ((tokens->str[++i] == '_' || ft_isalnum(tokens->str[i])) \
-	&& tokens->str[i])
-		i++;
+	while (tokens->str[++i] && (tokens->str[i] != '$' && \
+	(tokens->str[i] == '_' || ft_isalnum(tokens->str[i]))))
+		;
 	if (tokens->str[i - 1] == '$' && tokens->str[i] == '?')
 		i++;
 	len_env = -1;
@@ -103,4 +108,13 @@ static char	*ft_change_env_str(t_token *tokens, char *content, char *env)
 	while (tokens->str[i])
 		str[++len] = tokens->str[i++];
 	return (free(tokens->str), str);
+}
+
+static void	ft_len_change_env(int *len_env)
+{
+	char	*str;
+
+	str = ft_itoa(g_data.exit_status);
+	*len_env = ft_strlen(str);
+	free (str);
 }
