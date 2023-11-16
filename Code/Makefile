@@ -6,7 +6,7 @@
 #    By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 12:59:03 by jariza-o          #+#    #+#              #
-#    Updated: 2023/11/15 21:00:22 by jjaen-mo         ###   ########.fr        #
+#    Updated: 2023/11/16 14:00:23 by jjaen-mo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRC =		src/main.c \
 			src/parser/clear/clear.c src/otherfts/utils2.c\
 			src/otherfts/system-cmds.c src/otherfts/utils.c src/otherfts/pipes.c src/otherfts/redirs.c \
 			src/errors/special_caracters/slash_semicolon.c  src/errors/redirections/redirections.c src/errors/env/env.c src/errors/errors.c \
-			src/signals/signals.c \
+			src/signals/signals.c src/otherfts/redirs_utils.c\
 			src/utils/prints.c \
 
 OBJT =		$(SRC:.c=.o)

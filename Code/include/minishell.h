@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/15 22:17:59 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:01:43 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ void				ft_printf_matrix(char **str);
 
 char				*ft_get_env(char *str);
 
-char				*ft_check_redir(char *line);
+char				*ft_check_redir_pipe(char *line);
 
 int					ft_exists(char *cmd);
 
@@ -199,7 +199,7 @@ char				*ft_nl(char *line);
 
 char				*ft_eof(char *limiter);
 
-char				**ft_realloc_recieved();
+char				**ft_realloc_recieved(void);
 
 int					ft_is_valid_name(char *name);
 
@@ -210,5 +210,15 @@ void				ft_export_vars(char *argv);
 int					ft_exists_var(char *var);
 
 char				**ft_split_var(char *argv);
+
+char				*ft_check_redir_single(char *line);
+
+void				ft_heredoc(char *limiter);
+
+int					ft_double_redir_ck(char *line, char red);
+
+char				*ft_in_redir(char *line);
+
+char				*ft_out_redir(char *line);
 
 #endif
