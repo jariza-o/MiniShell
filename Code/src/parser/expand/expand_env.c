@@ -6,44 +6,51 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:06:03 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/15 20:55:44 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/16 16:59:55 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
 
 static void	ft_one_simple_quotes(int *n, int *i, t_token *tokens);
+static void	ft_norma(t_token *tokens, int *i, int *aux);
 static char	*ft_obtain_env(t_token *tokens, int i);
 static char	*ft_change_env_str(t_token *tokens, char *content, char *env);
-static void	ft_len_change_env(int *len_env);
 
 void	ft_expand_env(t_token *tokens)
 {
-	char	*env;
-	char	*content;
-	int		i;
-	int		n;
+	t_env	d;
 
-	env = NULL;
-	i = -1;
-	while (tokens->str && tokens->str[++i])
+	d.env = NULL;
+	d.i = -1;
+	d.aux = 0;
+	while (tokens->str && tokens->str[++d.i])
 	{
-		if (tokens->str[i] == '\'')
-			ft_one_simple_quotes(&n, &i, tokens);
-		else if (tokens->str[i] == '$')
+		ft_norma(tokens, &d.i, &d.aux);
+		if (tokens->str[d.i] == '\'' && d.aux == 0)
+			ft_one_simple_quotes(&d.n, &d.i, tokens);
+		else if (tokens->str[d.i] == '$')
 		{
-			env = ft_obtain_env(tokens, ++i);
+			d.env = ft_obtain_env(tokens, ++d.i);
 			break ;
 		}
 	}
-	if (!env)
+	if (!d.env)
 		return ;
-	content = ft_get_env(env);
-	if (content == NULL)
-		content = ft_calloc(1, 1);
-	tokens->str = ft_change_env_str(tokens, content, env);
-	free(env);
-	free(content);
+	d.content = ft_get_env(d.env);
+	if (d.content == NULL)
+		d.content = ft_calloc(1, 1);
+	tokens->str = ft_change_env_str(tokens, d.content, d.env);
+	free(d.env);
+	free(d.content);
+}
+
+static void	ft_norma(t_token *tokens, int *i, int *aux)
+{
+	if (tokens->str[*i] == '\"' && *aux == 0)
+		*aux = 1;
+	else if (tokens->str[*i] == '\"' && *aux == 1)
+		*aux = 0;
 }
 
 static void	ft_one_simple_quotes(int *n, int *i, t_token *tokens)
@@ -108,13 +115,4 @@ static char	*ft_change_env_str(t_token *tokens, char *content, char *env)
 	while (tokens->str[i])
 		str[++len] = tokens->str[i++];
 	return (free(tokens->str), str);
-}
-
-static void	ft_len_change_env(int *len_env)
-{
-	char	*str;
-
-	str = ft_itoa(g_data.exit_status);
-	*len_env = ft_strlen(str);
-	free (str);
 }

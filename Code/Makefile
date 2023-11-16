@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+         #
+#    By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 12:59:03 by jariza-o          #+#    #+#              #
-#    Updated: 2023/11/16 14:00:23 by jjaen-mo         ###   ########.fr        #
+#    Updated: 2023/11/16 17:00:11 by jariza-o         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRC =		src/main.c \
 			src/parser/prompt/prompt.c \
 			src/parser/split/ft_words.c src/parser/split/ft_mini_split.c \
 			src/parser/tokens/init_token.c src/parser/tokens/token.c src/parser/tokens/token2.c src/parser/tokens/tokens_to_str.c src/parser/tokens/ft_print_tokens.c\
-			src/parser/expand/expand_env.c src/parser/expand/expand.c src/parser/expand/expand_quotes.c \
+			src/parser/expand/expand_env.c src/parser/expand/expand_env_2.c src/parser/expand/expand.c src/parser/expand/expand_quotes.c \
 			src/parser/clear/clear.c src/otherfts/utils2.c\
 			src/otherfts/system-cmds.c src/otherfts/utils.c src/otherfts/pipes.c src/otherfts/redirs.c \
 			src/errors/special_caracters/slash_semicolon.c  src/errors/redirections/redirections.c src/errors/env/env.c src/errors/errors.c \

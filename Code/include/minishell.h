@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/16 14:01:43 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/16 16:59:46 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,15 @@ enum				e_datatype
 	HERE_DOC_RED,
 	APPEND_RED,
 };
+
+typedef struct s_env
+{
+	char		*env;
+	char		*content;
+	int			i;
+	int			n;
+	int			aux;
+}				t_env;
 
 typedef struct s_pipe
 {
@@ -153,6 +162,7 @@ void				ft_print_tokens(void);
 void				ft_expand_data(void);
 void				ft_expand_env(t_token *tokens);
 void				ft_expand_quotes(char *quote);
+void				ft_len_change_env(int *len_env);
 
 /* CLEAR FUNCTIONS */
 /* Clear with Errors */
