@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:26:44 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/07 20:12:25 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/15 21:40:53 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	ft_reasign(char *name, char *value)
 {
 	int		cnt;
 	char	**tmp;
+	char	*tmp2;
 
 	cnt = 0;
 	while (g_data.env[cnt])
@@ -53,16 +54,19 @@ void	ft_reasign(char *name, char *value)
 		if (ft_strncmp(tmp[0], name, ft_strlen(name)) == 0)
 		{
 			free(g_data.env[cnt]);
-			g_data.env[cnt] = ft_strjoin(ft_strjoin(name, "="), value);
+			tmp2 = ft_strjoin(name, "=");
+			g_data.env[cnt] = ft_strjoin(tmp2, value);
+			free(tmp2);
 			tmp = ft_clean_matrix(tmp);
 			return ;
 		}
+		tmp = ft_clean_matrix(tmp);
 		cnt++;
 	}
 	g_data.vars_mod = 1;
 }
 
-static int	ft_exists_var(char *var)
+int	ft_exists_var(char *var)
 {
 	int	cnt;
 	int	eq;
@@ -98,18 +102,20 @@ void	ft_new_env(char *name, char *value)
 		cnt2++;
 	}
 	tmp = ft_strjoin(name, "=");
-	env[cnt2] = ft_strjoin(tmp, value);
+	if (!value)
+		env[cnt2] = ft_empty_var(tmp);
+	else
+		env[cnt2] = ft_strjoin(tmp, value);
 	env[cnt2 + 1] = NULL;
 	g_data.env = ft_clean_matrix(g_data.env);
 	g_data.env = ft_dup_envs(env);
 	env = ft_clean_matrix(env);
 	free(tmp);
-	g_data.vars_mod = 1;
 }
 
 void	ft_export(char **argv)
 {
-	char	**vars;
+	int	cnt;
 
 	if (!argv[1])
 	{
@@ -118,13 +124,11 @@ void	ft_export(char **argv)
 	}
 	else
 	{
-		vars = ft_split(argv[1], '=');
-		if (!vars[1] || !vars[0])
-			return ;
-		if (ft_exists_var(argv[1]))
-			ft_reasign(vars[0], vars[1]);
-		else
-			ft_new_env(vars[0], vars[1]);
-		vars = ft_clean_matrix(vars);
+		cnt = 1;
+		while (argv[cnt])
+		{
+			ft_export_vars(argv[cnt]);
+			cnt++;
+		}
 	}
 }

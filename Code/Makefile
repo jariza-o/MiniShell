@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+         #
+#    By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 12:59:03 by jariza-o          #+#    #+#              #
-#    Updated: 2023/11/15 22:18:30 by jariza-o         ###   ########.fr        #
+#    Updated: 2023/11/16 14:00:23 by jjaen-mo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRC =		src/main.c \
 			src/built-ins/echo/echo.c src/built-ins/cd/cd.c \
 			src/built-ins/pwd/pwd.c src/built-ins/env/env.c \
 			src/built-ins/export/export.c src/built-ins/unset/unset.c \
-			src/built-ins/exit/exit.c \
+			src/built-ins/exit/exit.c src/built-ins/export/export_utils.c\
 			src/parser/prompt/prompt.c \
 			src/parser/split/ft_words.c src/parser/split/ft_mini_split.c \
 			src/parser/tokens/init_token.c src/parser/tokens/token.c src/parser/tokens/token2.c src/parser/tokens/tokens_to_str.c src/parser/tokens/ft_print_tokens.c\
@@ -34,7 +34,7 @@ SRC =		src/main.c \
 			src/parser/clear/clear.c src/otherfts/utils2.c\
 			src/otherfts/system-cmds.c src/otherfts/utils.c src/otherfts/pipes.c src/otherfts/redirs.c \
 			src/errors/special_caracters/slash_semicolon.c  src/errors/redirections/redirections.c src/errors/env/env.c src/errors/errors.c \
-			src/signals/signals.c \
+			src/signals/signals.c src/otherfts/redirs_utils.c\
 			src/utils/prints.c \
 
 OBJT =		$(SRC:.c=.o)

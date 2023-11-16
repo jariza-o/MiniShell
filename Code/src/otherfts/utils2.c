@@ -6,19 +6,37 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:16:25 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/15 17:23:45 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/15 22:57:40 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-char	**ft_realloc_recieved(char *cmd)
+char	**ft_realloc_recieved(void)
 {
 	char	**tmp;
+	int		cnt;
+	int		i;
 
-	tmp = malloc(sizeof(char *) * 2);
-	tmp[0] = ft_strdup(cmd);
-	tmp[1] = NULL;
+	cnt = 0;
+	i = 0;
+	while (g_data.recieved[cnt])
+	{
+		if (ft_strchr(g_data.recieved[cnt], '>')
+			|| ft_strchr(g_data.recieved[cnt], '<'))
+			cnt++;
+		else
+			i++;
+		cnt++;
+	}
+	tmp = malloc(sizeof(char *) * (i + 1));
+	cnt = 0;
+	while (cnt < i)
+	{
+		tmp[cnt] = ft_strdup(g_data.recieved[cnt]);
+		cnt++;
+	}
+	tmp[cnt] = NULL;
 	g_data.recieved = ft_clean_matrix(g_data.recieved);
 	return (tmp);
 }

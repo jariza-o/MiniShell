@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:53:54 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/15 17:22:27 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:09:30 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,9 @@ static void	ft_parent(void)
 
 void	ft_check_pipe(char *command)
 {
-	int	saved_stdout;
-	int	saved_stdin;
+	int		saved_stdout;
+	int		saved_stdin;
+	char	*tmp;
 
 	saved_stdout = dup(1);
 	saved_stdin = dup(0);
@@ -56,9 +57,7 @@ void	ft_check_pipe(char *command)
 		ft_pipe(command);
 	else
 	{
-		command = ft_check_redir(command);
-		if (!command)
-			return ;
+		tmp = ft_check_redir_single(command);
 		if (g_data.spipe.fd_in != 0)
 		{
 			dup2(g_data.spipe.fd_in, 0);
@@ -92,7 +91,7 @@ void	ft_pipe(char *line)
 	while (cmdp[++cnt])
 	{
 		pipe(g_data.spipe.fds);
-		cmdp[cnt] = ft_check_redir(cmdp[cnt]);
+		cmdp[cnt] = ft_check_redir_pipe(cmdp[cnt]);
 		g_data.r_pid = fork();
 		if (!cmdp[cnt])
 			break ;

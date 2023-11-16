@@ -6,7 +6,7 @@
 /*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 19:31:38 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/15 21:09:40 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/16 16:02:51 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	ft_check_env_errors(char **received)
 	int	i;
 	int	n;
 
-	i = -1;
-	while (received && received[++i])
+	i = 0;
+	while (received && received[i])
 	{
 		n = 0;
 		while (received[i][n])
@@ -37,6 +37,7 @@ int	ft_check_env_errors(char **received)
 			received[i][n] != '\''))
 				n++;
 		}
+		i++;
 	}
 	return (1);
 }
@@ -44,9 +45,9 @@ int	ft_check_env_errors(char **received)
 static void	ft_pass_env(char **received, int *i, int *n)
 {
 	(*n)++;
-	while (received[*i][*n] != '\'' && received[*i][*n])
-		n++;
-	if (received[*i][*n])
+	while (received[*i][*n] != '\0' && received[*i][*n] != '\'')
+		(*n)++;
+	if (received[*i][*n] && received[*i][*n] == '\'')
 		(*n)++;
 }
 
