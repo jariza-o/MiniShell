@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:41:41 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/06 20:45:04 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:22:28 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ char	**ft_clean_matrix(char **matrix)
 	cnt = 0;
 	while (matrix[cnt])
 	{
-		free(matrix[cnt]);
+		if(matrix[cnt])
+			free(matrix[cnt]);
 		cnt++;
 	}
-	free(matrix);
+	if(matrix)
+		free(matrix);
 	return (NULL);
 }
 
@@ -78,16 +80,16 @@ char	*ft_get_cmdpath(char *cmd)
 
 	cnt = -1;
 	exists = 1;
-	tmp = ft_get_env("PATH");
-	path = ft_split(tmp, ':');
-	free(tmp);
 	while (cmd[++cnt])
 	{
 		if (cmd[cnt] == '/')
 			exists = access(cmd, F_OK);
 	}
 	if (!exists)
-		return (cmd);
+		return (ft_strdup(cmd));
+	tmp = ft_get_env("PATH");
+	path = ft_split(tmp, ':');
+	free(tmp);
 	cmdpath = ft_path(path, cmd);
 	if (cmdpath)
 		return (cmdpath);
@@ -111,6 +113,10 @@ void	ft_system_cmds(char **command)
 	else
 	{
 		ft_exec(cmdpath, command);
-		free(cmdpath);
+		if(cmdpath)
+		{
+			free(cmdpath);
+			cmdpath = NULL;
+		}
 	}
 }

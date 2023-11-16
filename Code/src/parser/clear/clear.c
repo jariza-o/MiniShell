@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 13:52:42 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/16 14:10:12 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:15:12 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	ft_clean_double_pointer(char **matrix)
 	cnt = 0;
 	while (matrix[cnt + 1])
 	{
-		ft_printf("clean: %s\n", matrix[cnt]);
 		free(matrix[cnt]);
 		cnt++;
 	}
