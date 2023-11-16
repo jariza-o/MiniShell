@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 15:13:05 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/16 16:02:11 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/16 17:29:51 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	ft_is_full_n(char *str)
 	int	cnt;
 
 	cnt = 0;
-	if (str[0] == '-')
+	if (str[0] == '-' && str[1] == 'n')
 	{
 		cnt++;
 		while (str[cnt])

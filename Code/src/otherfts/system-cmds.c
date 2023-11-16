@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:41:41 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/16 14:24:57 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/16 17:32:16 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ char	*ft_get_cmdpath(char *cmd)
 	if (!exists)
 		return (ft_strdup(cmd));
 	tmp = ft_get_env("PATH");
+	if(!tmp)
+		return (NULL);
 	path = ft_split(tmp, ':');
 	free(tmp);
 	cmdpath = ft_path(path, cmd);
@@ -107,7 +109,7 @@ void	ft_system_cmds(char **command)
 	cmdpath = ft_get_cmdpath(command[0]);
 	if (!cmdpath)
 	{
-		printf("[ERROR] Command not found: %s \n", command[0]);
+		printf("[ERROR] Command not found: %s\n", command[0]);
 		g_data.exit_status = 127;
 	}
 	else
