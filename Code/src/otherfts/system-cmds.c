@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:41:41 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/16 17:32:16 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/16 17:42:15 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char	*ft_get_cmdpath(char *cmd)
 	if (!exists)
 		return (ft_strdup(cmd));
 	tmp = ft_get_env("PATH");
-	if(!tmp)
+	if (!tmp)
 		return (NULL);
 	path = ft_split(tmp, ':');
 	free(tmp);
