@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 20:52:26 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/15 22:01:38 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:09:23 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,6 @@ void	ft_export_vars(char *argv)
 		ft_new_env(vars[0], vars[1]);
 	else
 		ft_printf("MiniSheh: export: '%s': not a valid identifier\n",
-					argv);
+			argv);
 	vars = ft_clean_matrix(vars);
 }

@@ -6,13 +6,13 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 13:52:42 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/15 22:59:29 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:10:12 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
 
-void	ft_clear(void) // esta dando leaks en /bin/ls -la por ft_check_pipe
+void	ft_clear(void)
 {
 	if (g_data.recieved)
 		g_data.recieved = ft_clean_matrix(g_data.recieved);

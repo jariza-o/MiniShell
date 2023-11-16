@@ -6,13 +6,13 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:45:26 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/15 23:15:56 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:09:35 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-static void	ft_heredoc(char *limiter)
+void	ft_heredoc(char *limiter)
 {
 	char	*line;
 	char	*test;
@@ -40,7 +40,7 @@ static void	ft_heredoc(char *limiter)
 	g_data.spipe.fd_in = open("tmp", O_RDONLY);
 }
 
-static int	ft_double_redir_ck(char *line, char red)
+int	ft_double_redir_ck(char *line, char red)
 {
 	int	cnt;
 	int	flag;
@@ -56,7 +56,7 @@ static int	ft_double_redir_ck(char *line, char red)
 	return (flag);
 }
 
-static char	*ft_in_redir(char *line)
+char	*ft_in_redir(char *line)
 {
 	char	**cmd;
 	char	*tmp;
@@ -85,7 +85,7 @@ static char	*ft_in_redir(char *line)
 	return (tmp);
 }
 
-static char	*ft_out_redir(char *line)
+char	*ft_out_redir(char *line)
 {
 	char	**cmd;
 	char	*tmp;
@@ -114,16 +114,28 @@ static char	*ft_out_redir(char *line)
 	return (tmp);
 }
 
-char	*ft_check_redir(char *line)
+char	*ft_check_redir_pipe(char *line)
 {
+	char	*tmp;
+
 	g_data.spipe.fd_in = 0;
 	g_data.spipe.fd_out = 1;
 	if (!line)
 		return (NULL);
 	if (ft_strchr(line, '>'))
-		line = ft_out_redir(line);
+	{
+		tmp = ft_out_redir(line);
+		free(line);
+		line = ft_strdup(tmp);
+		free(tmp);
+	}
 	if (ft_strchr(line, '<'))
-		line = ft_in_redir(line);
+	{
+		tmp = ft_in_redir(line);
+		free(line);
+		line = ft_strdup(tmp);
+		free(tmp);
+	}
 	if (!line)
 		return (NULL);
 	return (line);
