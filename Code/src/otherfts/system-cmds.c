@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:41:41 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/16 14:22:28 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:24:57 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ char	**ft_clean_matrix(char **matrix)
 	cnt = 0;
 	while (matrix[cnt])
 	{
-		if(matrix[cnt])
+		if (matrix[cnt])
 			free(matrix[cnt]);
 		cnt++;
 	}
-	if(matrix)
+	if (matrix)
 		free(matrix);
 	return (NULL);
 }
@@ -113,7 +113,7 @@ void	ft_system_cmds(char **command)
 	else
 	{
 		ft_exec(cmdpath, command);
-		if(cmdpath)
+		if (cmdpath)
 		{
 			free(cmdpath);
 			cmdpath = NULL;
