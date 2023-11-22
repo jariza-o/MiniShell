@@ -6,7 +6,7 @@
 #    By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 12:59:03 by jariza-o          #+#    #+#              #
-#    Updated: 2023/11/16 17:00:11 by jariza-o         ###   ########.fr        #
+#    Updated: 2023/11/22 17:36:01 by jariza-o         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ RED =		\033[0;31m
 END =		\033[0m
 
 .c.o:
-			gcc ${CFLAGS} -I ~/.brew/opt/readline/include -I /usr/local/opt/readline/include -c $< -o ${<:.c=.o}
+			@gcc ${CFLAGS} -I ~/.brew/opt/readline/include -I /usr/local/opt/readline/include -c $< -o ${<:.c=.o}
 
 all:		$(NAME)
 
