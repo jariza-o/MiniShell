@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:16:25 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/15 22:57:40 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/16 20:06:32 by jariza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,11 @@ int	ft_is_comma(t_token *tokens)
 	while (tokens)
 	{
 		if (tokens->type == DOUBLE_QUOTE || tokens->type == SINGLE_QUOTE)
-			return (1);
+		{
+			if (ft_strchr(tokens->str, '|') || ft_strchr(tokens->str, '<')
+				|| ft_strchr(tokens->str, '>'))
+				return (1);
+		}
 		tokens = tokens->next;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:45:26 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/16 14:09:35 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/16 19:36:57 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,14 +122,14 @@ char	*ft_check_redir_pipe(char *line)
 	g_data.spipe.fd_out = 1;
 	if (!line)
 		return (NULL);
-	if (ft_strchr(line, '>'))
+	if (ft_strchr(line, '>') && !ft_is_comma(g_data.tokens))
 	{
 		tmp = ft_out_redir(line);
 		free(line);
 		line = ft_strdup(tmp);
 		free(tmp);
 	}
-	if (ft_strchr(line, '<'))
+	if (ft_strchr(line, '<') && !ft_is_comma(g_data.tokens))
 	{
 		tmp = ft_in_redir(line);
 		free(line);

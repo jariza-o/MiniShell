@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariza-o <jariza-o@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:55:37 by jariza-o          #+#    #+#             */
-/*   Updated: 2023/11/16 16:59:46 by jariza-o         ###   ########.fr       */
+/*   Updated: 2023/11/16 19:38:13 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ enum				e_datatype
 
 typedef struct s_env
 {
-	char		*env;
-	char		*content;
-	int			i;
-	int			n;
-	int			aux;
-}				t_env;
+	char			*env;
+	char			*content;
+	int				i;
+	int				n;
+	int				aux;
+}					t_env;
 
 typedef struct s_pipe
 {
